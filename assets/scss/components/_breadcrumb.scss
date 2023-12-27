@@ -1,0 +1,25 @@
+@use "../utils/index" as *;
+
+.breadcrumb {
+  margin-block: $s_6;
+  padding-block: $s_2;
+  background-color: var(--clr-natural-100);
+  color: var(--clr-primary-300);
+
+  .separator {
+    @include d_flex();
+
+    > i {
+      color: var(--clr-primary-500);
+    }
+  }
+
+  .last {
+    color: var(--clr-primary-500);
+  }
+
+  nav p {
+    @include d_flex();
+    gap: $s_2;
+  }
+}

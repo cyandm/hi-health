@@ -1,0 +1,86 @@
+@use "../utils/" as *;
+
+.header {
+  position: relative;
+  z-index: 99;
+  background: var(--clr-bg-500);
+  section {
+    position: relative;
+    left: 0;
+    right: 0;
+
+    padding-block: px_to_rem(36);
+    @include d_flex(row, space-between, center);
+
+    .right-header {
+      @include d_flex($a_i: center, $gap: px_to_rem(16));
+      .header-logo {
+        img {
+          max-width: px_to_rem(36);
+        }
+      }
+
+      .header-menu {
+        @include d_flex($gap: px_to_rem(20));
+
+        > li {
+          @include pseudo(unset, 6px) {
+            transition: 0.4s;
+            background-color: transparent;
+            inset: 50% -0.65rem;
+            transform: translateY(-50%);
+            border-radius: 100vmax;
+          }
+
+          &:hover:after {
+            background-color: #000;
+          }
+
+          a {
+            @include fs("body-s");
+          }
+
+          ul.sub-menu {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .left-header {
+      @include d_flex($j_c: center, $a_i: center, $gap: px_to_rem(12));
+      .header-button {
+        @include d_flex();
+
+        a {
+          @include fs("body-s");
+        }
+      }
+
+      .lang-menu {
+        a {
+          @include d_flex(row-reverse, center, center, $gap: px_to_rem(8));
+          padding: px_to_rem(16);
+          background: var(--clr-natural-100);
+
+          img {
+            max-width: px_to_rem(24);
+            height: auto;
+          }
+
+          p {
+            @include fs("body-s");
+          }
+        }
+      }
+    }
+  }
+}
+
+.backabsolute {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  background: transparent !important;
+}

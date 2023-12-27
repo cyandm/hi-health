@@ -1,0 +1,52 @@
+@use "../utils/index" as *;
+
+.service-single {
+  .service-item {
+    .service-side {
+      height: 100px;
+      background: red;
+    }
+
+    .service-content {
+      @include d_flex(column);
+
+      .service-hero {
+        @include d_flex($gap: 0.75rem, $a_i: start, $wrap: nowrap);
+
+        .service-img {
+          max-width: 430px;
+        }
+
+        .service-excerpt {
+          @include d_flex(column, start, start);
+          width: fit-content;
+          > h1 {
+            @include fs("h1");
+          }
+          > p {
+            @include fs("body-s");
+          }
+        }
+      }
+
+      .group-content {
+        margin-block-start: px_to_rem(16);
+        .split-content {
+          > h2 {
+            @include fs("h2");
+          }
+
+          > img {
+            margin-block: px_to_rem(8) px_to_rem(12);
+            width: 100%;
+          }
+
+          > p {
+            @include fs("body-s");
+            margin-block-end: px_to_rem(12);
+          }
+        }
+      }
+    }
+  }
+}

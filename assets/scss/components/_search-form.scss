@@ -1,0 +1,40 @@
+@use "../utils/" as *;
+
+.ajax-search {
+  padding: px_to_rem(8);
+  background: var(--clr-bg-500);
+  color: var(--clr-text-300);
+  border: 0.0625rem solid var(--clr-text-300);
+
+  @include mq("md") {
+    min-width: 100%;
+  }
+
+  &:hover {
+    border: 0.0625rem solid var(--clr-text-700);
+
+    ::placeholder {
+      color: var(--clr-text-700);
+    }
+  }
+
+  &:has(input:focus) {
+    border: 0.0625rem solid white;
+  }
+
+  form {
+    @include d_flex($gap: px_to_rem(4), $wrap: nowrap);
+  }
+
+  input {
+    @include fs("body-s");
+    border: none;
+    padding: 0.5rem 0;
+    background: transparent;
+    min-width: 15.125rem;
+
+    @include mq("xs") {
+      min-width: 90%;
+    }
+  }
+}

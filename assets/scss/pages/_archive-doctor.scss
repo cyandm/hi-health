@@ -1,0 +1,11 @@
+@use "../utils/index" as *;
+
+.item-archive {
+  .item-card-archive {
+    margin-block-start: px_to_rem(24);
+    .item-cards {
+      --min-width: 18rem;
+      gap: px_to_rem(12);
+    }
+  }
+}

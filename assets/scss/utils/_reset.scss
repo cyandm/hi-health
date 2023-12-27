@@ -1,0 +1,105 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: PeydaFa;
+  line-height: 1.1em;
+  font-size: 1rem;
+  color: var(--clr-primary-500);
+  background-color: var(--clr-bg-700);
+  direction: rtl;
+}
+
+html[lang="en-US"] body {
+  font-family: Peyda;
+  direction: ltr;
+
+  i span {
+    font-family: Peyda;
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: Peyda;
+  }
+}
+
+i span {
+  font-family: PeydaFa;
+}
+
+input,
+textarea,
+select {
+  font-family: PeydaFa;
+  border: 0;
+}
+
+a {
+  text-decoration: unset;
+  color: unset;
+  @include fs("body");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  font-family: peyda;
+}
+
+::placeholder {
+  @include fs("body");
+  color: var(--clr-primary-300);
+}
+
+:focus-visible {
+  outline: 0;
+}
+
+input {
+  border: none;
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}

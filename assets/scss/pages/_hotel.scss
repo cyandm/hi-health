@@ -1,0 +1,140 @@
+@use "../utils/index" as *;
+
+.hotel-single {
+  .hotel-details {
+    > div {
+      @include d_flex(column, start, start, $gap: px_to_rem(16));
+      padding: px_to_rem(16) px_to_rem(12);
+      background: var(--clr-bg-500);
+
+      .hotel-rating {
+        @include d_flex(row-reverse, $gap: 0.125rem);
+
+        > svg {
+          min-width: 24px;
+          min-height: 24px;
+        }
+      }
+
+      .hotel-name {
+        > h1 {
+          @include fs("h4");
+          color: var(--clr-text-700);
+        }
+      }
+
+      .hotel-loc {
+        @include d_flex($wrap: nowrap);
+        gap: 0.125rem;
+
+        > i {
+          @include fs("body");
+          color: var(--clr-text-300);
+        }
+
+        > p {
+          @include fs("caption");
+          color: var(--clr-text-300);
+        }
+      }
+    }
+  }
+
+  .hotel-content {
+    margin-block-start: px_to_rem(16);
+    > div {
+      @include d_flex(column, start, start);
+      padding: px_to_rem(12) px_to_rem(12);
+      background: var(--clr-bg-500);
+
+      .title-desc {
+        p {
+          @include fs("h2");
+          color: var(--clr-text-700);
+        }
+      }
+
+      .hotel-desc {
+        p {
+          @include fs("body");
+          color: var(--clr-text-500);
+        }
+      }
+
+      .hotel-pos {
+        margin-block: px_to_rem(16);
+        @include d_flex(row, start, start, $gap: px_to_rem(16));
+        span {
+          @include d_flex(row, $gap: 0.125rem);
+          color: var(--clr-text-300);
+        }
+      }
+    }
+  }
+
+  .hotel-info {
+    margin-block-start: px_to_rem(16);
+    > div {
+      @include d_flex(column, start, start, $gap: px_to_rem(12));
+      padding: px_to_rem(12) px_to_rem(12);
+      background: var(--clr-bg-500);
+
+      p {
+        @include fs("h2");
+        color: var(--clr-text-500);
+      }
+
+      > div {
+        @include d_flex(row, $gap: px_to_rem(8));
+        span {
+          background: #ccc;
+          padding: 0.25rem 0.625rem;
+          color: var(--clr-text-700);
+          @include fs("caption");
+        }
+      }
+    }
+  }
+}
+
+.more-description {
+  @include d_flex($j_c: center);
+  min-width: 100%;
+
+  .btn-more-desc {
+    @include d_flex($j_c: center);
+    padding: px_to_rem(8);
+    @include fs("h4");
+    color: var(--clr-accent-700);
+    margin-block-start: -3rem;
+  }
+
+  .more-description_content {
+    display: grid;
+    grid-template-rows: 0.45fr;
+    transition: 0.3s;
+
+    > div {
+      overflow: hidden;
+    }
+
+    p {
+      @include fs("body");
+    }
+  }
+
+  &.active-show-more {
+    .more-description_content {
+      grid-template-rows: 1fr;
+    }
+
+    .btn-more-desc {
+      margin-block-start: 0;
+
+      i {
+        rotate: 180deg;
+        transition: 0.5s;
+      }
+    }
+  }
+}

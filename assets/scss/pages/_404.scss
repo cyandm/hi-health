@@ -1,0 +1,15 @@
+@use "../utils/" as *;
+
+.err-page {
+  max-width: 800px;
+  margin: auto;
+  margin-block: px_to_rem(32) px_to_rem(120);
+
+  .err-content {
+    @include d_flex(column, center, center);
+
+    .err-btn {
+      @include d_flex(row, center, center);
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@font-face {
+  font-family: Peyda;
+  src: url(../fonts/peyda/woff/PeydaWebFaNum-Medium.woff);
+}
+
+*:not(i, .ab-icon) {
+  font-family: Peyda !important;
+}
+
+*::before,
+*::after {
+  font-family: dashicons;
+}

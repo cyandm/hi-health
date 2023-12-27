@@ -1,0 +1,84 @@
+@use "../utils/index" as *;
+
+.doctor-single {
+  .doctor-item {
+    --dr-feature-width: 30rem;
+
+    display: grid;
+    grid-template-columns: var(--dr-feature-width) 1fr;
+    gap: px_to_rem(12);
+
+    @include mq("md") {
+      grid-template-columns: 1fr;
+    }
+
+    .doctor-feature {
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .doctor-description {
+      > h1 {
+        @include fs("h3");
+        color: var(--clr-text-500);
+      }
+
+      p {
+        @include fs("body-s");
+        margin-block: px_to_rem(8);
+      }
+
+      .doctor-article {
+        @include fs("h4");
+        @include d_flex();
+        color: var(--clr-accent-700);
+      }
+    }
+  }
+}
+
+.doctor-detail {
+  margin-block: px_to_rem(16);
+  @include d_flex(column, start, start, $gap: px_to_rem(12));
+  > span {
+    @include d_flex($gap: px_to_rem(4));
+    @include fs("caption");
+
+    > i {
+      font-size: 20px;
+      color: var(--clr-accent-700);
+    }
+  }
+}
+
+.doctor-other {
+  margin-block-start: px_to_rem(24);
+  .title-other {
+    @include d_flex(row, space-between);
+    margin-block-end: px_to_rem(12);
+
+    > p {
+      @include fs("h2");
+    }
+
+    > a {
+      padding: px_to_rem(8) px_to_rem(16);
+      @include fs("body-s");
+      color: var(--clr-accent-700);
+    }
+  }
+}
+
+.item-select {
+  .even-columns {
+    --min-width: 18rem;
+    grid-template-columns: repeat(4, minmax(var(--min-width), 1fr));
+  }
+
+  .item-cards {
+    gap: 1rem;
+    overflow-x: auto;
+  }
+}

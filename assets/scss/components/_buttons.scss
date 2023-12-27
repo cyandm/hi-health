@@ -1,0 +1,43 @@
+@use "../utils/index" as *;
+
+.big-btn {
+  @include d_flex($gap: px_to_rem(4));
+  background: var(--clr-natural-900);
+  color: var(--clr-text-100);
+  padding: px_to_rem(16) px_to_rem(40);
+  @include fs("body-s");
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.5s;
+
+  @include mq("md") {
+    padding: px_to_rem(8) px_to_rem(16);
+  }
+
+  &:hover {
+    background: var(--clr-bg-500);
+    color: var(--clr-text-700);
+    border: 1px solid var(--clr-text-700);
+  }
+}
+
+.big-sm {
+  @include d_flex($gap: px_to_rem(4));
+  background: var(--clr-natural-900);
+  color: var(--clr-text-100);
+  padding: px_to_rem(8) px_to_rem(16);
+  @include fs("body-s");
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.5s;
+
+  @include mq("md") {
+    padding: px_to_rem(8) px_to_rem(16);
+  }
+
+  &:hover {
+    background: var(--clr-bg-500);
+    color: var(--clr-text-700);
+    border: 1px solid var(--clr-text-700);
+  }
+}

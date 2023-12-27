@@ -1,0 +1,106 @@
+@use "../utils/" as *;
+
+.footer {
+  position: relative;
+  margin-block-start: 6rem;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -3.5vh;
+    width: 100%;
+    height: 7vh;
+    background-image: url("../img/plane-border.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .footer-items {
+    background: var(--clr-accent-100);
+    padding-block: px_to_rem(40);
+    position: relative;
+
+    div {
+      @include d_flex(row, space-between, stretch);
+
+      @media (max-width: 550px) {
+        @include d_flex(column, center, stretch, $gap: px_to_rem(24));
+      }
+    }
+
+    .footer-menu {
+      @include d_flex($gap: px_to_rem(92));
+
+      @media (max-width: 445px) {
+        @include d_flex($j_c: space-between, $gap: px_to_rem(16));
+      }
+
+      @media (max-width: 350px) {
+        div:first-child {
+          min-width: 45%;
+        }
+      }
+
+      .f-menu {
+        @include d_flex(column, center, start, $gap: px_to_rem(16));
+
+        > li {
+          @include pseudo(unset, 6px) {
+            transition: 0.4s;
+            background-color: var(--clr-text-300);
+            inset: 50% -0.65rem;
+            transform: translateY(-50%);
+            border-radius: 100vmax;
+          }
+
+          &:hover {
+            @include pseudo(unset, 6px) {
+              background-color: var(--clr-text-700);
+              inset: 50% -0.65rem;
+              transform: translateY(-50%);
+              border-radius: 100vmax;
+            }
+          }
+
+          a {
+            @include fs("body-s");
+          }
+
+          &.current-menu-item {
+            a {
+              @include fs("body-s");
+              color: var(--clr-text-700);
+            }
+
+            @include pseudo(unset, 6px) {
+              transition: 0.4s;
+              background-color: var(--clr-text-700);
+              inset: 50% -0.65rem;
+              transform: translateY(-50%);
+              border-radius: 100vmax;
+            }
+          }
+        }
+      }
+    }
+
+    .social-media {
+      @include d_flex(column, $gap: px_to_rem(8));
+
+      @media (max-width: 550px) {
+        @include d_flex(row, center, $gap: px_to_rem8);
+      }
+
+      .social-icon {
+        @include d_flex(row, center);
+        min-width: px_to_rem(32);
+        min-height: px_to_rem(32);
+        background: var(--clr-primary-700);
+        color: var(--clr-text-100);
+        border-radius: 100vmax;
+      }
+    }
+  }
+}
