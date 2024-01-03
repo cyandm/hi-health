@@ -1,0 +1,24 @@
+@use '../../utils' as *;
+
+.post-card-mini {
+  display: grid;
+  gap: $s_2;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+
+  .img-wrapper {
+    @include pseudo($square: $s_6, $content: attr(data-index)) {
+      background-color: var(--clr-primary-700);
+      color: var(--clr-primary-100);
+      display: grid;
+      place-content: center;
+      line-height: 0;
+    }
+  }
+
+  &__content {
+    .caption {
+      color: var(--clr-text-300);
+    }
+  }
+}

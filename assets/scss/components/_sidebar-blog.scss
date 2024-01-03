@@ -1,0 +1,8 @@
+@use '../utils' as *;
+
+.sidebar-blog {
+  &__wrapper {
+    position: sticky;
+    top: $s_7;
+  }
+}

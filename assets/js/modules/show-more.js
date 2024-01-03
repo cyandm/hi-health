@@ -1,6 +1,11 @@
-let btnShowMore = document.querySelector(".btn-more-desc");
-let divShowMore = document.querySelector(".more-description");
+const btnShowMore = document.querySelector('.btn-more-desc');
+const divShowMore = document.querySelector('.more-description');
 
-btnShowMore.addEventListener("click", function () {
-  divShowMore.classList.toggle("active-show-more");
-});
+export const showMoreFunc = () => {
+  if (!btnShowMore) return;
+  if (!divShowMore) return;
+
+  btnShowMore.addEventListener('click', function () {
+    divShowMore.classList.toggle('active-show-more');
+  });
+};

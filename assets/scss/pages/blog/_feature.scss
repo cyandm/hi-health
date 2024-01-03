@@ -1,0 +1,70 @@
+@use '../../utils' as *;
+
+.feature {
+  --gap: #{$s_3};
+  margin-block: $s_6 $s_7;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--gap);
+
+  @include mq('lg') {
+    grid-template-columns: 1fr;
+    margin-block-start: 0;
+  }
+
+  &__side {
+    display: grid;
+    gap: var(--gap);
+    align-content: start;
+  }
+
+  &__posts {
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: repeat(3, 1fr);
+
+    @include mq('lg') {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-block-end: $s_2;
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--clr-natural-500);
+      }
+
+      > * {
+        min-width: 320px;
+        scroll-snap-align: start;
+      }
+    }
+  }
+
+  &__terms {
+    display: grid;
+    gap: var(--gap);
+
+    @include mq('lg') {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    @include mq('md') {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &__item {
+      background-image: var(--bg-url); //from php
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      color: var(--clr-text-100);
+      padding: $s_6;
+      display: grid;
+      place-items: center;
+      @include fs('h3');
+
+      @include pseudo(0, 100%, -1) {
+        background-color: rgba(#000000, 0.5);
+      }
+    }
+  }
+}

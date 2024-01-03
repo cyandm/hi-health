@@ -1,4 +1,48 @@
-.container{
-    max-width: 1440px;
-    padding-inline: 1rem;
+@use '../utils' as *;
+
+.card-info {
+  background-color: var(--clr-primary-100);
+  padding: $s_4 $s_3;
+}
+
+.primary-info {
+  display: grid;
+  gap: $s_2;
+  margin-block-end: $s_4;
+}
+
+.secondary-info {
+  margin-block-end: $s_4;
+}
+
+.additional-info {
+  .contact-info {
+    margin-block: $s_2;
+    &__item {
+      margin-block: $s_2;
+      @include d_flex($gap: $s_1);
+    }
+  }
+}
+
+.post-content {
+  a {
+    color: var(--clr-accent-700);
+    text-decoration: underline;
+  }
+}
+
+.posts-container {
+  display: grid;
+  gap: $s_3;
+}
+
+#archive-hotel-page .posts-container,
+#archive-hospital-page .posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+
+  @include mq('md') {
+    grid-template-columns: 1fr;
+  }
 }

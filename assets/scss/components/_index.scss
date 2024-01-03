@@ -1,6 +1,19 @@
-@forward "./buttons";
-@forward "./inputs";
-@forward "./breadcrumb";
-@forward "./dr-card";
-@forward "./filter-search-bar";
-@forward "./search-form";
+@forward './address';
+@forward './archive-sort';
+@forward './author';
+@forward './breadcrumb';
+@forward './buttons';
+@forward './comments';
+@forward './features';
+@forward './filter-search-bar';
+@forward './gallery';
+@forward './inputs';
+@forward './list-terms';
+@forward './load-more';
+@forward './mobile-app-bar';
+@forward './mobile-menu';
+@forward './search-form';
+@forward './sidebar-blog';
+@forward './tags';
+
+@forward './card/index';

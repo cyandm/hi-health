@@ -1,0 +1,76 @@
+@use '../utils' as *;
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block: $s_6;
+  gap: $s_8;
+  max-width: 60em;
+  min-height: 26vw;
+
+  > * {
+    flex: 1;
+    width: 100%;
+  }
+
+  @include mq('lg') {
+    flex-direction: column;
+  }
+
+  form {
+    display: grid;
+    gap: $s_4;
+
+    > p {
+      @include d_flex(column, center, start, $gap: $s_2);
+      width: 100%;
+    }
+  }
+
+  input {
+    width: 100%;
+    padding: $s_2;
+  }
+
+  .login-remember {
+    label {
+      width: 100%;
+      @include d_flex($wrap: nowrap);
+
+      input {
+        width: auto;
+      }
+    }
+  }
+
+  input[type='submit'] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: $s_1;
+    border: 1px solid transparent;
+    transition: 0.5s ease;
+    cursor: pointer;
+    background-color: var(--clr-natural-900);
+    color: var(--clr-natural-100);
+
+    &:hover {
+      background-color: var(--clr-natural-100);
+      color: var(--clr-natural-900);
+      border-color: var(--clr-natural-900);
+    }
+  }
+}
+
+.cyn-errors {
+  display: grid;
+  gap: $s_1;
+  margin-block: $s_2;
+
+  &__item {
+    padding: $s_2 $s_1;
+    background-color: rgba(#d32f2f, 0.2);
+    color: var(--clr-error-main);
+  }
+}

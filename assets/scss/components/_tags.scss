@@ -1,0 +1,9 @@
+@use '../utils' as *;
+
+.tag {
+  @include fs('caption');
+  display: block;
+  padding: $s_1 $s_2;
+  background-color: var(--clr-natural-200);
+  font-weight: 700;
+}

@@ -1,3 +1,13 @@
-import "./menu";
-import "./breadcumb";
-import "./show-more";
+import './archive-filter';
+import './archive-sort';
+import './breadcrumb';
+import './comments';
+import './gallery';
+import './like-post';
+import './load-more';
+import './loading';
+import './menu';
+import './share-post';
+import './show-more';
+import './swiper';
+import './swup';

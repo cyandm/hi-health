@@ -1,14 +1,14 @@
-@use "./functions" as *;
-@use "./variables" as *;
+@use './functions' as *;
+@use './variables' as *;
 
-@mixin mq($viewport: "xs", $type: screen) {
+@mixin mq($viewport: 'xs', $type: screen) {
   $window_width: map-get(
     (
-      "xs": 320px,
-      "sm": 480px,
-      "md": 768px,
-      "lg": 992px,
-      "xl": 1200px,
+      'xs': 320px,
+      'sm': 480px,
+      'md': 768px,
+      'lg': 992px,
+      'xl': 1200px,
     ),
     $viewport
   );
@@ -18,26 +18,26 @@
   }
 }
 
-@mixin fs($type: "body") {
+@mixin fs($type: 'body') {
   $font_map: map-get(
     (
-      "title": make_font_list(112px, 800),
-      "title-s": make_font_list(56px, 500),
-      "h1": make_font_list(32px, 500),
-      "h2": make_font_list(24px, 500),
-      "h3": make_font_list(20px, 500),
-      "h4": make_font_list(16px, 500),
-      "body": make_font_list(20px, 300),
-      "body-s": make_font_list(16px, 300),
-      "caption": make_font_list(12px, 300),
+      'title': make_font_list(112px, 800),
+      'title-s': make_font_list(56px, 500),
+      'h1': make_font_list(32px, 500),
+      'h2': make_font_list(24px, 500),
+      'h3': make_font_list(20px, 500),
+      'h4': make_font_list(16px, 500),
+      'body': make_font_list(20px, 300),
+      'body-s': make_font_list(16px, 300, 160%),
+      'caption': make_font_list(12px, 300, 20px),
     ),
     $type
   );
 
   @if ($font_map) {
-    font-size: map-get($font_map, "font-size");
-    font-weight: map-get($font_map, "font-weight");
-    line-height: map-get($font_map, "line-height");
+    font-size: map-get($font_map, 'font-size');
+    font-weight: map-get($font_map, 'font-weight');
+    line-height: map-get($font_map, 'line-height');
   } @else {
     @error "You'r input #{$type} is wrong";
   }
@@ -56,7 +56,7 @@
   $square: px_to_rem(4),
   $z-index: 1,
   $el: after,
-  $content: "",
+  $content: '',
   $position: absolute
 ) {
   position: relative;
@@ -77,7 +77,7 @@
 @mixin make_icon($content) {
   &::after {
     content: $content;
-    font-family: "cyan-icon" !important;
+    font-family: 'cyan-icon' !important;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -114,30 +114,26 @@
 }
 //#endregion
 
-// @mixin make_bullet($bullet) {
-//   $bullet_use: map-get(
+@mixin actableEl() {
+  pointer-events: none;
+  opacity: 0;
 
-//   )
-//   li {
-//     @include pseudo(unset, 6px) {
-//       transition: 0.4s;
-//       background-color: transparent;
-//       inset: 50% -0.65rem;
-//       transform: translateY(-50%);
-//       border-radius: 100vmax;
-//     }
+  &[data-active='true'] {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
 
-//     &:hover {
-//       @include pseudo(unset, 6px) {
-//         background-color: #000;
-//         inset: 50% -0.65rem;
-//         transform: translateY(-50%);
-//         border-radius: 100vmax;
-//       }
-//     }
+@mixin btnSizes($size) {
+  @if ($size == 'small') {
+    padding: $s_2 $s_4;
+  }
 
-//     a {
-//       @include fs("body-s");
-//     }
-//   }
-// }
+  @if ($size == 'medium') {
+    padding: $s_3 $s_6;
+  }
+
+  @if ($size == 'big') {
+    padding: $s_2 px_to_rem(40);
+  }
+}

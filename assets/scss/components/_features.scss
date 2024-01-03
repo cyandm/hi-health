@@ -1,0 +1,23 @@
+@use '../utils' as *;
+
+.features {
+  @include d_flex($gap: $s_3);
+  margin-block: $s_4;
+
+  &__item {
+    @include d_flex(row, center, center, $gap: $s_1);
+    color: var(--clr-natural-400);
+    order: 1;
+
+    &[data-active='true'] {
+      order: 0;
+      color: var(--clr-secondary-700);
+    }
+  }
+
+  &.no-name-md &__item__name {
+    @include mq('md') {
+      display: none;
+    }
+  }
+}

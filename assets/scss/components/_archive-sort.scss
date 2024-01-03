@@ -1,0 +1,61 @@
+@use '../utils' as *;
+
+.archive-sort {
+  background-color: #fff;
+  margin-block: $s_5;
+  padding-block: $s_5;
+
+  .container {
+    @include d_flex(row, space-between, center);
+  }
+
+  &__filters-con {
+    @include d_flex($gap: $s_4);
+  }
+
+  &__title {
+    @include d_flex(row, space-between, center);
+    font-weight: bold;
+
+    i {
+      color: var(--clr-primary-300);
+    }
+  }
+
+  &__filters {
+    @include d_flex(row, space-between, center, $gap: $s_3);
+
+    label {
+      @include d_flex($gap: $s_1);
+      cursor: pointer;
+
+      input {
+        margin: 0;
+      }
+    }
+  }
+
+  @include mq('lg') {
+    .container,
+    &__filters,
+    &__filters-con {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__filters {
+      gap: $s_5;
+      @include fs('body-s');
+    }
+
+    &__result {
+      margin-block-start: $s_4;
+      padding-block-start: $s_4;
+      border-block-start: 1px solid var(--clr-natural-200);
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,126 @@
+@use '../utils/' as *;
+
+#menuOpener {
+  background-color: var(--clr-primary-100);
+  padding: $s_2;
+  display: none;
+  cursor: pointer;
+
+  @include mq('lg') {
+    display: block;
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  max-height: 100svh;
+  background-color: var(--clr-natural-100);
+  z-index: 99999 !important;
+
+  display: grid;
+  grid-template-rows: 114px 1fr;
+  transition: clip-path 0.4s ease-in-out;
+  clip-path: inset(0% 0% 0% 0%);
+
+  &[data-active='false'] {
+    clip-path: inset(0% 0% 0% 100%);
+  }
+
+  &__header {
+    @include d_flex(row, space-between);
+    width: 100%;
+  }
+
+  &__nav {
+    overflow: scroll;
+    direction: ltr;
+
+    &::-webkit-scrollbar {
+      width: 0rem;
+      margin-inline-end: 0.25rem;
+
+      &-thumb {
+        background-color: var(--clr-natural-400);
+      }
+    }
+
+    .menu {
+      direction: rtl;
+      width: 100%;
+      display: grid;
+
+      li {
+        padding-block: $s_3;
+        margin-block: $s_2;
+        border-bottom: 1px solid var(--clr-natural-200);
+        color: var(--clr-natural-400);
+
+        &.menu-item-has-children {
+          position: relative;
+
+          @include make_icon('\e901') {
+            transition: transform 0.3s;
+            position: absolute;
+            left: $s_2;
+            top: $s_2;
+          }
+
+          > .grid-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: 0.3s;
+
+            > ul.sub-menu {
+              overflow: hidden;
+              transition: all 0.3s;
+              display: grid;
+              gap: $s_2;
+              margin-block: 0;
+
+              > li {
+                padding-block: 0;
+                margin-block: 0;
+                border: 0;
+                padding-inline: $s_2;
+                color: var(--clr-natural-700);
+
+                &[data-active='true'] {
+                  background-color: #f2f2f2;
+                }
+
+                .grid-wrapper {
+                  padding: 0;
+
+                  li:not(:last) {
+                    border-bottom: 1px solid var(--clr-natural-300);
+                  }
+                }
+              }
+            }
+          }
+
+          &[data-active='true'] {
+            &::after {
+              transform: rotate(180deg);
+              color: var(--clr-accent-700);
+            }
+
+            > .grid-wrapper {
+              grid-template-rows: 1fr;
+              padding-block: $s_2;
+
+              > ul.sub-menu {
+                margin-block: $s_2;
+
+                > li {
+                  padding-block: $s_2;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

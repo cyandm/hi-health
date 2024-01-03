@@ -1,0 +1,6 @@
+@use '../utils/' as *;
+
+.address-con {
+  @include d_flex($wrap: nowrap, $gap: $s_1);
+  color: var(--clr-primary-300);
+}

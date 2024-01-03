@@ -1,17 +1,21 @@
-@use "../utils/" as *;
+@use '../utils/' as *;
 
 .footer {
   position: relative;
   margin-block-start: 6rem;
 
+  @include mq('lg') {
+    margin-block-end: 4rem;
+  }
+
   &::after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: -3.5vh;
     width: 100%;
     height: 7vh;
-    background-image: url("../img/plane-border.svg");
+    background-image: url('../img/plane-border.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -65,12 +69,12 @@
           }
 
           a {
-            @include fs("body-s");
+            @include fs('body-s');
           }
 
           &.current-menu-item {
             a {
-              @include fs("body-s");
+              @include fs('body-s');
               color: var(--clr-text-700);
             }
 

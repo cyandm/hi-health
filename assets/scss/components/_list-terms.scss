@@ -1,0 +1,31 @@
+@use '../utils' as *;
+
+.list-terms {
+  display: grid;
+  gap: $s_2;
+  margin-block-start: $s_2;
+
+  &__item {
+    background-color: var(--clr-primary-100);
+    padding: $s_3;
+    @include d_flex($gap: $s_1);
+
+    &:hover {
+      .list-terms__bullet {
+        background-color: var(--clr-secondary-700);
+      }
+    }
+  }
+
+  &__bullet {
+    height: 0.5rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--clr-natural-300);
+    transition: background 0.3s;
+
+    &[data-active='true'] {
+      background-color: var(--clr-secondary-700);
+    }
+  }
+}

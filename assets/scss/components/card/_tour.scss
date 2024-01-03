@@ -1,0 +1,49 @@
+@use '../../utils/' as *;
+
+.tour-card {
+  @include d_flex($even_column: true, $gap: $s_4);
+  background-image: var(--bg-url);
+  background-size: cover;
+  background-color: var(--clr-natural-900);
+  color: var(--clr-natural-100);
+  padding: $s_6;
+  animation: fadeIn 0.3s ease-in;
+
+  @include pseudo(0, 100%, -2) {
+    background-color: var(--clr-natural-900);
+    opacity: 0.5;
+  }
+
+  &__info {
+    @include d_flex(column, flex-start, flex-start, $gap: $s_3);
+  }
+
+  &__side-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    min-height: 26rem;
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    @include fs();
+  }
+
+  @include mq('lg') {
+    flex-direction: column;
+    padding: $s_3;
+    background-position: center center;
+
+    &__side-gallery {
+      min-height: 12rem;
+    }
+
+    &__info {
+      width: 100%;
+    }
+  }
+}

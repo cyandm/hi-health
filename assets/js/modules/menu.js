@@ -1,46 +1,48 @@
-// ******************* mobile menu
-let mobile = document.querySelector(".hamburger-menu");
-let close_mobile = document.getElementById("close-menu");
+import {
+  activateEl,
+  addListener,
+  deActivateEl,
+  definePopUp,
+  toggleActivateEl,
+} from '../utils/functions';
 
-if (mobile) {
-  (function () {
-    mobile.addEventListener("click", function () {
-      document.querySelector(".mobile-menu").classList.toggle("disply-menu");
-      document
-        .querySelector(".hirka-mobile-contain")
-        .classList.toggle("active");
-      document.body.style.overflow = "hidden";
-      return false;
-    });
-    close_mobile.addEventListener("click", function () {
-      document
-        .querySelector(".hirka-mobile-contain")
-        .classList.remove("active");
-      document.querySelector(".mobile-menu").classList.remove("disply-menu");
-      document.body.style.overflow = "auto";
-    });
-  })();
-
-  let mobileMenuContainer = document.querySelector(".mobile-menu-container");
-  let menuItemsHasChildren = mobileMenuContainer.querySelectorAll(
-    "li.menu-item-has-children"
+export const menu = () => {
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuOpener = document.getElementById('menuOpener');
+  const menuCloser = document.getElementById('menuCloser');
+  const menuItemHasChildren = document.querySelectorAll(
+    '.menu-item-has-children'
   );
 
-  for (let i = 0; i < menuItemsHasChildren.length; i++) {
-    menuItemsHasChildren[i].addEventListener("click", function (event) {
-      event.stopPropagation();
-      let subMenu = this.getElementsByClassName("sub-menu");
-      let link = this.querySelector("a");
+  if (!mobileMenu) return;
+  if (!menuOpener) return;
+  if (!menuCloser) return;
 
-      if (subMenu[0].style.display === "none") {
-        subMenu[0].style.display = "block";
-        link.style.color = "#FF6A2B";
-        link.style.setProperty("--after-content", '"\\e915"');
-      } else {
-        subMenu[0].style.display = "none";
-        link.style.color = "#595959";
-        link.style.setProperty("--after-content", '"\\e914"');
-      }
+  deActivateEl(mobileMenu);
+  definePopUp(mobileMenu);
+
+  addListener(menuOpener, 'click', () => activateEl(mobileMenu));
+  addListener(menuCloser, 'click', () => deActivateEl(mobileMenu));
+
+  if (!menuItemHasChildren) return;
+
+  menuItemHasChildren.forEach((el) => {
+    addListener(el, 'click', (e) => {
+      if (e.target != el) return;
+      toggleActivateEl(el);
     });
-  }
-}
+    addGridWrapper(el);
+  });
+};
+
+const addGridWrapper = (el) => {
+  const hasGrid = el.children.item(1).classList.contains('grid-wrapper');
+  if (hasGrid) return;
+
+  const submenu = el.querySelector('ul.sub-menu');
+  const div = document.createElement('div');
+  div.classList.add('grid-wrapper');
+
+  el.appendChild(div);
+  div.appendChild(submenu);
+};

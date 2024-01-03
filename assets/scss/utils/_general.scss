@@ -1,6 +1,6 @@
-@use "./variables" as *;
-@use "./functions" as *;
-@use "./mixins" as *;
+@use './variables' as *;
+@use './functions' as *;
+@use './mixins' as *;
 
 .container {
   max-width: 1440px;
@@ -26,6 +26,14 @@
 
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
+
+  @include mq('lg') {
+    grid-template-columns: 1fr;
+
+    & > :nth-child(2) {
+      grid-row: 1;
+    }
+  }
 }
 
 ::selection {
@@ -45,5 +53,23 @@
   &-thumb {
     border-radius: 100vmax;
     background-color: var(--clr-accent-700);
+  }
+}
+
+body[data-popup-open='true'] {
+  overflow: hidden;
+}
+
+.grid-col-4 {
+  --col: 4;
+  display: grid;
+  grid-template-columns: repeat(var(--col), 1fr);
+
+  @include mq('lg') {
+    --col: 2;
+  }
+
+  @include mq('md') {
+    --col: 1;
   }
 }

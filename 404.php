@@ -2,21 +2,21 @@
 
 <main class="container">
 
-    <section class="err-page">
+	<section class="err-page">
 
-        <div class="err-content">
+		<div class="err-content">
 
-            <div class="err-img">
-                <img src="<?= get_stylesheet_directory_uri() . '/assets/img/404.webp' ?>" alt="404">
-            </div>
+			<div class="err-img">
+				<img src="<?= get_stylesheet_directory_uri() . '/assets/img/404.webp' ?>" alt="404">
+			</div>
 
-            <div class="err-btn">
-                <a href="/" class="big-btn">بازگشت به صفحه اصلی</a>
-            </div>
+			<div class="err-btn">
+				<a href="/" class="btn" variant='primary' size='big'>بازگشت به صفحه اصلی</a>
+			</div>
 
-        </div>
+		</div>
 
-    </section>
+	</section>
 
 </main>
 

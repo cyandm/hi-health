@@ -1,0 +1,8 @@
+@use '../utils' as *;
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-block-start: $s_3;
+}

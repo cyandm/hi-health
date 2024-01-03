@@ -1,0 +1,30 @@
+@use '../utils' as *;
+
+.author-profile {
+  @include d_flex($gap: $s_2);
+  color: var(--clr-text-300);
+
+  img {
+    width: $s_6;
+    height: $s_6;
+    border-radius: 50%;
+  }
+
+  &__name-group {
+    @include d_flex(column);
+    @include fs('body-s');
+    color: var(--clr-text-700);
+  }
+
+  &__date {
+    @include fs('caption');
+    color: var(--clr-text-300);
+  }
+
+  &__image {
+    img {
+      width: px_to_rem(44);
+      height: px_to_rem(44);
+    }
+  }
+}

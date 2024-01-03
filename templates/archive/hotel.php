@@ -1,34 +1,49 @@
 <?php
-$related_hotels = new WP_Query([
-    'post_type' => 'hotel',
-]);
-?>
+
+$sort_items = [ 
+	[ 
+		'name' => 'اقتصادی',
+		'id' => 'economy',
+		'order' => 'ASC',
+		'meta' => 'star'
+	],
+	[ 
+		'name' => 'لاکچری',
+		'id' => 'luxury',
+		'order' => 'DESC',
+		'meta' => 'star'
+	],
+]
+	?>
 
 
 <?php get_header() ?>
+<?php
+get_template_part(
+	'/templates/components/archive/archive-sort',
+	null,
+	[ 'sort_items' => $sort_items ] )
+	?>
 
-<main class="item-archive">
+<main class="container"
+	  id="archive-hotel-page">
 
-    <section class="item-filter">
+	<section class="posts-container">
 
-        <div class="container">flter</div>
+		<?php
+		if ( have_posts() ) :
+			while ( have_posts() ) :
+				the_post();
 
-    </section>
+				get_template_part( "templates/components/card/hotel" );
+			endwhile;
+		endif;
 
-    <section class="item-card-archive container">
-        <div class="item-cards even-columns">
-            <?php
-            if ($related_hotels->have_posts()) :
-                while ($related_hotels->have_posts()) : $related_hotels->the_post();
+		?>
 
-                    get_template_part("templates/components/card/archive-card");
+	</section>
 
-                endwhile;
-            endif;
-            wp_reset_query();
-            ?>
-        </div>
-    </section>
+	<?php get_template_part( '/templates/components/archive/load-more' ) ?>
 
 </main>
 

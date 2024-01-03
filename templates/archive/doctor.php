@@ -1,39 +1,44 @@
 <?php
-$terms = get_terms([
-    'taxonomy' => 'doctor-expertise',
-    'hide_empty' => false
-]);
+$taxonomy = 'doctor-expertise';
+$terms = get_terms( [ 
+	'taxonomy' => $taxonomy,
+	'hide_empty' => false
+] )
 
-$related_doctors = new WP_Query([
-    'post_type' => 'doctor',
-]);
-?>
+	?>
 
 <?php get_header() ?>
 
 <main class="item-archive">
 
-    <section>
+	<section>
 
-        <?php get_template_part('/templates/components/filter-search-bar', null, ['terms' => $terms, 'search-text' => 'پزشکان']) ?>
+		<?php get_template_part(
+			'/templates/components/archive/filter-search-bar',
+			null,
+			[ 'terms' => $terms, 'search-text' => 'پزشکان', 'taxonomy' => $taxonomy, 'post-type' => 'doctor' ] )
+			?>
 
-    </section>
+	</section>
 
 
-    <section class="item-card-archive container">
-        <div class="item-cards even-columns">
-            <?php
-            if ($related_doctors->have_posts()) :
-                while ($related_doctors->have_posts()) : $related_doctors->the_post();
+	<section class="item-card-archive container">
+		<div class="item-cards posts-container even-columns">
+			<?php
+			if ( have_posts() ) :
+				while ( have_posts() ) :
+					the_post();
 
-                    get_template_part("templates/components/card/doctor");
+					get_template_part( "templates/components/card/doctor" );
 
-                endwhile;
-            endif;
-            wp_reset_query();
-            ?>
-        </div>
-    </section>
+				endwhile;
+			endif;
+			wp_reset_postdata();
+			?>
+		</div>
+
+		<?php get_template_part( '/templates/components/archive/load-more' ) ?>
+	</section>
 
 </main>
 

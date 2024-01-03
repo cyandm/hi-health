@@ -1,0 +1,156 @@
+@use '../utils' as *;
+
+.single-post {
+  gap: $s_6;
+
+  &__header {
+    display: grid;
+    gap: $s_2;
+  }
+
+  &__meta {
+    display: flex;
+    gap: $s_2;
+    color: var(--clr-text-300);
+
+    &-icon {
+      display: flex;
+      gap: $s_1;
+      align-items: center;
+    }
+  }
+
+  &__action {
+    background: var(--clr-primary-100);
+    padding: $s_3;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.04);
+    margin-block: $s_3;
+    @include d_flex($j_c: space-between);
+
+    > div {
+      @include d_flex(row-reverse, $gap: $s_3);
+    }
+
+    &-item {
+      cursor: pointer;
+      @include d_flex(row-reverse, $gap: $s_1);
+
+      svg {
+        path {
+          fill: none;
+          stroke-width: 1px;
+          stroke: var(--clr-primary-300);
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          transform: translate(3px, 5px) scale(4.5);
+          transition: fill 0.3s;
+        }
+      }
+
+      &[data-active='true'] {
+        svg {
+          path {
+            fill: var(--clr-error-main);
+          }
+        }
+      }
+    }
+  }
+}
+
+.post-content {
+  > * {
+    margin-block-start: 0.75em;
+  }
+
+  img {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  ul {
+    li {
+      list-style: initial;
+      margin-inline-start: 2rem;
+
+      li {
+        list-style: circle;
+      }
+
+      &::marker {
+        transition: 0.3s;
+      }
+
+      &:hover::marker {
+        color: var(--clr-secondary-700);
+      }
+    }
+  }
+
+  ol {
+    padding-inline-start: $s_2;
+    li {
+      list-style: auto;
+      margin-inline-start: 2rem;
+    }
+  }
+
+  blockquote {
+    width: 100%;
+    background-color: var(--clr-accent-300);
+    margin-inline: 0;
+    padding: $s_4;
+    border-inline-start: 3px solid var(--clr-accent-700);
+  }
+
+  p:has(img) {
+    display: grid;
+    grid-template-areas:
+      'first first first first second second'
+      'third third third fourth fourth fourth';
+    gap: $s_5;
+
+    img {
+      height: 24rem;
+
+      &:nth-child(1):not(:has(+ img)) {
+        width: 100%;
+        grid-column: 10 span;
+        height: unset;
+      }
+
+      &:nth-child(1):has(+ img) {
+        grid-area: first;
+        @include mq('lg') {
+          width: 80%;
+        }
+      }
+
+      &:nth-child(2) {
+        grid-area: second;
+      }
+
+      &:nth-child(3) {
+        grid-area: third;
+      }
+
+      &:nth-child(4) {
+        grid-area: fourth;
+      }
+    }
+    @include mq('lg') {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap: x mandatory;
+
+      & > * {
+        scroll-snap-align: start;
+      }
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}

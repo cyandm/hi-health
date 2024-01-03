@@ -1,0 +1,57 @@
+@use './mixins' as *;
+
+.title {
+  @include fs('title');
+}
+
+.title-s {
+  @include fs('title-s');
+}
+
+h1,
+.h1 {
+  @include fs('h1');
+
+  @include mq('lg') {
+    @include fs('h2');
+  }
+}
+
+h2,
+.h2 {
+  @include fs('h2');
+
+  @include mq('lg') {
+    @include fs('h3');
+  }
+}
+
+h3,
+.h3 {
+  @include fs('h3');
+
+  @include mq('lg') {
+    @include fs('h4');
+  }
+}
+
+h4,
+.h4 {
+  @include fs('h4');
+}
+
+.body {
+  @include fs('body');
+
+  @include mq('lg') {
+    @include fs('caption');
+  }
+}
+
+.body-s {
+  @include fs('body-s');
+}
+
+.caption {
+  @include fs('caption');
+}

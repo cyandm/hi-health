@@ -1,0 +1,19 @@
+@use '../../utils/' as *;
+
+.picked {
+  display: grid;
+  gap: $s_3;
+  margin-block-end: $s_7;
+
+  &__blog-group {
+    padding: $s_5 $s_2;
+    background-color: var(--clr-natural-100);
+    display: grid;
+    gap: $s_3;
+    grid-template-columns: repeat(3, 1fr);
+
+    @include mq('lg') {
+      grid-template-columns: 1fr;
+    }
+  }
+}

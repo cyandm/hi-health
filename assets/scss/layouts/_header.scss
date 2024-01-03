@@ -1,9 +1,14 @@
-@use "../utils/" as *;
+@use '../utils/' as *;
 
 .header {
   position: relative;
   z-index: 99;
   background: var(--clr-bg-500);
+
+  @include mq('lg') {
+    background: transparent;
+  }
+
   section {
     position: relative;
     left: 0;
@@ -18,10 +23,17 @@
         img {
           max-width: px_to_rem(36);
         }
+        @include mq('lg') {
+          display: none;
+        }
       }
 
       .header-menu {
         @include d_flex($gap: px_to_rem(20));
+
+        @include mq('lg') {
+          display: none;
+        }
 
         > li {
           @include pseudo(unset, 6px) {
@@ -37,7 +49,7 @@
           }
 
           a {
-            @include fs("body-s");
+            @include fs('body-s');
           }
 
           ul.sub-menu {
@@ -53,7 +65,8 @@
         @include d_flex();
 
         a {
-          @include fs("body-s");
+          @include fs('body-s');
+          @include btnSizes('small');
         }
       }
 
@@ -69,7 +82,11 @@
           }
 
           p {
-            @include fs("body-s");
+            @include fs('body-s');
+          }
+
+          @include mq('lg') {
+            display: none;
           }
         }
       }

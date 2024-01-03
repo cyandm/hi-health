@@ -1,10 +1,28 @@
-@use "../utils/index" as *;
+@use '../utils/index' as *;
 
 .breadcrumb {
   margin-block: $s_6;
   padding-block: $s_2;
   background-color: var(--clr-natural-100);
   color: var(--clr-primary-300);
+
+  .rank-math-breadcrumb p {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    padding-block-end: 0.25em;
+    &::-webkit-scrollbar {
+      height: 2px;
+
+      &-thumb {
+        background-color: var(--clr-natural-300);
+      }
+    }
+
+    > * {
+      min-width: fit-content;
+    }
+  }
 
   .separator {
     @include d_flex();

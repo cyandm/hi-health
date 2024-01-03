@@ -1,7 +1,11 @@
-@forward "./404";
-@forward "./service";
-@forward "./doctor";
-@forward "./contact-us";
-@forward "./archive-doctor";
-@forward "./hotel";
-@forward "./archive-hotel";
+@forward './404';
+@forward './archive-doctor';
+@forward './archive-hotel';
+@forward './contact-us';
+@forward './doctor';
+@forward './hotel';
+@forward './login';
+@forward './service';
+@forward './single-post';
+
+@forward './blog/index';

@@ -1,5 +1,5 @@
-@use "./variables" as *;
-@use "./mixins" as *;
+@use './variables' as *;
+@use './mixins' as *;
 
 *,
 *::after,
@@ -11,14 +11,17 @@ body {
   margin: 0;
   padding: 0;
   font-family: PeydaFa;
-  line-height: 1.1em;
-  font-size: 1rem;
   color: var(--clr-primary-500);
   background-color: var(--clr-bg-700);
-  direction: rtl;
+
+  @include fs('body');
+
+  @include mq('lg') {
+    @include fs('body-s');
+  }
 }
 
-html[lang="en-US"] body {
+html[lang='en-US'] body {
   font-family: Peyda;
   direction: ltr;
 
@@ -47,7 +50,6 @@ select {
 a {
   text-decoration: unset;
   color: unset;
-  @include fs("body");
 }
 
 h1,
@@ -62,9 +64,22 @@ ul {
 }
 
 img {
-  display: block;
   max-width: 100%;
   height: auto;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 0.75rem;
+}
+
+.img-wrapper {
+  display: flex;
+  height: 100%;
+
+  img {
+    object-fit: cover;
+  }
 }
 
 ul,
@@ -83,7 +98,7 @@ button {
 }
 
 ::placeholder {
-  @include fs("body");
+  @include fs('body-s');
   color: var(--clr-primary-300);
 }
 
