@@ -1,11 +1,8 @@
 <?php
 $taxonomy = 'doctor-expertise';
-$terms = get_terms( [ 
-	'taxonomy' => $taxonomy,
-	'hide_empty' => false
-] )
 
-	?>
+
+?>
 
 <?php get_header() ?>
 
@@ -16,7 +13,11 @@ $terms = get_terms( [
 		<?php get_template_part(
 			'/templates/components/archive/filter-search-bar',
 			null,
-			[ 'terms' => $terms, 'search-text' => 'پزشکان', 'taxonomy' => $taxonomy, 'post-type' => 'doctor' ] )
+			[ 
+				'search-text' => pll__( 'doctor-search' ),
+				'taxonomy' => $taxonomy,
+				'post-type' => 'doctor'
+			] )
 			?>
 
 	</section>

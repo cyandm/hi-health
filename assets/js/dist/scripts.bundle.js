@@ -92,6 +92,11 @@
         return;
       document.body.setAttribute("data-popup-open", e.target.dataset.active);
     });
+    nodeEl.addEventListener("click", (e) => {
+      if (e.target != nodeEl)
+        return;
+      deActivateEl(nodeEl);
+    });
   };
   var setCookie = (cookieName, cookieValue, expireDays) => {
     const d2 = /* @__PURE__ */ new Date();
@@ -113,6 +118,102 @@
       }
     }
     return JSON.parse("{}");
+  };
+  var showMassage = (status, parentEl, innerText = null) => {
+    const span = document.createElement("span");
+    span.classList.add("message");
+    span.classList.add(status);
+    if (status === "success") {
+      span.innerText = innerText != null ? innerText : "\u0639\u0645\u0644\u06CC\u0627\u062A \u0628\u0627 \u0645\u0648\u0641\u0642\u06CC\u062A \u0627\u0646\u062C\u0627\u0645 \u0634\u062F";
+      return;
+    }
+    if (status === "warning") {
+      span.innerText = innerText != null ? innerText : "\u0639\u0645\u0644\u06CC\u0627\u062A \u062F\u0631 \u0627\u0646\u062A\u0638\u0627\u0631 \u062A\u0627\u06CC\u06CC\u062F \u0627\u062F\u0645\u06CC\u0646 \u0627\u0633\u062A";
+      return;
+    }
+    if (status === "error") {
+      span.innerText = innerText != null ? innerText : "\u0639\u0645\u0644\u06CC\u0627\u062A \u0628\u0627 \u062E\u0637\u0627 \u0645\u0648\u0627\u062C\u0647 \u0634\u062F";
+      return;
+    }
+    parentEl.appendChild(span);
+  };
+  var changeButtonStatus = (status, btn) => {
+    if (status === "pending") {
+      btn.classList.add("pending");
+      btn.innerText = translateStrings.Btn.pending;
+      return;
+    }
+    if (status === "success") {
+      btn.classList.remove("pending");
+      btn.classList.add("success");
+      btn.innerText = translateStrings.Btn.success;
+      return;
+    }
+    if (status === "error") {
+      btn.classList.remove("pending");
+      btn.classList.add("error");
+      btn.innerText = translateStrings.Btn.error;
+      return;
+    }
+  };
+
+  // assets/js/modules/ajax-search.js
+  var ajaxSearch = () => {
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+    const ajaxSearchResultWrapper = document.getElementById(
+      "ajaxSearchResultWrapper"
+    );
+    const ajaxSearchResult = document.getElementById("ajaxSearchResult");
+    const ajaxSearchLoading = document.getElementById("ajaxSearchLoading");
+    const ajaxSearchViewAll = document.getElementById("ajaxSearchViewAll");
+    const ajaxSearchClose = document.getElementById("ajaxSearchClose");
+    if (!searchInput)
+      return;
+    if (!searchForm)
+      return;
+    let timeOut2;
+    addListener(searchInput, "keyup", (e) => {
+      activateEl(ajaxSearchLoading);
+      activateEl(ajaxSearchResultWrapper);
+      const value = e.target.value;
+      if (value === "" || value.length <= 3) {
+        deActivateEl(ajaxSearchLoading);
+        return;
+      }
+      clearTimeout(timeOut2);
+      timeOut2 = setTimeout(() => {
+        jQuery(($2) => {
+          $2.ajax({
+            type: "post",
+            url: cyn_head_script.url,
+            data: {
+              _nonce: cyn_head_script.nonce,
+              action: "cyn_ajax_search",
+              value,
+              postType: e.target.dataset.postType
+            },
+            success: (response) => {
+              ajaxSearchResult.innerHTML = response.html;
+              if (response.foundPosts < 3) {
+                deActivateEl(ajaxSearchViewAll);
+              } else {
+                activateEl(ajaxSearchViewAll);
+              }
+              deActivateEl(ajaxSearchLoading);
+            }
+          });
+        });
+      }, 500);
+    });
+    addListener(ajaxSearchViewAll, "click", (e) => {
+      searchForm.dispatchEvent(
+        new Event("submit", { cancelable: true, bubbles: true })
+      );
+    });
+    addListener(ajaxSearchClose, "click", (e) => {
+      deActivateEl(ajaxSearchResultWrapper);
+    });
   };
 
   // assets/js/modules/loading.js
@@ -148,7 +249,7 @@
               "data-current-page",
               parseInt(dataset.currentPage) + 1
             );
-            if (res.data.max_num_pages === parseInt(dataset.currentPage)) {
+            if (res.data.max_num_pages == parseInt(dataset.currentPage) || res.data.html == "") {
               loadMoreBTN.setAttribute("disable", true);
             }
             endLoading();
@@ -319,11 +420,11 @@
           contentType: false,
           data: formData,
           success: (res) => {
-            if ((res == null ? void 0 : res.commentStatus) === "hold") {
+            if ((res == null ? void 0 : res.commentStatus) === 0) {
               setWarningComment(commentsMessage);
               return;
             }
-            if ((res == null ? void 0 : res.commentStatus) === "approve") {
+            if ((res == null ? void 0 : res.commentStatus) === 1) {
               setSuccessComment(commentsMessage);
               return;
             }
@@ -394,6 +495,19 @@
     });
     closeGallery.addEventListener("click", () => deActivateEl(galleryPopUp));
     definePopUp(galleryPopUp);
+  };
+
+  // assets/js/modules/header.js
+  var headerBg = () => {
+    const headerEl = document.getElementById("mainHeader");
+    if (!headerEl)
+      return;
+    const archiveServiceHero = document.getElementById("archiveServiceHero");
+    if (archiveServiceHero) {
+      headerEl.style.setProperty("--bg_clr", "#C0E1E7");
+      return;
+    }
+    headerEl.style.setProperty("--bg_clr", "");
   };
 
   // assets/js/modules/like-post.js
@@ -477,6 +591,91 @@
     div.classList.add("grid-wrapper");
     el.appendChild(div);
     div.appendChild(submenu);
+  };
+
+  // assets/js/modules/scroller.js
+  var scrollers = document.querySelectorAll(".scroller");
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    addAnimation();
+  }
+  function addAnimation() {
+    scrollers.forEach((scroller) => {
+      scroller.setAttribute("data-animated", true);
+      const scrollerInner = scroller.querySelector(".scroller__inner");
+      const scrollerContent = Array.from(scrollerInner.children);
+      scrollerContent.forEach((item) => {
+        const duplicatedItem = item.cloneNode(true);
+        const duplicatedItem2 = item.cloneNode(true);
+        duplicatedItem.setAttribute("aria-hidden", true);
+        duplicatedItem2.setAttribute("aria-hidden", true);
+        scrollerInner.appendChild(duplicatedItem);
+        scrollerInner.insertBefore(
+          duplicatedItem2,
+          scrollerInner.firstElementChild
+        );
+      });
+    });
+  }
+
+  // assets/js/modules/forms.js
+  var ajaxSendForm = (formEl, action) => (e) => {
+    e.preventDefault();
+    changeButtonStatus("pending", e.submitter);
+    const formData = new FormData(e.currentTarget, e.submitter);
+    formData.append("action", action);
+    formData.append("_nonce", cyn_head_script.nonce);
+    jQuery(($2) => {
+      $2.ajax({
+        type: "POST",
+        url: cyn_head_script.url,
+        cache: false,
+        processData: false,
+        contentType: false,
+        data: formData,
+        success: (res) => {
+          formEl.reset();
+          showMassage("success", formEl);
+          changeButtonStatus("success", e.submitter);
+        },
+        error: () => {
+          showMassage("error", formEl);
+          changeButtonStatus("success", e.submitter);
+        }
+      });
+    });
+  };
+  var ContactUs = () => {
+    const contactUsPage = document.getElementById("contactUsPage");
+    const contactForm = document.getElementById("contactForm");
+    if (!contactUsPage)
+      return;
+    addListener(
+      contactForm,
+      "submit",
+      ajaxSendForm(contactForm, "cyn_contact_us_form")
+    );
+  };
+  var ReservePopUp = () => {
+    const reservePopUp = document.getElementById("reservePopUp");
+    const reservePopUpForm = document.getElementById("reservePopUpForm");
+    const reservePopUpOpener = document.getElementById("reservePopUpOpener");
+    const reservePopUpCloser = document.getElementById("reservePopUpCloser");
+    if (!reservePopUp)
+      return;
+    if (!reservePopUpForm)
+      return;
+    if (!reservePopUpOpener)
+      return;
+    if (!reservePopUpCloser)
+      return;
+    definePopUp(reservePopUp);
+    addListener(reservePopUpOpener, "click", () => activateEl(reservePopUp));
+    addListener(reservePopUpCloser, "click", () => deActivateEl(reservePopUp));
+    addListener(
+      reservePopUpForm,
+      "submit",
+      ajaxSendForm(reservePopUpForm, "cyn_reserve_form")
+    );
   };
 
   // assets/js/modules/share-post.js
@@ -5179,6 +5378,44 @@
     });
   }
 
+  // assets/js/modules/story.js
+  var story = () => {
+    const homePageTours = document.getElementById("homePageTours");
+    const videos = homePageTours.querySelectorAll("video");
+    const homePageToursSwiper = new Swiper("#homePageTours", {
+      modules: [],
+      slidesPerView: "auto",
+      spaceBetween: 12,
+      centeredSlides: true,
+      loop: true,
+      grabCursor: true
+    });
+    const playPause = (video) => {
+      if (video.paused) {
+        video.play();
+        video.parentElement.classList.add("playing");
+        return;
+      }
+      video.pause();
+      video.parentElement.classList.remove("playing");
+    };
+    const handleClick = ({ target }, { clickedSlide, clickedIndex, activeIndex, slideTo: slideTo2, slides }) => {
+      if (clickedSlide == slides[activeIndex]) {
+        playPause(target);
+        return;
+      }
+      slideTo2(clickedIndex, 100);
+    };
+    videos.forEach((video) => {
+      addListener(video, "click", (e) => handleClick(e, homePageToursSwiper));
+      setInterval(() => {
+        if (video.paused)
+          return;
+        const percent = video.currentTime * 100 / video.duration;
+      }, 1e3);
+    });
+  };
+
   // assets/js/modules/swiper.js
   var defineSwipers = () => {
     const gallerySwiper = new Swiper("#galleryPopUp .swiper", {
@@ -5815,8 +6052,97 @@
     }
   };
 
+  // assets/js/modules/language-switcher.js
+  var languageSwitcher = () => {
+    jQuery(($2) => {
+      $2.ajax({
+        type: "POST",
+        url: cyn_head_script.url,
+        data: {
+          _nonce: cyn_head_script.nonce,
+          action: "cyn_languages"
+        },
+        success: (res) => {
+          document.body.classList.toggle("cyn-is-rtl", res.langAttr.is_rtl !== 0);
+        }
+      });
+    });
+  };
+
+  // assets/js/pages/search.js
+  var SearchPage = () => {
+    var _a;
+    const searchPage = document.getElementById("searchPage");
+    if (!searchPage)
+      return;
+    const urlParams = new URLSearchParams(window.location.search);
+    const post_type = (_a = urlParams.get("post_type")) != null ? _a : "default";
+    const currentRadio = document.querySelector(
+      'input[type="radio"][value='.concat(post_type, "]")
+    );
+    currentRadio.checked = true;
+    searchPageAjax();
+  };
+  var searchPageAjax = () => {
+    const postsContainer = document.getElementById("postsContainer");
+    const foundPostsEl = document.getElementById("foundPosts");
+    const searchPageForm = document.getElementById("searchPageForm");
+    const searchPageInput = document.getElementById("searchPageInput");
+    const searchRadioGroup = document.querySelectorAll('input[type="radio"]');
+    addListener(
+      searchPageInput,
+      "keyup",
+      () => searchPageForm.dispatchEvent(
+        new Event("submit", { bubbles: false, cancelable: false })
+      )
+    );
+    searchRadioGroup.forEach((el) => {
+      addListener(
+        el,
+        "change",
+        () => searchPageForm.dispatchEvent(
+          new Event("submit", { bubbles: false, cancelable: false })
+        )
+      );
+    });
+    addListener(
+      searchPageForm,
+      "submit",
+      (e) => ajaxSearchQuery(e, postsContainer, foundPostsEl)
+    );
+  };
+  var timeOut;
+  var ajaxSearchQuery = (e, postsContainer, foundPostsEl) => {
+    e.preventDefault();
+    startLoading();
+    clearTimeout(timeOut);
+    const formData = new FormData(e.currentTarget, e.submitter);
+    formData.append("action", "cyn_ajax_search_page");
+    formData.append("_nonce", cyn_head_script.nonce);
+    timeOut = setTimeout(() => {
+      jQuery(($2) => {
+        $2.ajax({
+          type: "POST",
+          url: cyn_head_script.url,
+          cache: false,
+          processData: false,
+          contentType: false,
+          data: formData,
+          success: (res) => {
+            postsContainer.innerHTML = res.html;
+            foundPostsEl.innerText = res.foundPosts;
+            endLoading();
+          }
+        });
+      });
+    }, 1e3);
+  };
+
   // assets/js/modules/swup.js
-  var swup = new _();
+  var swup = new _({
+    animateHistoryBrowsing: true,
+    cache: false
+  });
   var init = () => {
     showMoreFunc();
     loadMore();
@@ -5829,6 +6155,13 @@
     LikePost();
     sharePost();
     Comments();
+    ReservePopUp();
+    ContactUs();
+    headerBg();
+    languageSwitcher();
+    ajaxSearch();
+    SearchPage();
+    story();
   };
   init();
   swup.hooks.on("content:replace", init);

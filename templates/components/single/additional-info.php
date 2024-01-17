@@ -11,10 +11,10 @@ if ( count( array_filter( $contact_info ) ) <= 0 )
 
 <section class="additional-info | card-info">
 
-	<?php printf( '<h2 >%s</h2>', __( 'سایر مشخصات', 'cyn-dm' ) ) ?>
+	<?php printf( '<h2 >%s</h2>', pll__( 'other-details' ) ) ?>
 
 	<div class='contact-info'>
-		<?php printf( '<h3 class="body-s" >%s</h3>', __( 'اطلاعات تماس', 'cyn-dm' ) ) ?>
+		<?php printf( '<h3 class="body-s" >%s</h3>', pll__( 'contact-info' ) ) ?>
 		<div class='contact-info__item'>
 			<?php $country && printf( '<span class="tag">%s</span>', $country ) ?>
 			<?php $city && printf( '<span class="tag">%s</span>', $city ) ?>

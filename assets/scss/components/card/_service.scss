@@ -1,0 +1,23 @@
+@use '../../utils' as *;
+
+.service-card {
+  display: grid;
+  grid-template-areas: 'stacked';
+
+  > * {
+    grid-area: stacked;
+  }
+
+  &__image {
+    background-color: var(--clr-bg-500);
+  }
+
+  &__title {
+    padding: $s_2;
+    align-self: start;
+    background-color: rgba(#000, 0.1);
+    color: var(--clr-text-900);
+    backdrop-filter: blur(100px);
+    text-align: center;
+  }
+}

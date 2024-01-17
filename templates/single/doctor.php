@@ -57,7 +57,7 @@ $related_doctors = new WP_Query( [
 				   target="_blank"
 				   class="doctor-article">
 					<i class="icon-arrow-upright"></i>
-					مشاهده مقالات دکتر
+					<?php pll_e( 'more-info' ) ?>
 				</a>
 			<?php endif; ?>
 
@@ -68,8 +68,10 @@ $related_doctors = new WP_Query( [
 	<section class="doctor-other container">
 
 		<div class="title-other">
-			<p>دیگر پزشکان</p>
-			<a href="<?php ?>">مشاهده همه</a>
+			<p><?php pll_e( 'other-doctors' ) ?></p>
+			<a href="<?= get_post_type_archive_link( 'doctor' ) ?>">
+				<?php pll_e( 'view-all' ) ?>
+			</a>
 		</div>
 
 	</section>

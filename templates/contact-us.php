@@ -3,17 +3,18 @@
 <?php get_header() ?>
 
 
-<main class="container">
+<main class="container"
+	  id="contactUsPage">
 
 	<section class="contact-us">
 
 		<div class="form-contact">
 
-			<p>تماس با ما</p>
+			<p><?php the_title() ?></p>
 
 			<form method="post"
 				  action=""
-				  id="contact_form"
+				  id="contactForm"
 				  class="f-contact">
 
 				<div class="contact-name">
@@ -21,7 +22,7 @@
 					<input type="name"
 						   id="name"
 						   name="name"
-						   placeholder="نام خود را وارد کنید">
+						   placeholder="<?php pll_e( 'form-name' ) ?>">
 				</div>
 
 				<div class="contact-email">
@@ -29,7 +30,7 @@
 					<input type="text"
 						   id="email"
 						   name="email"
-						   placeholder="ایمیل">
+						   placeholder="<?php pll_e( 'form-email' ) ?>">
 				</div>
 
 				<div class="contact-textarea">
@@ -37,7 +38,7 @@
 					<textarea type="textarea"
 							  id="textarea"
 							  name="message"
-							  placeholder="پیام خود را بنویسید"></textarea>
+							  placeholder="<?php pll_e( 'form-message' ) ?>"></textarea>
 				</div>
 
 				<button class="btn"
@@ -45,15 +46,13 @@
 						size='big'
 						type="submit"
 						id="submit_form"
-						name="send">ارسال
-					پیام</button>
+						name="send">
+					<?php pll_e( 'btn-send' ) ?>
+				</button>
 
 			</form>
 
-			<div class="form-message success"
-				 id="success_message"></div>
-			<div class="form-message fail"
-				 id="fail_message"></div>
+
 
 		</div>
 

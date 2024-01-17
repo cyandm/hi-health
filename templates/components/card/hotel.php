@@ -32,7 +32,7 @@ $item_img = get_post_thumbnail_id( $item_id );
 		   class="btn"
 		   variant="primary"
 		   size="medium">
-			<?php _e( 'اطلاعات بیشتر', 'cyn-dm' ) ?>
+			<?php pll_e( 'more-info' ) ?>
 		</a>
 
 

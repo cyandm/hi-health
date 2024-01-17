@@ -37,7 +37,7 @@ if ( ! function_exists( 'render_single_comment' ) ) {
 					 data-comment-text="<?= $comment->comment_content ?>"
 					 data-comment-id="<?= $comment->comment_ID ?>">
 
-					<span><?php _e( 'پاسخ', 'cyn-dm' ) ?></span>
+					<span><?php pll_e( 'reply' ) ?></span>
 					<i class="icon-reply"></i>
 
 				</div>

@@ -1,12 +1,13 @@
-@use "../utils/" as *;
+@use '../utils/' as *;
 
 .ajax-search {
   padding: px_to_rem(8);
   background: var(--clr-bg-500);
   color: var(--clr-text-300);
   border: 0.0625rem solid var(--clr-text-300);
+  position: relative;
 
-  @include mq("md") {
+  @include mq('md') {
     min-width: 100%;
   }
 
@@ -27,14 +28,119 @@
   }
 
   input {
-    @include fs("body-s");
+    @include fs('body-s');
     border: none;
     padding: 0.5rem 0;
     background: transparent;
     min-width: 15.125rem;
 
-    @include mq("xs") {
+    @include mq('xs') {
       min-width: 90%;
     }
+  }
+
+  &__result {
+    @include d_flex(column, space-between, stretch);
+    width: 100%;
+    padding: $s_2;
+    gap: $s_3;
+    z-index: 10000;
+    background-color: #fff;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 100%;
+    border: 1px solid var(--clr-natural-300);
+    min-height: 210px;
+    isolation: isolate;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: 0.3s;
+    pointer-events: none;
+
+    &[data-active='true'] {
+      opacity: 1;
+      transform: translateY(5px);
+      pointer-events: all;
+    }
+  }
+
+  &__loading {
+    position: absolute;
+    inset: 0;
+    background-color: #fff;
+    display: grid;
+    place-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+
+    &[data-active='true'] {
+      opacity: 1;
+    }
+  }
+
+  &__loader {
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid #0000;
+    border-right-color: var(--clr-accent-700);
+    position: relative;
+    animation: l24 1s infinite linear;
+
+    &::after,
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      border: inherit;
+      animation: inherit;
+      animation-duration: 2s;
+    }
+
+    &::after {
+      animation-duration: 4s;
+    }
+  }
+
+  &__view-all {
+    flex: 2;
+    padding: 0.25rem !important;
+
+    &[data-active='false'] {
+      pointer-events: none;
+      opacity: 0.3;
+      filter: grayscale(1);
+      z-index: -1;
+    }
+  }
+
+  &__footer {
+    @include d_flex();
+    gap: $s_2;
+
+    i {
+      color: var(--clr-text-300);
+      border: 1px solid var(--clr-text-300);
+      padding: 0.125rem;
+      cursor: pointer;
+    }
+  }
+
+  .search-result-item {
+    @include fs('body-s');
+    padding: 0.75rem 0.5rem;
+
+    &:not(:first-child) {
+      border-block-start: 1px solid var(--clr-natural-300);
+    }
+  }
+}
+
+@keyframes l24 {
+  100% {
+    transform: rotate(1turn);
   }
 }

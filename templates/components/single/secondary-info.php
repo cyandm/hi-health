@@ -1,7 +1,7 @@
 <section class='secondary-info | card-info'>
 
 	<div class='secondary-info__title'>
-		<?php printf( '<h2>%s</h2>', __( 'معرفی و تصاویر', 'cyn-dm' ) ) ?>
+		<?php printf( '<h2>%s</h2>', pll__( 'secondary-title' ) ) ?>
 	</div>
 
 	<div class="post-content">

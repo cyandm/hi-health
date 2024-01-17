@@ -12,17 +12,22 @@
 
 	<?php get_template_part( '/templates/components/sidebar', 'blog', [ 'id' => $id ] ) ?>
 
-	<article>
+	<div>
+		<article>
 
-		<?php get_template_part( '/templates/single/post/header', null, [ 'id' => $id ] ) ?>
+			<?php get_template_part( '/templates/single/post/header', null, [ 'id' => $id ] ) ?>
 
-		<?php get_template_part( '/templates/single/post/body', null, [ 'id' => $id ] ) ?>
+			<?php get_template_part( '/templates/single/post/body', null, [ 'id' => $id ] ) ?>
 
-		<?php get_template_part( '/templates/single/post/comments', null, [ 'id' => $id ] ) ?>
+			<?php get_template_part( '/templates/single/post/comments', null, [ 'id' => $id ] ) ?>
 
-	</article>
+		</article>
 
-	<?php get_template_part( '/templates/single/post/related', null, [ 'id' => $id ] ) ?>
+		<?php get_template_part( '/templates/single/post/related', null, [ 'id' => $id ] ) ?>
+
+	</div>
+
+
 
 </main>
 

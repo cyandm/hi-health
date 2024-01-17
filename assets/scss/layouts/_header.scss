@@ -1,103 +1,166 @@
 @use '../utils/' as *;
 
 .header {
-  position: relative;
-  z-index: 99;
-  background: var(--clr-bg-500);
+	position: relative;
+	z-index: 99;
+	background: var(--bg_clr, var(--clr-bg-500));
+	transition: background 0.3s ease;
 
-  @include mq('lg') {
-    background: transparent;
-  }
+	@include mq('xl') {
+		background: var(--bg_clr, transparent);
+	}
 
-  section {
-    position: relative;
-    left: 0;
-    right: 0;
+	&[front-page='true'] {
+		position: absolute;
+		width: 100%;
+		background: transparent;
+	}
 
-    padding-block: px_to_rem(36);
-    @include d_flex(row, space-between, center);
+	section {
+		position: relative;
+		left: 0;
+		right: 0;
 
-    .right-header {
-      @include d_flex($a_i: center, $gap: px_to_rem(16));
-      .header-logo {
-        img {
-          max-width: px_to_rem(36);
-        }
-        @include mq('lg') {
-          display: none;
-        }
-      }
+		padding-block: px_to_rem(36);
+		@include d_flex(row, space-between, center);
 
-      .header-menu {
-        @include d_flex($gap: px_to_rem(20));
+		.right-header {
+			@include d_flex($a_i: center, $gap: px_to_rem(16));
+			.header-logo {
+				img {
+					max-width: px_to_rem(36);
+				}
+				@include mq('lg') {
+					display: none;
+				}
+			}
 
-        @include mq('lg') {
-          display: none;
-        }
+			.header-menu {
+				@include d_flex($gap: px_to_rem(20));
 
-        > li {
-          @include pseudo(unset, 6px) {
-            transition: 0.4s;
-            background-color: transparent;
-            inset: 50% -0.65rem;
-            transform: translateY(-50%);
-            border-radius: 100vmax;
-          }
+				@include mq('xl') {
+					display: none;
+				}
 
-          &:hover:after {
-            background-color: #000;
-          }
+				> li {
+					@include pseudo(unset, 6px) {
+						transition: 0.4s;
+						background-color: transparent;
+						inset: 50% -0.65rem;
+						transform: translateY(-50%);
+						border-radius: 100vmax;
+					}
 
-          a {
-            @include fs('body-s');
-          }
+					&:hover:after {
+						background-color: #000;
+					}
 
-          ul.sub-menu {
-            display: none;
-          }
-        }
-      }
-    }
+					a {
+						@include fs('body-s');
+					}
 
-    .left-header {
-      @include d_flex($j_c: center, $a_i: center, $gap: px_to_rem(12));
-      .header-button {
-        @include d_flex();
+					&.menu-item-has-children {
+						position: relative;
+						padding-block: $s_3;
 
-        a {
-          @include fs('body-s');
-          @include btnSizes('small');
-        }
-      }
+						a {
+							transition: 0.3s;
 
-      .lang-menu {
-        a {
-          @include d_flex(row-reverse, center, center, $gap: px_to_rem(8));
-          padding: px_to_rem(16);
-          background: var(--clr-natural-100);
+							&:hover {
+								color: var(--clr-secondary-700);
+							}
+						}
 
-          img {
-            max-width: px_to_rem(24);
-            height: auto;
-          }
+						> .grid-wrapper {
+							> ul.sub-menu {
+								position: absolute;
+								background-color: var(--clr-bg-500);
+								padding: $s_2;
+								border: 1px solid var(--clr-natural-300);
+								width: 300px;
+								display: grid;
+								grid-template-columns: 1fr 1fr;
+								gap: $s_2;
+								right: 0;
+								top: 100%;
+								opacity: 0;
+								transform: translateY(100px);
+								transition: 0.3s;
+								pointer-events: none;
 
-          p {
-            @include fs('body-s');
-          }
+								> :first-child {
+									-webkit-padding-end: $s_2;
+									padding-inline-end: $s_2;
+									-webkit-border-end: 1px solid var(--clr-natural-300);
+									border-inline-end: 1px solid var(--clr-natural-300);
+								}
 
-          @include mq('lg') {
-            display: none;
-          }
-        }
-      }
-    }
-  }
-}
+								> li {
+									> a {
+										font-weight: 600;
+									}
+								}
 
-.backabsolute {
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  top: 0 !important;
-  background: transparent !important;
+								.grid-wrapper {
+									ul.sub-menu {
+										display: grid;
+
+										li {
+											padding-block: $s_2;
+
+											&:not(:last-child) {
+												border-bottom: 1px solid var(--clr-natural-200);
+											}
+										}
+									}
+								}
+							}
+						}
+
+						&:hover {
+							> .grid-wrapper {
+								> ul {
+									opacity: 1;
+									transform: translateY(0px);
+									pointer-events: all;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.left-header {
+			@include d_flex($j_c: center, $a_i: center, $gap: px_to_rem(12));
+			.header-button {
+				@include d_flex();
+
+				a {
+					@include fs('body-s');
+					@include btnSizes('small');
+				}
+			}
+
+			.lang-menu {
+				a {
+					@include d_flex(row-reverse, center, center, $gap: px_to_rem(8));
+					padding: px_to_rem(16);
+
+					img {
+						max-width: px_to_rem(24);
+						height: auto;
+					}
+
+					p {
+						@include fs('body-s');
+					}
+
+					@include mq('lg') {
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }

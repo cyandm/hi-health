@@ -1,0 +1,12 @@
+@use '../utils' as *;
+
+.archive-post {
+  margin-block: $s_4;
+  gap: $s_3;
+
+  &__con {
+    > *:first-child {
+      margin-block-end: $s_3;
+    }
+  }
+}

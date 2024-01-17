@@ -25,7 +25,10 @@ export const loadMore = () => {
             parseInt(dataset.currentPage) + 1
           );
 
-          if (res.data.max_num_pages === parseInt(dataset.currentPage)) {
+          if (
+            res.data.max_num_pages == parseInt(dataset.currentPage) ||
+            res.data.html == ''
+          ) {
             loadMoreBTN.setAttribute('disable', true);
           }
 

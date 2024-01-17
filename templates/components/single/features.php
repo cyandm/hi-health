@@ -5,37 +5,37 @@ $class = isset( $args['class'] ) ? $args['class'] : '';
 
 $features = [ 
 	'parking' => [ 
-		'name' => __( 'پارکینگ', 'cyn-dm' ),
+		'name' => pll__( 'parking' ),
 		'icon-class' => 'icon-parking',
 		'post-types' => [ 'tour', 'hotel', 'hospital' ]
 	],
 	'spa' => [ 
-		'name' => __( 'اسپا', 'cyn-dm' ),
+		'name' => pll__( 'spa' ),
 		'icon-class' => 'icon-spa',
 		'post-types' => [ 'tour', 'hotel' ]
 	],
 	'wifi' => [ 
-		'name' => __( 'وای فای', 'cyn-dm' ),
+		'name' => pll__( 'wifi' ),
 		'icon-class' => 'icon-wifi',
 		'post-types' => [ 'tour', 'hotel', 'hospital' ]
 	],
 	'pool' => [ 
-		'name' => __( 'استخر', 'cyn-dm' ),
+		'name' => pll__( 'pool' ),
 		'icon-class' => 'icon-pool',
 		'post-types' => [ 'tour', 'hotel' ]
 	],
 	'coffee-shop' => [ 
-		'name' => __( 'کافی شاپ', 'cyn-dm' ),
+		'name' => pll__( 'coffee-shop' ),
 		'icon-class' => 'icon-cofee',
 		'post-types' => [ 'tour', 'hotel', 'hospital' ]
 	],
 	'medical-house' => [ 
-		'name' => __( 'اورژانس', 'cyn-dm' ),
+		'name' => pll__( 'urgency' ),
 		'icon-class' => 'icon-medical-house',
 		'post-types' => [ 'hospital' ]
 	],
 	'medical' => [ 
-		'name' => __( 'اتاق عمل', 'cyn-dm' ),
+		'name' => pll__( 'surgery-room' ),
 		'icon-class' => 'icon-medical',
 		'post-types' => [ 'hospital' ]
 	],

@@ -1,0 +1,66 @@
+@use '../utils' as *;
+
+.reserve-popup {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(#000, 0.5);
+  backdrop-filter: blur(50px);
+  z-index: 1000;
+  padding-block-start: $s_7;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.3s;
+  display: grid;
+  place-items: center;
+  padding-inline: $s_4;
+
+  &[data-active='false'] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__action {
+    .btn {
+      padding: $s_1 $s_3;
+    }
+  }
+
+  &__wrapper {
+    display: grid;
+    gap: $s_2;
+    justify-content: end;
+    justify-items: start;
+  }
+
+  &__content {
+    background-color: var(--clr-bg-700);
+    padding: $s_8;
+    display: grid;
+    gap: $s_6;
+  }
+
+  &__form {
+    display: grid;
+    gap: $s_2;
+
+    > * {
+      padding: $s_3;
+      border: 1px solid var(--clr-text-300);
+      background-color: var(--clr-bg-500);
+
+      @include make_icon(attr(data-icon));
+    }
+
+    .btn.pending {
+      pointer-events: none;
+      background-color: #bbb;
+      color: var(--clr-text-700);
+    }
+
+    .btn.success {
+      pointer-events: none;
+      background-color: var(--clr-success-light);
+      color: var(--clr-natural-100);
+    }
+  }
+}

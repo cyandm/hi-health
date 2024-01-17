@@ -52,7 +52,7 @@ function render_thumbnails( $thumbs, $count ) {
 	echo '<div class="swiper">';
 	echo '<div id="closeGallery">';
 	echo '<i class="icon-close"></i>';
-	printf( '<span>%s</span>', __( 'بستن', 'cyn-dm' ) );
+	printf( '<span>%s</span>', pll__( 'close' ) );
 	echo '</div>';
 	echo '<div class="swiper-wrapper">';
 	render_all_thumbnails( $thumbs, 'swiper-slide', true );
@@ -68,7 +68,8 @@ function render_thumbnails( $thumbs, $count ) {
 
 
 
-<div class='gallery' id='gallery'>
+<div class='gallery'
+	 id='gallery'>
 	<div class="gallery__feature-image">
 		<div id='featureImage'>
 

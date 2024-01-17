@@ -1,9 +1,13 @@
 <?php
-$terms = isset( $args['terms'] ) ? $args['terms'] : [];
 $taxonomy = isset( $args['taxonomy'] ) ? $args['taxonomy'] : '';
 $post_type = isset( $args['post-type'] ) ? $args['post-type'] : '';
 $search_text = isset( $args['search-text'] ) ? $args['search-text'] : '';
-?>
+
+$terms = get_terms( [ 
+	'taxonomy' => $taxonomy,
+	'hide_empty' => false
+] )
+	?>
 
 
 
@@ -16,14 +20,18 @@ $search_text = isset( $args['search-text'] ) ? $args['search-text'] : '';
 		</div>
 		<div class="filter-search-bar__content">
 
-			<?php get_template_part( '/templates/components/search-form', null, [ 'search-text' => 'پزشکان' ] ) ?>
+			<?php get_template_part( '/templates/components/search-form', null,
+				[ 
+					'search-text' => $search_text,
+					'post-type' => $post_type
+				] ) ?>
 
 
 			<div class="filter-search-bar__cat">
 				<select id="selectFilter"
 						data-taxonomy=<?= $taxonomy ?>
 						data-post-type=<?= $post_type ?>>
-					<option value="default"><?php _e( 'انتخاب کنید' ) ?></option>
+					<option value="default"><?php pll_e( 'choose' ) ?></option>
 					<?php
 					foreach ( $terms as $term ) {
 						printf( '<option value="%s">%s</option>', $term->slug, $term->name );

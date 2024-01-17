@@ -31,7 +31,7 @@ $side_gallery = [ $gallery['image_2'], $gallery['image_3'], $gallery['image_4'] 
 		   class="btn"
 		   size='medium'
 		   variant='secondary'>
-			<?php _e( 'مشاهده جزئیات', 'cyn-dm' ) ?>
+			<?php pll_e( 'more-info' ) ?>
 		</a>
 	</div>
 

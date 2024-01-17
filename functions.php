@@ -12,6 +12,9 @@ require_once( __DIR__ . '/inc/classes/cyn-ajax-actions.php' );
 require_once( __DIR__ . '/inc/classes/cyn-login.php' );
 require_once( __DIR__ . '/inc/classes/cyn-recaptcha.php' );
 require_once( __DIR__ . '/inc/classes/cyn-ajax-forms.php' );
+require_once( __DIR__ . '/inc/classes/cyn-meta-box.php' );
+require_once( __DIR__ . '/inc/classes/cyn-translate.php' );
+require_once( __DIR__ . '/inc/classes/cyn-ajax-general.php' );
 
 
 
@@ -28,3 +31,9 @@ $cyn_ajax_actions = new cyn_ajax_actions();
 $cyn_login = new cyn_login();
 $cyn_recaptcha = new cyn_recaptcha();
 $cyn_ajax_forms = new cyn_ajax_forms();
+$cyn_meta_box = new cyn_meta_box();
+$cyn_translate = new cyn_translate();
+$cyn_ajax_general = new cyn_ajax_general();
+
+
+

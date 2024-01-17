@@ -2,74 +2,99 @@
 @use './functions' as *;
 @use './mixins' as *;
 
-.container {
-  max-width: 1440px;
-  margin-inline: auto;
+html {
+	scroll-behavior: smooth;
+}
 
-  @media (max-width: 1460px) {
-    padding-inline: px_to_rem(40);
-  }
-  @media (max-width: 850px) {
-    padding-inline: px_to_rem(16) !important;
-  }
+.container {
+	max-width: 1440px;
+	margin-inline: auto;
+
+	@media (max-width: 1460px) {
+		padding-inline: px_to_rem(40);
+	}
+	@media (max-width: 850px) {
+		padding-inline: px_to_rem(16) !important;
+	}
 }
 
 .even-columns {
-  --min-width: 200px;
+	--min-width: 200px;
 
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
 }
 
 .grid-main {
-  --sidebar-width: 18rem;
+	--sidebar-width: 18rem;
 
-  display: grid;
-  grid-template-columns: var(--sidebar-width) 1fr;
+	display: grid;
+	grid-template-columns: var(--sidebar-width) 1fr;
 
-  @include mq('lg') {
-    grid-template-columns: 1fr;
+	@include mq('lg') {
+		grid-template-columns: 1fr;
 
-    & > :nth-child(2) {
-      grid-row: 1;
-    }
-  }
+		& > :nth-child(2) {
+			grid-row: 1;
+		}
+	}
+}
+
+::-moz-selection {
+	background-color: var(--clr-accent-700);
+	color: var(--clr-accent-100);
 }
 
 ::selection {
-  background-color: var(--clr-accent-700);
-  color: var(--clr-accent-100);
+	background-color: var(--clr-accent-700);
+	color: var(--clr-accent-100);
 }
 
 ::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.25rem;
+	width: 0.5rem;
+	height: 0.25rem;
 
-  &-track {
-    border-radius: 100vmax;
-    background-color: var(--clr-primry-100);
-  }
+	&-track {
+		border-radius: 100vmax;
+		background-color: var(--clr-natural-300);
+	}
 
-  &-thumb {
-    border-radius: 100vmax;
-    background-color: var(--clr-accent-700);
-  }
+	&-thumb {
+		border-radius: 100vmax;
+		background-color: var(--clr-natural-500);
+	}
 }
 
 body[data-popup-open='true'] {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 .grid-col-4 {
-  --col: 4;
-  display: grid;
-  grid-template-columns: repeat(var(--col), 1fr);
+	--col: 4;
+	display: grid;
+	grid-template-columns: repeat(var(--col), 1fr);
 
-  @include mq('lg') {
-    --col: 2;
-  }
+	@include mq('lg') {
+		--col: 2;
+	}
 
-  @include mq('md') {
-    --col: 1;
-  }
+	@include mq('md') {
+		--col: 1;
+	}
+}
+
+.grid-col-3 {
+	--col: 3;
+
+	display: grid;
+	grid-template-columns: repeat(var(--col), 1fr);
+	gap: $s_3;
+
+	@include mq('lg') {
+		--col: 2;
+	}
+
+	@include mq('md') {
+		--col: 1;
+	}
 }

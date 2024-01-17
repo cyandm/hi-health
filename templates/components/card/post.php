@@ -12,7 +12,7 @@ $post_id =
 $post_date = human_time_diff(
 	get_the_time( 'U', $post_id ), current_time( 'U' )
 )
-	. ' ' . __( 'پیش', 'cyn-dm' )
+	. ' ' . pll__( 'ago' )
 	?>
 
 
@@ -35,15 +35,16 @@ $post_date = human_time_diff(
 		<?php $cyn_render->render_zig_zag() ?>
 
 		<div class="general-card__icon-group">
-			<?php $cyn_render->render_author( $post_id ); ?>
+			<?php $cyn_render->render_author( get_the_author_meta( "ID" ) ); ?>
 			<?php $cyn_render->render_icon_text( $post_date, 'calendar', 'general-card__icon' ) ?>
 		</div>
 
 		<a href=<?= get_permalink( $post_id ) ?>
 		   class="btn"
 		   variant="primary"
-		   size="medium">
-			<?php _e( 'مشاهده مقاله', 'cyn-dm' ) ?>
+		   size="small">
+			<?php pll_e( 'more-info' ) ?>
+
 		</a>
 
 

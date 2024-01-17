@@ -1,15 +1,16 @@
 <?php
 //region php
-$fornt_page_id = get_option( 'page_on_front' );
-$social = get_field( 'social_media', $fornt_page_id );
-$whats_app_link = $social['whats_app'];
-$instagram_link = $social['instagram'];
-$telegram_link = $social['telegram'];
+$front_page_id = get_option( 'page_on_front' );
+$social = get_field( 'social_media', $front_page_id );
+if ( isset( $social ) ) {
+	$whats_app_link = $social['whats_app'];
+	$instagram_link = $social['instagram'];
+	$telegram_link = $social['telegram'];
+}
 
 //endregion
 ?>
 
-</div>
 
 <footer>
 
@@ -76,8 +77,15 @@ $telegram_link = $social['telegram'];
 
 </footer>
 
+
+<div class="translates-for-js">
+	<?php get_template_part( '/templates/translate.php' ) ?>
+</div>
+
 <div class="wp-scripts">
 	<?php wp_footer() ?>
+</div>
+
 </div>
 
 </body>

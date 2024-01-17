@@ -35,7 +35,7 @@
     }
 
     .footer-menu {
-      @include d_flex($gap: px_to_rem(92));
+      @include d_flex(row, start, start, $gap: px_to_rem(92));
 
       @media (max-width: 445px) {
         @include d_flex($j_c: space-between, $gap: px_to_rem(16));

@@ -2,9 +2,9 @@
 if ( ! class_exists( 'cyn_recaptcha' ) ) {
 	class cyn_recaptcha {
 		function __construct() {
-			add_action( 'wp_head', fn() => wp_enqueue_script( 'google-recaptcha',
-				'https://www.google.com/recaptcha/api.js' )
-			);
+			// add_action( 'wp_head', fn() => wp_enqueue_script( 'google-recaptcha',
+			// 	'https://www.google.com/recaptcha/api.js' )
+			// );
 		}
 
 		public function cyn_recaptcha_key() {

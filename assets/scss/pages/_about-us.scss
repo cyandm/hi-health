@@ -1,0 +1,70 @@
+@use '../utils' as *;
+
+.about-us {
+  background-color: #f3f4f6;
+  &__header {
+    background-color: #e9e9eb;
+
+    > * {
+      @include d_flex(row, space-between);
+
+      @include mq('md') {
+        justify-content: center;
+
+        .title-s {
+          @include fs('h1');
+        }
+
+        .h1 {
+          @include fs('h3');
+        }
+
+        > * {
+          @include d_flex(column, center, center);
+        }
+      }
+    }
+  }
+
+  &__picture_group {
+    @include d_flex($even_column: true, $gap: $s_4);
+    margin-block-start: $s_4;
+
+    &_2 {
+      flex-direction: row-reverse;
+    }
+
+    @include mq('lg') {
+      flex-direction: column;
+    }
+  }
+
+  &__team {
+    margin-block-start: $s_4;
+    .grid-col-4 {
+      gap: $s_3;
+    }
+  }
+
+  &__cta {
+    div {
+      @include d_flex(column, center, center);
+      padding-block: px_to_rem(140);
+      max-width: 100%;
+      background: center / cover no-repeat var(--bg-url);
+      color: var(--clr-text-100);
+      margin-block: $s_6;
+
+      @include pseudo(0, 100%, -1) {
+        background-color: rgba(#000, 0.5);
+      }
+      @include mq('lg') {
+        padding-block: px_to_rem(64);
+        .title-s {
+          @include fs('h2');
+          margin-block-end: $s_2;
+        }
+      }
+    }
+  }
+}

@@ -41,7 +41,7 @@ $isUserLiked = $cyn_general->is_user_likes_this_post( $id, $postsUserLiked ) ? '
 				  id="commentOpenerIcon">
 				<i class="icon-comment"></i>
 				<span>
-					<?= get_comment_count()['all'] ?>
+					<?= get_comment_count( $id )['all'] ?>
 				</span>
 
 			</span>

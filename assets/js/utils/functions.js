@@ -42,6 +42,11 @@ export const definePopUp = (nodeEl) => {
     if (e.target != nodeEl) return;
     document.body.setAttribute('data-popup-open', e.target.dataset.active);
   });
+
+  nodeEl.addEventListener('click', (e) => {
+    if (e.target != nodeEl) return;
+    deActivateEl(nodeEl);
+  });
 };
 
 export const setUserIP = () => {
@@ -76,4 +81,49 @@ export const getCookie = (cookieName) => {
     }
   }
   return JSON.parse('{}');
+};
+
+export const showMassage = (status, parentEl, innerText = null) => {
+  const span = document.createElement('span');
+  span.classList.add('message');
+  span.classList.add(status);
+
+  if (status === 'success') {
+    span.innerText = innerText ?? 'عملیات با موفقیت انجام شد';
+    return;
+  }
+
+  if (status === 'warning') {
+    span.innerText = innerText ?? 'عملیات در انتظار تایید ادمین است';
+    return;
+  }
+
+  if (status === 'error') {
+    span.innerText = innerText ?? 'عملیات با خطا مواجه شد';
+    return;
+  }
+
+  parentEl.appendChild(span);
+};
+
+export const changeButtonStatus = (status, btn) => {
+  if (status === 'pending') {
+    btn.classList.add('pending');
+    btn.innerText = translateStrings.Btn.pending;
+    return;
+  }
+
+  if (status === 'success') {
+    btn.classList.remove('pending');
+    btn.classList.add('success');
+    btn.innerText = translateStrings.Btn.success;
+    return;
+  }
+
+  if (status === 'error') {
+    btn.classList.remove('pending');
+    btn.classList.add('error');
+    btn.innerText = translateStrings.Btn.error;
+    return;
+  }
 };

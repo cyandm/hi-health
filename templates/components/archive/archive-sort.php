@@ -10,7 +10,7 @@ $sort_items = isset( $args['sort_items'] ) ? $args['sort_items'] : null;
 		<div class='archive-sort__filters-con'>
 			<div class='archive-sort__title'>
 				<i class="icon-sort"></i>
-				<?= __( 'ترتیب بر اساس', 'cyn-dm' ) . ':' ?>
+				<?php pll_e( 'sort-by' ) . ':' ?>
 			</div>
 
 			<div class='archive-sort__filters'>
@@ -20,7 +20,7 @@ $sort_items = isset( $args['sort_items'] ) ? $args['sort_items'] : null;
 						   id="default"
 						   data-post-type="<?= $post_type ?>"
 						   checked>
-					<?php _e( 'پیش فرض', 'cyn-dm' ) ?>
+					<?php pll_e( 'default' ) ?>
 				</label>
 
 				<?php foreach ( $sort_items as $item ) : ?>
@@ -41,7 +41,7 @@ $sort_items = isset( $args['sort_items'] ) ? $args['sort_items'] : null;
 		</div>
 
 		<div class='archive-sort__result'>
-			<?php printf( '<span> <span id="postsCount">%s</span> %s</span>', $wp_query->found_posts, __( 'نتیجه', 'cyn-dm' ) ) ?>
+			<?php printf( '<span> <span id="postsCount">%s</span> %s</span>', $wp_query->found_posts, pll__( 'founded' ) ) ?>
 		</div>
 
 	</div>

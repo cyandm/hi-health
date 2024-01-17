@@ -24,10 +24,10 @@ get_header();
 			wp_login_form( [ 
 				'redirect' => admin_url(), // redirect to admin dashboard.
 				'form_id' => 'cyn_login_form',
-				'label_username' => __( 'Username:' ),
-				'label_password' => __( 'Password:' ),
-				'label_remember' => __( 'Remember Me' ),
-				'label_log_in' => __( 'ورود به حساب کاربری' ),
+				'label_username' => pll__( 'username' ),
+				'label_password' => pll__( 'password' ),
+				'label_remember' => pll__( 'remember-me' ),
+				'label_log_in' => pll__( 'login' ),
 				'remember' => true
 			] );
 			?>
@@ -53,33 +53,35 @@ get_header();
 					  action=""
 					  method="POST">
 					<p>
-						<label for="cyn_user_login"><?= __( 'نام کاربری', 'cyn-dm' ) . ':' ?></label>
+						<label for="cyn_user_login"><?= pll__( 'username' ) . ':' ?></label>
 						<input name="cyn_user_login"
 							   id="cyn_user_login"
 							   type="text" />
 					</p>
 					<p>
-						<label for="cyn_user_email"><?= __( 'آدرس ایمیل', 'cyn-dm' ) . ':' ?></label>
+						<label for="cyn_user_email">
+							<?php pll__( 'email' ) . ':' ?>
+						</label>
 						<input name="cyn_user_email"
 							   id="cyn_user_email"
 							   type="email" />
 					</p>
 
 					<p>
-						<label for="password"><?= __( 'رمز عبور', 'cyn-dm' ) . ':' ?></label>
+						<label for="password"><?= pll__( 'password' ) . ':' ?></label>
 						<input name="cyn_user_pass"
 							   id="password"
 							   type="password" />
 					</p>
 					<p>
-						<label for="password_again"><?= __( 'تکرار رمز عبور', 'cyn-dm' ) . ':' ?></label>
+						<label for="password_again"><?= pll__( 'repeat-password' ) . ':' ?></label>
 						<input name="cyn_user_pass_confirm"
 							   id="password_again"
 							   type="password" />
 					</p>
 					<p>
 						<input type="submit"
-							   value="<?php _e( 'ثبت نام کنید', 'cyn-dm' ); ?>" />
+							   value="<?php pll_e( 'login' ); ?>" />
 					</p>
 
 				</form>

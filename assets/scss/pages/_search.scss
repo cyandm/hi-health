@@ -1,0 +1,63 @@
+@use '../utils' as *;
+
+.search-bar {
+  background-color: var(--clr-bg-500);
+  margin-block: $s_4;
+
+  &__wrapper {
+    @include d_flex(row, space-between);
+  }
+
+  &__form {
+    @include d_flex(row, space-between, $gap: $s_8);
+    padding-block: $s_4;
+
+    .form-control {
+      @include d_flex();
+      padding-inline: $s_1;
+      border: 1px solid #ddd;
+      transition: 0.3s;
+
+      input[type='text'] {
+        padding: $s_2;
+      }
+
+      &:has(input[type='text']:focus) {
+        border: 1px solid #000;
+      }
+    }
+  }
+
+  &__radio {
+    &-group {
+      @include d_flex($gap: $s_2);
+
+      label {
+        @include d_flex();
+      }
+    }
+
+    &-wrapper {
+      @include d_flex();
+      gap: $s_4;
+    }
+
+    &-title {
+      font-weight: bold;
+    }
+  }
+}
+
+.search-posts {
+  display: grid;
+  gap: $s_3;
+  .search-result-item {
+    @include d_flex(column, start, start);
+    background-color: var(--clr-bg-500);
+    padding: $s_2;
+
+    .post-type {
+      @include fs('body-s');
+    }
+  }
+}

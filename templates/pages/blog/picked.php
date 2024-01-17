@@ -6,7 +6,7 @@ if ( ! isset( $picked_blogs ) )
 ?>
 
 <section class="picked">
-	<?php printf( '<h3>%s</h3>', __( 'مطالب برتر', 'cyn-dm' ) ) ?>
+	<?php printf( '<h3>%s</h3>', pll__( 'top-blogs' ) ) ?>
 
 	<div class="picked__blog-group">
 		<?php

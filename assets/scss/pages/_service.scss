@@ -1,51 +1,73 @@
-@use "../utils/index" as *;
+@use '../utils/index' as *;
 
-.service-single {
-  .service-item {
-    .service-side {
-      height: 100px;
-      background: red;
+.single-service {
+  .grid-main {
+    gap: 1rem;
+
+    @include mq('lg') {
+      > *:nth-child(2) {
+        grid-row: 2;
+      }
+    }
+  }
+
+  &__sidebar {
+    > * {
+      --col: 1;
+      display: grid;
+      align-items: start;
+      gap: 1rem;
+      grid-template-columns: repeat(var(--col), 1fr);
+      position: sticky;
+      top: $s_4;
+
+      @include mq('lg') {
+        --col: 2;
+      }
+    }
+  }
+
+  &__content {
+  }
+
+  &__hero {
+    @include d_flex($even_column: true, $gap: $s_2);
+
+    @include mq('md') {
+      flex-direction: column;
+    }
+  }
+
+  &__microservice {
+    margin-block-start: $s_4;
+    @include d_flex(column, $gap: $s_6);
+
+    &__item {
+      @include d_flex(column, start, stretch, $gap: $s_2);
     }
 
-    .service-content {
-      @include d_flex(column);
+    &__image {
+      width: 100%;
 
-      .service-hero {
-        @include d_flex($gap: 0.75rem, $a_i: start, $wrap: nowrap);
+      > * {
+        width: 100%;
 
-        .service-img {
-          max-width: 430px;
-        }
-
-        .service-excerpt {
-          @include d_flex(column, start, start);
-          width: fit-content;
-          > h1 {
-            @include fs("h1");
-          }
-          > p {
-            @include fs("body-s");
-          }
+        img {
+          width: 100%;
         }
       }
+    }
 
-      .group-content {
-        margin-block-start: px_to_rem(16);
-        .split-content {
-          > h2 {
-            @include fs("h2");
-          }
+    &__card {
+      background: center / cover no-repeat var(--bg-url);
+      background-color: var(--clr-primary-500);
+      padding-block: $s_6;
+      display: grid;
+      place-items: center;
+      color: var(--clr-text-100);
 
-          > img {
-            margin-block: px_to_rem(8) px_to_rem(12);
-            width: 100%;
-          }
-
-          > p {
-            @include fs("body-s");
-            margin-block-end: px_to_rem(12);
-          }
-        }
+      @include pseudo(0, 100%, -1) {
+        background-color: rgba(#000, 0.3);
       }
     }
   }

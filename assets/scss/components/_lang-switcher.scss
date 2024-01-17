@@ -1,0 +1,37 @@
+@use '../utils' as *;
+
+.lang-switcher {
+  position: relative;
+  text-transform: capitalize;
+
+  &__current,
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $s_2;
+    padding: $s_2;
+    cursor: pointer;
+  }
+
+  &__list {
+    position: absolute;
+    background-color: var(--clr-bg-500);
+    left: 0;
+    border: 1px solid var(--clr-natural-300);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY($s_3);
+    transition: 0.3s;
+  }
+
+  &:hover {
+    .lang-switcher {
+      &__list {
+        opacity: 1;
+        pointer-events: all;
+        transform: translate(0);
+      }
+    }
+  }
+}

@@ -57,6 +57,12 @@
       }
     }
   }
+
+  &__related {
+    > *:first-child {
+      margin-block-end: $s_3;
+    }
+  }
 }
 
 .post-content {

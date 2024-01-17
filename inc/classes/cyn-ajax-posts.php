@@ -63,7 +63,7 @@ if ( ! class_exists( 'cyn_ajax_posts' ) ) {
 			return new WP_Query( $args );
 		}
 
-		public function render_by_query( $query, $post_type ) {
+		public function render_by_query( $query, $post_type, array $args = [] ) {
 			ob_start();
 
 			if ( $query->have_posts() ) {
@@ -72,11 +72,11 @@ if ( ! class_exists( 'cyn_ajax_posts' ) ) {
 				while ( $query->have_posts() ) :
 
 					$query->the_post();
-					get_template_part( '/templates/components/card/' . $post_type );
+					get_template_part( '/templates/components/card/' . $post_type, null, $args );
 
 				endwhile;
 			} else {
-				get_template_part( '/templates/components/not-found' );
+				get_template_part( '/templates/components/archive/not-found' );
 			}
 
 			wp_reset_postdata();

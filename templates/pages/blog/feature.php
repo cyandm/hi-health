@@ -3,13 +3,6 @@ $terms = get_field( 'top_categories' );
 $featured_blogs =
 	false !== get_field( 'featured_blogs' ) ?
 	get_field( 'featured_blogs' ) : [];
-
-
-// echo '<pre dir="ltr">';
-// var_dump( $featured_blogs );
-// echo '</pre>';
-// wp_die();
-
 ?>
 
 <section class="feature">
@@ -18,10 +11,10 @@ $featured_blogs =
 		<div class="feature__side">
 			<?php get_template_part(
 				'/templates/components/search-form',
-				args: [ 'search-text' => 'جستجو کنید' ] )
+				args: [ 'search-text' => pll__( 'blog-search' ) ] )
 				?>
 
-			<?php printf( '<h3>%s</h3>', __( 'دسته بندی ها', 'cyn-dm' ) ) ?>
+			<?php printf( '<h3>%s</h3>', pll__( 'categories' ) ) ?>
 
 			<div class="feature__terms">
 

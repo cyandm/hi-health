@@ -78,6 +78,7 @@
 
   &__icon-group {
     @include d_flex($gap: $s_3);
+    @include fs('body-s');
   }
 
   &__icon {

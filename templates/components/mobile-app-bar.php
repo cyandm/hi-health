@@ -3,21 +3,21 @@ $phone = get_option( 'phone_number_one' );
 
 $elements = [ 
 	[ 
-		'name' => 'خانه',
+		'name' => pll__( 'mobile-app-bar-home' ),
 		'id' => 'home',
 		'link' => site_url(),
 		'icon' => 'icon-mobile',
 		'order' => 2
 	],
 	[ 
-		'name' => 'زبان',
+		'name' => pll__( 'mobile-app-bar-languages' ),
 		'id' => 'lang',
 		'link' => '#',
 		'icon' => 'icon-globe',
 		'order' => 1
 	],
 	[ 
-		'name' => 'تماس',
+		'name' => pll__( 'mobile-app-bar-contact' ),
 		'id' => 'phone',
 		'link' => "tel:$phone",
 		'icon' => 'icon-phone',

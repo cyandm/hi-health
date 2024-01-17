@@ -1,13 +1,13 @@
 <?php
 $sort_items = [ 
 	[ 
-		'name' => 'اقتصادی',
+		'name' => pll__( 'sort-economy' ),
 		'id' => 'economy',
 		'order' => 'ASC',
 		'meta' => 'star'
 	],
 	[ 
-		'name' => 'لاکچری',
+		'name' => pll__( 'sort-luxury' ),
 		'id' => 'luxury',
 		'order' => 'DESC',
 		'meta' => 'star'

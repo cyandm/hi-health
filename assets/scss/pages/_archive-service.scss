@@ -1,0 +1,76 @@
+@use '../utils' as *;
+
+.archive-service {
+  &__con {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__hero {
+    --bg-size: 80%;
+    --bg-position: center;
+
+    background-image: url('../img/background-service.webp');
+    background-position: var(--bg-position);
+    background-repeat: no-repeat;
+    background-size: var(--bg-size);
+    background-color: var(--bg_clr);
+    min-height: 70vh;
+    display: grid;
+    place-items: center;
+
+    @include pseudo(0, 100%, 2) {
+      background-image: url('../img/foreground-service.png');
+      background-position: var(--bg-position);
+      background-repeat: no-repeat;
+      background-size: var(--bg-size);
+    }
+
+    @include mq('lg') {
+      --bg-size: contain;
+      --bg-position: bottom;
+
+      min-height: 25vh;
+    }
+  }
+
+  &__title {
+    font-weight: 600;
+    transform: translateY(-40%);
+    text-shadow: 4px 4px #9cadb0;
+
+    @include mq('xl') {
+      font-size: 80px;
+    }
+
+    @include mq('lg') {
+      @include fs('h1');
+    }
+  }
+
+  &__term {
+    &-con {
+      display: grid;
+      gap: $s_2;
+      padding-block-start: $s_4;
+    }
+
+    &-posts {
+      --col: 4;
+
+      display: grid;
+      gap: $s_3;
+      grid-template-columns: repeat(var(--col), 1fr);
+
+      @include mq('md') {
+        --col: 2;
+      }
+    }
+  }
+
+  .filter-search-bar__wrapper {
+    margin-block-start: 0;
+  }
+}

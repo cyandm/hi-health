@@ -1,0 +1,62 @@
+.scroller {
+	direction: ltr;
+	background: var(--clr-bg-500);
+	overflow: hidden;
+}
+
+.scroller__inner {
+	--spacing: 0.75rem;
+	padding-block: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing);
+
+	.mini-logo {
+		padding: 8px;
+		-webkit-margin-start: var(--spacing);
+		margin-inline-start: var(--spacing);
+		background-image: url('../img/logo-mini.svg');
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}
+
+.scroller[data-animated='true'] .scroller__inner {
+	width: -webkit-max-content;
+	width: -moz-max-content;
+	width: max-content;
+	flex-wrap: nowrap;
+	-webkit-animation: scroll var(--_animation-duration, 40s)
+		var(--_animation-direction, forwards) linear infinite;
+	animation: scroll var(--_animation-duration, 40s)
+		var(--_animation-direction, forwards) linear infinite;
+}
+
+.scroller[data-direction='right'] {
+	--_animation-direction: reverse;
+}
+
+.scroller[data-direction='left'] {
+	--_animation-direction: forwards;
+}
+
+.scroller[data-speed='fast'] {
+	--_animation-duration: 10s;
+}
+
+.scroller[data-speed='slow'] {
+	--_animation-duration: 60s;
+}
+
+@-webkit-keyframes scroll {
+	to {
+		transform: translate(calc(-50% - 0.5rem));
+	}
+}
+
+@keyframes scroll {
+	to {
+		transform: translate(calc(-50% - 0.5rem));
+	}
+}

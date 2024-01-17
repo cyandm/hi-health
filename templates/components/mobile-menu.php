@@ -18,7 +18,7 @@
 		   variant="primary"
 		   size="medium">
 			<i class="icon-form"></i>
-			<?php _e( 'ارسال درخواست', 'cyn-dm' ) ?>
+			<?php pll_e( 'btn-send' ) ?>
 		</a>
 	</header>
 

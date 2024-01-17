@@ -19,7 +19,7 @@ if ( ! $terms )
 
 <div class="list-terms">
 	<?php
-	printf( '<p class="h3">%s</p>', __( 'دسته بندی ها', 'cyn-dm' ) );
+	printf( '<p class="h3">%s</p>', pll__( 'categories' ) );
 
 	foreach ( $terms as $term ) {
 		$in_post = in_array( $term, $current_post_terms ) ? 'true' : 'false';

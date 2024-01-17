@@ -1,21 +1,21 @@
 <?php
 global $cyn_render;
 
-$doctor_id = get_the_ID();
-$doctor_img = get_post_thumbnail_id( $doctor_id );
+$member_ID = get_the_ID();
+$member_image = get_post_thumbnail_id( $member_ID );
 $short_text = get_field( 'short_text' );
 
 $expertise = get_field( 'expertise' );
 $experience = get_field( 'experience' );
 
-$term = get_the_terms( $doctor_id, 'doctor-expertise' )[0];
+$term = get_the_terms( $member_ID, 'doctor-expertise' )[0];
 
 ?>
-<a href=<?= get_permalink( $doctor_id ) ?>>
+<a href=<?= get_permalink( $member_ID ) ?>>
 	<div class="general-card">
 
 		<div class="general-card__image">
-			<?php $cyn_render->render_image( $doctor_img ) ?>
+			<?php $cyn_render->render_image( $member_image ) ?>
 		</div>
 
 		<div class="general-card__details">

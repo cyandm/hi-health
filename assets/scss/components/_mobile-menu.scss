@@ -6,7 +6,7 @@
   display: none;
   cursor: pointer;
 
-  @include mq('lg') {
+  @include mq('xl') {
     display: block;
   }
 }

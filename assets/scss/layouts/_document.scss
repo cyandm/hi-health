@@ -1,0 +1,7 @@
+body {
+  transition: direction 0.3s ease-in;
+  direction: ltr;
+  &.cyn-is-rtl {
+    direction: rtl;
+  }
+}
