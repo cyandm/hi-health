@@ -1,93 +1,97 @@
 @use '../../utils' as *;
 
 .general-card {
-  @include d_flex(column, $a_i: start, $even_column: true);
-  height: 100%;
-  background: var(--clr-bg-500);
-  isolation: isolate;
+	@include d_flex(column, $a_i: start, $even_column: true);
+	height: 100%;
+	background: var(--clr-bg-500);
+	isolation: isolate;
 
-  &:not(.no-media) {
-    @include mq('md') {
-      flex-direction: row;
+	&:not(.no-media) {
+		@include mq('md') {
+			flex-direction: row;
 
-      .general-card__details {
-        .address-con {
-          display: none;
-        }
-      }
+			.general-card__details {
+				.address-con {
+					display: none;
+				}
+			}
 
-      .general-card__image {
-        height: 100%;
-        .img-wrapper {
-          height: 100%;
-          &::after {
-            background-image: url('../img/wave-horizontal.svg');
-            background-size: contain;
-            background-position: -8px; //8px fix left line
-            height: 100%;
-            width: auto;
-          }
-          img {
-            object-fit: cover;
-          }
-        }
-        &::after {
-          display: none;
-        }
-      }
-    }
-  }
+			.general-card__image {
+				height: 100%;
+				.img-wrapper {
+					height: 100%;
+					&::after {
+						background-image: url('../img/wave-horizontal.svg');
+						background-size: contain;
+						background-position: -8px; //8px fix left line
+						height: 100%;
+						width: auto;
+					}
+					img {
+						-o-object-fit: cover;
+						object-fit: cover;
+					}
+				}
+				&::after {
+					display: none;
+				}
+			}
+		}
+	}
 
-  &__image {
-    width: 100%;
-    z-index: -1;
+	&__image {
+		width: 100%;
+		z-index: -1;
 
-    .img-wrapper {
-      height: 250px; //according design
-      margin-block-end: -1.5rem;
+		.img-wrapper {
+			height: 250px; //according design
+			-webkit-margin-after: -1.5rem;
+			margin-block-end: -1.5rem;
 
-      img {
-        object-fit: cover;
-        object-position: top;
-      }
+			img {
+				-o-object-fit: cover;
+				object-fit: cover;
+				-o-object-position: top;
+				object-position: top;
+			}
 
-      @include pseudo(0) {
-        background-image: url('../img/wave.svg');
-        height: 100%;
-        width: 100%;
-        background-repeat: no-repeat;
-        background-position: 0 104%; //4% fix bottom line
-      }
-    }
-  }
+			@include pseudo(0) {
+				background-image: url('../img/wave.svg');
+				height: 100%;
+				width: 100%;
+				background-repeat: no-repeat;
+				background-position: 0 104%; //4% fix bottom line
+			}
+		}
+	}
 
-  &__details {
-    z-index: 1;
-    padding: $s_3;
-    display: flex;
-    flex-direction: column;
-    gap: $s_3;
-    justify-content: space-between;
-    align-items: start;
-    width: 100%;
+	&__details {
+		z-index: 1;
+		padding: $s_3;
+		display: flex;
+		flex-direction: column;
+		gap: $s_3;
+		justify-content: space-between;
+		align-items: flex-start;
+		width: 100%;
 
-    .features {
-      margin-block: unset;
-    }
-  }
+		.features {
+			margin-block: unset;
+		}
+	}
 
-  &__icon-group {
-    @include d_flex($gap: $s_3);
-    @include fs('body-s');
-  }
+	&__icon-group {
+		@include d_flex($gap: $s_3);
+		@include fs('body-s');
+	}
 
-  &__icon {
-    @include d_flex($gap: $s_1, $a_i: center);
-    color: var(--clr-text-300);
-  }
+	&__icon {
+		@include d_flex($gap: $s_1, $a_i: center);
+		color: var(--clr-text-300);
+	}
 
-  &__caption {
-    @include fs('body-s');
-    color: var(--clr-text-300);
-  }
+	&__caption {
+		@include fs('body-s');
+		color: var(--clr-text-300);
+	}
 }

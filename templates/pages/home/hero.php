@@ -1,6 +1,6 @@
 <?php
 
-$title = get_field( 'title' );
+$testimonials_title = get_field( 'title' );
 $sub_title = get_field( 'sub_title' );
 
 
@@ -15,10 +15,10 @@ $sub_title = get_field( 'sub_title' );
 	</div>
 
 	<span class="front-page-hero__title">
-		<?= $title ?>
+		<?= $testimonials_title ?>
 	</span>
 	<span class="front-page-hero__title-overlay">
-		<?= $title ?>
+		<?= $testimonials_title ?>
 	</span>
 
 	<span class="front-page-hero__airplane">

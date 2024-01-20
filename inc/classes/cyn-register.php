@@ -78,7 +78,7 @@ if ( ! class_exists( 'cyn_register' ) ) {
 			make_post_type( 'عضو', 'member', 'dashicons-groups',
 				supports: [ 'title', 'thumbnail', 'excerpt' ] );
 
-			make_post_type( 'نظر', 'testimonial', 'dashicons-testimonial', supports: [ 'title' ] );
+			make_post_type( 'نظر', 'testimonial', 'dashicons-testimonial', supports: [ 'title', 'thumbnail', 'excerpt' ] );
 		}
 
 		public function cyn_taxonomy_register() {

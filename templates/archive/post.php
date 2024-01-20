@@ -12,7 +12,7 @@ $queried = get_queried_object();
 
 	<div class="archive-post__con">
 		<h1>
-			<?= $title ?>
+			<?= $testimonials_title ?>
 		</h1>
 
 		<div class="posts-container grid-col-3">

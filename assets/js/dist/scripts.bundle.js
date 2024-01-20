@@ -5381,6 +5381,8 @@
   // assets/js/modules/story.js
   var story = () => {
     const homePageTours = document.getElementById("homePageTours");
+    if (!homePageTours)
+      return;
     const videos = homePageTours.querySelectorAll("video");
     const homePageToursSwiper = new Swiper("#homePageTours", {
       modules: [],
@@ -5430,6 +5432,14 @@
         el: ".swiper-pagination",
         clickable: true
       }
+    });
+    const homePageTestimonials = new Swiper("#homePageTestimonials", {
+      slidesPerView: "auto",
+      //max-width in html 650px on swiper-slide
+      centeredSlides: true,
+      spaceBetween: 12,
+      loop: true,
+      width: window.innerWidth
     });
   };
 

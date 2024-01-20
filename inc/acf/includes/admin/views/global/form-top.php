@@ -1,18 +1,18 @@
 <?php
-global $title, $post_new_file, $post_type_object, $post;
+global $testimonials_title, $post_new_file, $post_type_object, $post;
 $acf_title_placeholder = apply_filters( 'enter_title_here', __( 'Add title' ), $post );
-$acf_title             = $post->post_title;
-$acf_post_type         = is_object( $post_type_object ) ? $post_type_object->name : '';
-$acf_publish_btn_name  = 'save';
-$acf_duplicated_from   = '';
+$acf_title = $post->post_title;
+$acf_post_type = is_object( $post_type_object ) ? $post_type_object->name : '';
+$acf_publish_btn_name = 'save';
+$acf_duplicated_from = '';
 
 if ( 'publish' !== $post->post_status ) {
 	$acf_publish_btn_name = 'publish';
 }
 
 if ( 'acf-field-group' === $acf_post_type ) {
-	$acf_use_post_type    = acf_get_post_type_from_request_args( 'add-fields' );
-	$acf_use_taxonomy     = acf_get_taxonomy_from_request_args( 'add-fields' );
+	$acf_use_post_type = acf_get_post_type_from_request_args( 'add-fields' );
+	$acf_use_taxonomy = acf_get_taxonomy_from_request_args( 'add-fields' );
 	$acf_use_options_page = acf_get_ui_options_page_from_request_args( 'add-fields' );
 
 	/* translators: %s - singular label of post type/taxonomy, i.e. "Movie"/"Genre" */
@@ -41,8 +41,8 @@ if ( 'acf-field-group' === $acf_post_type ) {
 		$acf_title = $acf_prefilled_title;
 	}
 } elseif ( in_array( $acf_post_type, array( 'acf-post-type', 'acf-taxonomy' ) ) ) {
-	$acf_duplicate_post_type   = acf_get_post_type_from_request_args( 'acfduplicate' );
-	$acf_duplicate_taxonomy    = acf_get_taxonomy_from_request_args( 'acfduplicate' );
+	$acf_duplicate_post_type = acf_get_post_type_from_request_args( 'acfduplicate' );
+	$acf_duplicate_taxonomy = acf_get_taxonomy_from_request_args( 'acfduplicate' );
 	$acf_duplicated_from_label = '';
 
 	if ( $acf_duplicate_post_type && ! empty( $acf_duplicate_post_type['labels']['singular_name'] ) ) {
@@ -62,30 +62,46 @@ if ( 'acf-field-group' === $acf_post_type ) {
 
 		<div class="acf-headerbar-content">
 			<h1 class="acf-page-title">
-			<?php
-			echo esc_html( $title );
+				<?php
+				echo esc_html( $testimonials_title );
 
-			if ( ! empty( $acf_duplicated_from ) ) {
-				echo '<span class="acf-duplicated-from">' . esc_html( $acf_duplicated_from ) . '</span>';
-			}
-			?>
+				if ( ! empty( $acf_duplicated_from ) ) {
+					echo '<span class="acf-duplicated-from">' . esc_html( $acf_duplicated_from ) . '</span>';
+				}
+				?>
 			</h1>
 			<?php if ( 'acf-field-group' === $acf_post_type ) : ?>
-			<div class="acf-title-wrap">
-				<label class="screen-reader-text" id="title-prompt-text" for="title"><?php echo esc_html( $acf_title_placeholder ); ?></label>
-				<input form="post" type="text" name="post_title" size="30" value="<?php echo esc_attr( $acf_title ); ?>" id="title" class="acf-headerbar-title-field" spellcheck="true" autocomplete="off" placeholder="<?php esc_attr_e( 'Field Group Title', 'acf' ); ?>" />
-			</div>
+				<div class="acf-title-wrap">
+					<label class="screen-reader-text"
+						   id="title-prompt-text"
+						   for="title"><?php echo esc_html( $acf_title_placeholder ); ?></label>
+					<input form="post"
+						   type="text"
+						   name="post_title"
+						   size="30"
+						   value="<?php echo esc_attr( $acf_title ); ?>"
+						   id="title"
+						   class="acf-headerbar-title-field"
+						   spellcheck="true"
+						   autocomplete="off"
+						   placeholder="<?php esc_attr_e( 'Field Group Title', 'acf' ); ?>" />
+				</div>
 			<?php endif; ?>
 		</div>
 
-		<div class="acf-headerbar-actions" id="submitpost">
+		<div class="acf-headerbar-actions"
+			 id="submitpost">
 			<?php if ( 'acf-field-group' === $acf_post_type ) : ?>
-				<a href="#" class="acf-btn acf-btn-secondary add-field">
+				<a href="#"
+				   class="acf-btn acf-btn-secondary add-field">
 					<i class="acf-icon acf-icon-plus"></i>
 					<?php esc_html_e( 'Add Field', 'acf' ); ?>
 				</a>
 			<?php endif; ?>
-			<button form="post" class="acf-btn acf-publish" name="<?php echo esc_attr( $acf_publish_btn_name ); ?>" type="submit">
+			<button form="post"
+					class="acf-btn acf-publish"
+					name="<?php echo esc_attr( $acf_publish_btn_name ); ?>"
+					type="submit">
 				<?php esc_html_e( 'Save Changes', 'acf' ); ?>
 			</button>
 		</div>

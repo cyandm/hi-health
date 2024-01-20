@@ -1,1 +1,3 @@
-<?php pll_e( 'not-found' ) ?>
+<div>
+	<?= pll__( 'not-found' ) ?>
+</div>

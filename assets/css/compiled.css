@@ -2136,6 +2136,7 @@ body.cyn-is-rtl {
     width: auto;
   }
   .general-card:not(.no-media) .general-card__image .img-wrapper img {
+    -o-object-fit: cover;
     object-fit: cover;
   }
   .general-card:not(.no-media) .general-card__image::after {
@@ -2148,12 +2149,15 @@ body.cyn-is-rtl {
 }
 .general-card__image .img-wrapper {
   height: 250px;
+  -webkit-margin-after: -1.5rem;
   margin-block-end: -1.5rem;
   position: relative;
   isolation: isolate;
 }
 .general-card__image .img-wrapper img {
+  -o-object-fit: cover;
   object-fit: cover;
+  -o-object-position: top;
   object-position: top;
 }
 .general-card__image .img-wrapper::after {
@@ -2176,7 +2180,7 @@ body.cyn-is-rtl {
   flex-direction: column;
   gap: 0.75rem;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   width: 100%;
 }
 .general-card__details .features {
@@ -2253,6 +2257,63 @@ body.cyn-is-rtl {
   color: var(--clr-text-900);
   backdrop-filter: blur(100px);
   text-align: center;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  height: 100%;
+  background-color: var(--clr-bg-500);
+}
+.testimonial-card > * {
+  flex: 1;
+}
+.testimonial-card__details {
+  display: grid;
+  gap: 0.75rem;
+}
+.testimonial-card__image .img-wrapper {
+  height: 300px;
+  position: relative;
+  isolation: isolate;
+}
+.testimonial-card__image .img-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 0.25rem;
+  height: 0.25rem;
+  z-index: 1;
+  background-image: url("../img/wave-horizontal.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: auto;
+  translate: -1px;
+}
+.testimonial-card__icon-group {
+  display: grid;
+  align-content: center;
+  gap: 0.25rem;
+}
+.testimonial-card__icon-group i {
+  color: var(--clr-accent-700);
+  font-size: 1.25rem;
+}
+.testimonial-card__icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.testimonial-card__name {
+  color: var(--clr-natural-400);
 }
 
 .tour-card {
@@ -2928,6 +2989,9 @@ body.cyn-is-rtl {
   font-family: "Arial";
   opacity: 0.15;
 }
+.middle-section__inner:last-child {
+  margin-block-end: 2.25rem;
+}
 
 .tours {
   background-color: var(--clr-natural-900);
@@ -3032,6 +3096,10 @@ body.cyn-is-rtl {
 }
 .tours .swiper-slide-active.playing::after, .tours .swiper-slide-active.playing::before {
   opacity: 0;
+}
+
+.testimonials__header {
+  margin-block: 1.5rem;
 }
 
 .hotel-single .hotel-details > div {

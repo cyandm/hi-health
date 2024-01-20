@@ -1,5 +1,5 @@
 <?php
-$title = get_field( 'tour_title' );
+$testimonials_title = get_field( 'tour_title' );
 $posts = get_field( 'tour_posts' );
 $button = get_field( 'tour_button' );
 
@@ -11,7 +11,7 @@ $button = get_field( 'tour_button' );
 
 	<div class="tours__header container">
 		<span class="tours__title | h1">
-			<?= $title ?>
+			<?= $testimonials_title ?>
 		</span>
 
 		<a class="btn"

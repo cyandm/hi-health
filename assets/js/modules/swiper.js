@@ -15,4 +15,13 @@ export const defineSwipers = () => {
 			clickable: true,
 		},
 	});
+
+	const homePageTestimonials = new Swiper('#homePageTestimonials', {
+		slidesPerView: 'auto', //max-width in html 650px on swiper-slide
+		centeredSlides: true,
+		spaceBetween: 12,
+		loop: true,
+
+		width: window.innerWidth,
+	});
 };

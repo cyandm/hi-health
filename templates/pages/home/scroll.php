@@ -1,14 +1,12 @@
 <?php
-$marks = get_field( 'marks' );
+$marks = get_field('marks');
 
 ?>
 
-<div class="scroller"
-	 data-speed="fast"
-	 data-direction="right">
+<div class="scroller" data-speed="slow" data-direction="right">
 	<ul class="scroller__inner">
 		<?php
-		foreach ( $marks as $mark ) {
+		foreach ($marks as $mark) {
 			echo '<li>';
 			echo '<span class="mini-logo"></span>';
 			echo $mark;
