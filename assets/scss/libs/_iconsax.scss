@@ -1,19 +1,19 @@
 @font-face {
-  font-family: 'cyan-icon';
-  src: url('../fonts/icons/iconsax/iconsax.eot');
-  src: url('../fonts/icons/iconsax/iconsax.eot') format('embedded-opentype'),
-    url('../fonts/icons/iconsax/iconsax.ttf') format('truetype'),
-    url('../fonts/icons/iconsax/iconsax.woff') format('woff'),
-    url('../fonts/icons/iconsax/iconsax.svg') format('svg');
+  font-family: "cyan-icon";
+  src: url("../fonts/icons/iconsax/iconsax.eot");
+  src: url("../fonts/icons/iconsax/iconsax.eot") format("embedded-opentype"),
+    url("../fonts/icons/iconsax/iconsax.ttf") format("truetype"),
+    url("../fonts/icons/iconsax/iconsax.woff") format("woff"),
+    url("../fonts/icons/iconsax/iconsax.svg") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^='icon-'],
-[class*=' icon-'] {
+[class^="icon-"],
+[class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'cyan-icon' !important;
+  font-family: "cyan-icon" !important;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: normal;
@@ -27,116 +27,122 @@
 }
 
 .icon-arrow-left:before {
-  content: '\e900';
+  content: "\e900";
 }
 .icon-arrow-m-down:before {
-  content: '\e901';
+  content: "\e901";
 }
 .icon-arrow-s-down:before {
-  content: '\e902';
+  content: "\e902";
 }
 .icon-arrow-upright:before {
-  content: '\e903';
+  content: "\e903";
 }
 .icon-attach:before {
-  content: '\e904';
+  content: "\e904";
 }
 .icon-book:before {
-  content: '\e905';
+  content: "\e905";
 }
 .icon-calendar:before {
-  content: '\e906';
+  content: "\e906";
 }
 .icon-close:before {
-  content: '\e907';
+  content: "\e907";
 }
 .icon-cofee:before {
-  content: '\e908';
+  content: "\e908";
 }
 .icon-comment:before {
-  content: '\e909';
+  content: "\e909";
 }
 .icon-doctor:before {
-  content: '\e90a';
+  content: "\e90a";
 }
 .icon-double-arrow:before {
-  content: '\e90b';
+  content: "\e90b";
 }
 .icon-email:before {
-  content: '\e90c';
+  content: "\e90c";
 }
 .icon-form:before {
-  content: '\e90d';
+  content: "\e90d";
 }
 .icon-glasses:before {
-  content: '\e90e';
+  content: "\e90e";
 }
 .icon-globe:before {
-  content: '\e90f';
+  content: "\e90f";
 }
 .icon-heart:before {
-  content: '\e910';
+  content: "\e910";
+}
+.icon-home:before {
+  content: "\e911";
 }
 .icon-hospital:before {
-  content: '\e911';
+  content: "\e912";
 }
 .icon-instagram:before {
-  content: '\e912';
+  content: "\e913";
 }
 .icon-location:before {
-  content: '\e913';
+  content: "\e914";
 }
 .icon-medical:before {
-  content: '\e914';
+  content: "\e915";
 }
 .icon-medical-house:before {
-  content: '\e915';
+  content: "\e916";
+}
+.icon-menu:before {
+  content: "\e917";
 }
 .icon-mobile:before {
-  content: '\e916';
+  content: "\e918";
 }
 .icon-parking:before {
-  content: '\e917';
+  content: "\e919";
 }
 .icon-phone:before {
-  content: '\e918';
+  content: "\e91a";
 }
 .icon-play:before {
-  content: '\e919';
+  content: "\e91b";
 }
 .icon-pool:before {
-  content: '\e91a';
+  content: "\e91c";
 }
 .icon-reply:before {
-  content: '\e91b';
+  content: "\e91d";
 }
 .icon-search:before {
-  content: '\e91c';
+  content: "\e91e";
 }
 .icon-send:before {
-  content: '\e91d';
+  content: "\e91f";
 }
 .icon-share:before {
-  content: '\e91e';
+  content: "\e920";
 }
 .icon-sort:before {
-  content: '\e91f';
+  content: "\e921";
 }
 .icon-spa:before {
-  content: '\e920';
+  content: "\e922";
 }
 .icon-speciality:before {
-  content: '\e921';
+  content: "\e923";
 }
 .icon-telegram:before {
-  content: '\e922';
+  content: "\e924";
 }
 .icon-user:before {
-  content: '\e923';
+  content: "\e925";
 }
 .icon-whatsapp:before {
-  content: '\e924';
+  content: "\e926";
 }
 .icon-wifi:before {
-  content: '\e925';
+  content: "\e927";
 }

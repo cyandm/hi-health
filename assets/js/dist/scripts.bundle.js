@@ -5439,7 +5439,10 @@
       centeredSlides: true,
       spaceBetween: 12,
       loop: true,
-      width: window.innerWidth
+      width: window.innerWidth,
+      autoplay: {
+        delay: 3e3
+      }
     });
   };
 
@@ -6175,4 +6178,21 @@
   };
   init();
   swup.hooks.on("content:replace", init);
+
+  // assets/js/modules/accordion.js
+  var faqHandlers = document.querySelectorAll(".faq__content__items");
+  var faqAnswers = document.querySelectorAll(".faq__content__answer");
+  if (faqHandlers) {
+    faqHandlers.forEach((faqHandler) => {
+      addListener(faqHandler, "click", (e) => {
+        const answer = faqHandler;
+        faqHandlers.forEach((answerInner) => {
+          if (answerInner === answer)
+            return;
+          answerInner.classList.remove("active");
+        });
+        answer.classList.toggle("active");
+      });
+    });
+  }
 })();

@@ -1,4 +1,4 @@
-@use '../utils/' as *;
+@use "../utils/" as *;
 
 .ajax-search {
   padding: px_to_rem(8);
@@ -7,7 +7,7 @@
   border: 0.0625rem solid var(--clr-text-300);
   position: relative;
 
-  @include mq('md') {
+  @include mq("md") {
     min-width: 100%;
   }
 
@@ -28,13 +28,13 @@
   }
 
   input {
-    @include fs('body-s');
+    @include fs("body-s");
     border: none;
     padding: 0.5rem 0;
     background: transparent;
     min-width: 15.125rem;
 
-    @include mq('xs') {
+    @include mq("md") {
       min-width: 90%;
     }
   }
@@ -58,10 +58,11 @@
     transition: 0.3s;
     pointer-events: none;
 
-    &[data-active='true'] {
+    &[data-active="true"] {
       opacity: 1;
       transform: translateY(5px);
       pointer-events: all;
+      z-index: 100;
     }
   }
 
@@ -75,7 +76,7 @@
     transition: opacity 0.3s;
     pointer-events: none;
 
-    &[data-active='true'] {
+    &[data-active="true"] {
       opacity: 1;
     }
   }
@@ -91,7 +92,7 @@
 
     &::after,
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: -2px;
       border-radius: 50%;
@@ -109,7 +110,7 @@
     flex: 2;
     padding: 0.25rem !important;
 
-    &[data-active='false'] {
+    &[data-active="false"] {
       pointer-events: none;
       opacity: 0.3;
       filter: grayscale(1);
@@ -130,7 +131,7 @@
   }
 
   .search-result-item {
-    @include fs('body-s');
+    @include fs("body-s");
     padding: 0.75rem 0.5rem;
 
     &:not(:first-child) {

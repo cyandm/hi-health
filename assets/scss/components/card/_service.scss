@@ -1,8 +1,8 @@
-@use '../../utils' as *;
+@use "../../utils" as *;
 
 .service-card {
   display: grid;
-  grid-template-areas: 'stacked';
+  grid-template-areas: "stacked";
 
   > * {
     grid-area: stacked;
@@ -15,9 +15,15 @@
   &__title {
     padding: $s_2;
     align-self: start;
-    background-color: rgba(#000, 0.1);
-    color: var(--clr-text-900);
-    backdrop-filter: blur(100px);
+    background-color: rgba(#000, 0.2);
+    color: var(--clr-text-700);
+    backdrop-filter: blur(46px);
     text-align: center;
+    transition: 0.5s ease-in-out;
+  }
+
+  &:hover &__title {
+    background-color: var(--clr-bg-900);
+    color: var(--clr-text-100);
   }
 }

@@ -1,4 +1,4 @@
-@use '../utils' as *;
+@use "../utils" as *;
 
 .archive-service {
   &__con {
@@ -12,7 +12,7 @@
     --bg-size: 80%;
     --bg-position: center;
 
-    background-image: url('../img/background-service.webp');
+    background-image: url("../img/background-service.webp");
     background-position: var(--bg-position);
     background-repeat: no-repeat;
     background-size: var(--bg-size);
@@ -22,17 +22,21 @@
     place-items: center;
 
     @include pseudo(0, 100%, 2) {
-      background-image: url('../img/foreground-service.png');
+      background-image: url("../img/foreground-service.png");
       background-position: var(--bg-position);
       background-repeat: no-repeat;
       background-size: var(--bg-size);
     }
 
-    @include mq('lg') {
+    @include mq("lg") {
       --bg-size: contain;
       --bg-position: bottom;
 
       min-height: 25vh;
+    }
+
+    @media (max-width: 1350px) {
+      --bg-position: bottom;
     }
   }
 
@@ -41,12 +45,12 @@
     transform: translateY(-40%);
     text-shadow: 4px 4px #9cadb0;
 
-    @include mq('xl') {
+    @include mq("xl") {
       font-size: 80px;
     }
 
-    @include mq('lg') {
-      @include fs('h1');
+    @include mq("lg") {
+      @include fs("h1");
     }
   }
 
@@ -64,7 +68,7 @@
       gap: $s_3;
       grid-template-columns: repeat(var(--col), 1fr);
 
-      @include mq('md') {
+      @include mq("md") {
         --col: 2;
       }
     }

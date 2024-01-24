@@ -1,4 +1,4 @@
-@use '../../utils' as *;
+@use "../../utils" as *;
 
 .feature {
   --gap: #{$s_3};
@@ -7,7 +7,7 @@
   grid-template-columns: 1fr 3fr;
   gap: var(--gap);
 
-  @include mq('lg') {
+  @include mq("lg") {
     grid-template-columns: 1fr;
     margin-block-start: 0;
   }
@@ -23,7 +23,7 @@
     gap: var(--gap);
     grid-template-columns: repeat(3, 1fr);
 
-    @include mq('lg') {
+    @include mq("lg") {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
@@ -43,11 +43,11 @@
     display: grid;
     gap: var(--gap);
 
-    @include mq('lg') {
+    @include mq("lg") {
       grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
-    @include mq('md') {
+    @include mq("md") {
       grid-template-columns: 1fr 1fr;
     }
 
@@ -60,10 +60,14 @@
       padding: $s_6;
       display: grid;
       place-items: center;
-      @include fs('h3');
+      @include fs("h3");
 
       @include pseudo(0, 100%, -1) {
         background-color: rgba(#000000, 0.5);
+      }
+
+      > span {
+        white-space: nowrap;
       }
     }
   }

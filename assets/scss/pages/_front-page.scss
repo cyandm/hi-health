@@ -9,7 +9,7 @@
     }
 
     @include pseudo(0, 100%, 1, before) {
-      background-image: url("../img/hero-temp.jpg");
+      background-image: url("../img/new-hero.webp");
       background-repeat: no-repeat;
       background-size: cover;
       -webkit-filter: blur(2px);
@@ -23,6 +23,18 @@
         top: unset;
         transform: translateX(50%);
         z-index: 6;
+
+        @media (max-width: 900px) {
+          max-width: 80%;
+        }
+
+        @include mq("md") {
+          max-width: 60%;
+        }
+
+        @include mq("sm") {
+          max-width: 100%;
+        }
       }
     }
 
@@ -35,10 +47,14 @@
       color: var(--clr-natural-900);
       position: absolute;
       left: 50%;
-      top: 35%;
+      top: 28%;
       transform: translate(-50%, -50%);
       text-wrap: nowrap;
       font-size: min(10vw, 112px);
+
+      @media (min-width: 280px) and (max-width: 768px) {
+        top: 16%;
+      }
     }
 
     &__title {
@@ -65,27 +81,48 @@
       backdrop-filter: blur(25px);
 
       @include mq("md") {
-        height: 20%;
+        height: 25%;
         width: 100%;
         bottom: 0;
         top: unset;
         z-index: 100;
+
+        align-items: start;
+      }
+
+      @media (max-width: 900px) and (min-width: 769px) {
+        width: 35%;
       }
 
       &-title {
         @include fs("h1");
         color: #fff;
+
+        @include mq("md") {
+          @include fs("h2");
+        }
       }
 
       &-search {
         z-index: 200;
+        @include mq("md") {
+          min-width: 100%;
+        }
       }
 
       &-inner {
         @include d_flex(column, start, start);
-        -webkit-padding-before: $s_6;
-        padding-block-start: $s_6;
-        gap: $s_4;
+
+        gap: $s_2;
+        padding-inline: $s_4 $s_4;
+
+        @media (max-width: 960px) and (min-width: 768px) {
+          padding-block-start: 16rem;
+        }
+
+        @include mq("md") {
+          min-width: 100%;
+        }
       }
     }
 
@@ -101,6 +138,11 @@
           transform: translateX(-50%);
           bottom: 35%;
           max-width: 250px;
+          z-index: 20;
+        }
+
+        @media (min-width: 280px) and (max-width: 768px) {
+          bottom: 55%;
         }
       }
     }
@@ -157,6 +199,11 @@
     display: block;
     width: 100%;
     text-align: center;
+
+    @include mq("md") {
+      @include fs("h1");
+      text-align: start;
+    }
   }
 
   &__inner {
@@ -170,6 +217,10 @@
 
     img {
       width: 100%;
+
+      @include mq("md") {
+        max-height: 360px;
+      }
     }
 
     &-content {
@@ -180,10 +231,28 @@
         font-family: "Arial";
         opacity: 0.15;
       }
+
+      &::after {
+        line-height: 100%;
+      }
+    }
+
+    &-image {
+      @include mq("md") {
+        min-width: 100%;
+      }
     }
 
     &:last-child {
       margin-block-end: 2.25rem;
+    }
+
+    @include mq("md") {
+      flex-direction: column-reverse !important;
+    }
+
+    @include mq("md") {
+      gap: 0;
     }
   }
 }
@@ -294,6 +363,40 @@
 
 .testimonials {
   &__header {
-    margin-block: $s_6;
+    margin-block: $s_8 $s_6;
+  }
+}
+
+.faq {
+  &__head {
+    @include d_flex(row, space-between);
+    margin-block: $s_8 $s_6;
+  }
+
+  &__content {
+    @include d_flex(column, $a_i: auto, $gap: $s_3);
+  }
+}
+
+.middle-banner {
+  margin-block: $s_8;
+
+  &__desktop {
+    @media (max-width: 769px) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
+}
+
+.blogs-section {
+  &__head {
+    @include d_flex(row, space-between);
+    margin-block: $s_8 $s_6;
   }
 }
