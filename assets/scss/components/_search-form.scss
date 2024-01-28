@@ -37,6 +37,10 @@
     @include mq("md") {
       min-width: 90%;
     }
+
+    @media (max-width: 1030px) and (min-width: 769px) {
+      min-width: 12rem;
+    }
   }
 
   &__result {

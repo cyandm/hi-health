@@ -116,7 +116,7 @@
         gap: $s_2;
         padding-inline: $s_4 $s_4;
 
-        @media (max-width: 960px) and (min-width: 768px) {
+        @media (max-width: 960px) and (min-width: 769px) {
           padding-block-start: 16rem;
         }
 
@@ -306,7 +306,7 @@
         transition: var(--transition);
       }
 
-      @include make_icon("\e919") {
+      @include make_icon("\e91b") {
         --size: 75px;
         --padding: 0.75rem 0.75rem 0.75rem 0.75rem;
 

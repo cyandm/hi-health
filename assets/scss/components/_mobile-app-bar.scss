@@ -1,23 +1,38 @@
-@use '../utils' as *;
+@use "../utils" as *;
 
 .mobile-app-bar {
-	display: none;
-	z-index: 25000;
-	background-color: var(--clr-natural-100);
-	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.08);
-	position: fixed;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	padding: $s_3 $s_5;
-	justify-content: space-between;
+  display: none;
+  z-index: 25000;
+  background-color: var(--clr-natural-100);
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: $s_3 $s_5;
+  justify-content: space-between;
 
-	@include mq('lg') {
-		display: flex;
-	}
+  @include mq("lg") {
+    display: flex;
+  }
 
-	&__item {
-		@include d_flex(column, center, $gap: $s_2);
-		order: var(--order);
-	}
+  &__item {
+    @include d_flex(column, center, $gap: $s_2);
+    order: var(--order);
+  }
+
+  .lang-switcher__list {
+    transform: translatey(-6.5rem);
+    right: 2%;
+    left: unset;
+  }
+}
+
+#lang {
+  &:hover {
+    .lang-switcher__list {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
 }

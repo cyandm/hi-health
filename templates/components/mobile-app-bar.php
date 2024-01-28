@@ -23,11 +23,19 @@ $elements = [
 		'icon' => 'icon-phone',
 		'order' => 3
 	],
-]
+];
+
+
+$langs = pll_the_languages([
+	'raw' => true
+]);
+
+$current_lang = pll_current_language(\OBJECT);
 
 ?>
 
 <div class="mobile-app-bar">
+
 	<?php
 	foreach ($elements as $el) {
 		list(
@@ -47,4 +55,25 @@ $elements = [
 	}
 
 	?>
+
+
+	<div class="lang-switcher__list" id="lang-list">
+		<?php
+		foreach ($langs as $lang) {
+
+			if ($lang['current_lang'])
+				continue;
+
+			printf(
+				'<a href="%s" class="lang-switcher__item">%s <img src="%s" /></a>',
+				$lang['url'],
+				$lang['slug'],
+				$lang['flag']
+			);
+		}
+		?>
+
+
+	</div>
+
 </div>

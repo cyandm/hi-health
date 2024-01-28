@@ -1,4 +1,4 @@
-@use '../utils/' as *;
+@use "../utils/" as *;
 
 #menuOpener {
   background-color: var(--clr-primary-100);
@@ -6,7 +6,7 @@
   display: none;
   cursor: pointer;
 
-  @include mq('xl') {
+  @include mq("xl") {
     display: block;
   }
 }
@@ -23,7 +23,7 @@
   transition: clip-path 0.4s ease-in-out;
   clip-path: inset(0% 0% 0% 0%);
 
-  &[data-active='false'] {
+  &[data-active="false"] {
     clip-path: inset(0% 0% 0% 100%);
   }
 
@@ -54,12 +54,12 @@
         padding-block: $s_3;
         margin-block: $s_2;
         border-bottom: 1px solid var(--clr-natural-200);
-        color: var(--clr-natural-400);
+        color: var(--clr-text-300);
 
         &.menu-item-has-children {
           position: relative;
 
-          @include make_icon('\e901') {
+          @include make_icon("\e901") {
             transition: transform 0.3s;
             position: absolute;
             left: $s_2;
@@ -85,7 +85,7 @@
                 padding-inline: $s_2;
                 color: var(--clr-natural-700);
 
-                &[data-active='true'] {
+                &[data-active="true"] {
                   background-color: #f2f2f2;
                 }
 
@@ -100,7 +100,7 @@
             }
           }
 
-          &[data-active='true'] {
+          &[data-active="true"] {
             &::after {
               transform: rotate(180deg);
               color: var(--clr-accent-700);

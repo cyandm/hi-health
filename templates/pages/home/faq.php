@@ -13,7 +13,7 @@ $faq_content = new WP_Query([
 
 ?>
 
-<section class="faq container">
+<section class="faq container" id="faq">
 
     <div class="faq__head">
         <span class="h1">

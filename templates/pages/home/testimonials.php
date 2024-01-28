@@ -10,7 +10,7 @@ $posts = new WP_Query([
 ?>
 
 
-<section class="testimonials">
+<section class="testimonials" id="testimonials">
 
 	<div class="testimonials__header container">
 		<span class="h1">

@@ -1,4 +1,4 @@
-@use '../utils' as *;
+@use "../utils" as *;
 
 .card-info {
   background-color: var(--clr-primary-100);
@@ -42,7 +42,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
 
-  @include mq('md') {
+  @media (max-width: 803px) {
     grid-template-columns: 1fr;
   }
 }

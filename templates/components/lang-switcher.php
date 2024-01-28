@@ -1,11 +1,9 @@
 <?php
-$langs = pll_the_languages( [ 
+$langs = pll_the_languages([
 	'raw' => true
-] );
+]);
 
-$current_lang = pll_current_language( \OBJECT );
-
-
+$current_lang = pll_current_language(\OBJECT);
 
 ?>
 
@@ -19,12 +17,13 @@ $current_lang = pll_current_language( \OBJECT );
 	</div>
 	<div class="lang-switcher__list">
 		<?php
-		foreach ( $langs as $lang ) {
+		foreach ($langs as $lang) {
 
-			if ( $lang['current_lang'] )
+			if ($lang['current_lang'])
 				continue;
 
-			printf( '<a href="%s" class="lang-switcher__item">%s <img src="%s" /></a>',
+			printf(
+				'<a href="%s" class="lang-switcher__item">%s <img src="%s" /></a>',
 				$lang['url'],
 				$lang['slug'],
 				$lang['flag']

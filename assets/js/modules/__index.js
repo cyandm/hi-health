@@ -17,3 +17,4 @@ import "./story";
 import "./swiper";
 import "./swup";
 import "./accordion";
+import "./app-bar";
