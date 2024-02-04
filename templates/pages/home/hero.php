@@ -1,7 +1,7 @@
 <?php
 
-$testimonials_title = get_field( 'title' );
-$sub_title = get_field( 'sub_title' );
+$testimonials_title = get_field('title');
+$sub_title = get_field('sub_title');
 
 
 
@@ -10,8 +10,7 @@ $sub_title = get_field( 'sub_title' );
 <section class="front-page-hero">
 
 	<div class="front-page-hero__image">
-		<img src="<?= get_stylesheet_directory_uri() . '/assets/img/hero-female.png' ?>"
-			 alt="">
+		<img src="<?= get_stylesheet_directory_uri() . '/assets/img/hero-female.png' ?>" alt="">
 	</div>
 
 	<span class="front-page-hero__title">
@@ -22,8 +21,7 @@ $sub_title = get_field( 'sub_title' );
 	</span>
 
 	<span class="front-page-hero__airplane">
-		<img src="<?= get_stylesheet_directory_uri() . '/assets/img/airplane-point.svg' ?>"
-			 alt="">
+		<img src="<?= get_stylesheet_directory_uri() . '/assets/img/airplane-point.svg' ?>" alt="">
 	</span>
 
 	<div class="front-page-hero__content">
@@ -34,7 +32,7 @@ $sub_title = get_field( 'sub_title' );
 			</div>
 
 			<div class="front-page-hero__content-search">
-				<?php get_template_part( '/templates/components/search-form', null, [ 'post-type' => 'service', 'search-text' => 'جستجو در خدمات' ] ) ?>
+				<?php get_template_part('/templates/components/search-form', null, ['post-type' => 'service', 'search-text' => pll__('service-search')]) ?>
 			</div>
 		</div>
 	</div>

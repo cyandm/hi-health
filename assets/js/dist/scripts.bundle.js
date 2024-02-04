@@ -567,8 +567,8 @@
       return;
     if (!menuCloser)
       return;
-    deActivateEl(mobileMenu);
     definePopUp(mobileMenu);
+    deActivateEl(mobileMenu);
     addListener(menuOpener, "click", () => activateEl(mobileMenu));
     addListener(menuCloser, "click", () => deActivateEl(mobileMenu));
     if (!menuItemHasChildren)
@@ -639,7 +639,7 @@
         },
         error: () => {
           showMassage("error", formEl);
-          changeButtonStatus("success", e.submitter);
+          changeButtonStatus("error", e.submitter);
         }
       });
     });
@@ -6175,6 +6175,7 @@
     ajaxSearch();
     SearchPage();
     story();
+    console.log(translateStrings);
   };
   init();
   swup.hooks.on("content:replace", init);

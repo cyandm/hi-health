@@ -18,8 +18,8 @@ export const menu = () => {
   if (!menuOpener) return;
   if (!menuCloser) return;
 
-  deActivateEl(mobileMenu);
   definePopUp(mobileMenu);
+  deActivateEl(mobileMenu);
 
   addListener(menuOpener, 'click', () => activateEl(mobileMenu));
   addListener(menuCloser, 'click', () => deActivateEl(mobileMenu));

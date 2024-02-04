@@ -19,15 +19,12 @@
       gap: 1rem;
       grid-template-columns: repeat(var(--col), 1fr);
       position: sticky;
-      top: $s_4;
+      top: $s_8;
 
       @include mq('lg') {
         --col: 2;
       }
     }
-  }
-
-  &__content {
   }
 
   &__hero {

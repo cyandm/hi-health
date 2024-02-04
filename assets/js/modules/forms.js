@@ -32,7 +32,7 @@ export const ajaxSendForm = (formEl, action) => (e) => {
       },
       error: () => {
         showMassage('error', formEl);
-        changeButtonStatus('success', e.submitter);
+        changeButtonStatus('error', e.submitter);
       },
     });
   });

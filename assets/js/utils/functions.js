@@ -49,6 +49,10 @@ export const definePopUp = (nodeEl) => {
   });
 };
 
+export const activeScroll = () => {
+  document.body.removeAttribute('data-popup-open');
+};
+
 export const setUserIP = () => {
   jQuery(($) => {
     $.getJSON('https://api.ipify.org?format=json', ({ ip }) => {

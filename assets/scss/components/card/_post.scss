@@ -5,7 +5,11 @@
   gap: $s_2;
   grid-template-columns: 1fr 2fr;
   align-items: center;
-
+  a:hover {
+    h4 {
+      //color: $;
+    }
+  }
   .img-wrapper {
     @include pseudo($square: $s_6, $content: attr(data-index)) {
       background-color: var(--clr-primary-700);

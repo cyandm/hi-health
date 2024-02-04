@@ -18,29 +18,31 @@ import { SearchPage } from '../pages/search';
 import { story } from './story';
 
 const swup = new Swup({
-	animateHistoryBrowsing: true,
-	cache: false,
+  animateHistoryBrowsing: true,
+  cache: false,
 });
 
 const init = () => {
-	showMoreFunc();
-	loadMore();
-	Gallery();
-	archiveSort();
-	logicBreadcrumb();
-	defineSwipers();
-	archiveFilter();
-	menu();
-	LikePost();
-	sharePost();
-	Comments();
-	ReservePopUp();
-	ContactUs();
-	headerBg();
-	languageSwitcher();
-	ajaxSearch();
-	SearchPage();
-	story();
+  showMoreFunc();
+  loadMore();
+  Gallery();
+  archiveSort();
+  logicBreadcrumb();
+  defineSwipers();
+  archiveFilter();
+  menu();
+  LikePost();
+  sharePost();
+  Comments();
+  ReservePopUp();
+  ContactUs();
+  headerBg();
+  languageSwitcher();
+  ajaxSearch();
+  SearchPage();
+  story();
+
+  console.log(translateStrings);
 };
 
 init();

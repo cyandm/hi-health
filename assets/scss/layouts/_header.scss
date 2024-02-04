@@ -1,16 +1,16 @@
-@use "../utils/" as *;
+@use '../utils/' as *;
 
 .header {
   position: relative;
-  z-index: 99;
+  z-index: 26000;
   background: var(--bg_clr, var(--clr-bg-500));
   transition: background 0.3s ease;
 
-  @include mq("xl") {
+  @include mq('xl') {
     background: var(--bg_clr, transparent);
   }
 
-  &[front-page="true"] {
+  &[front-page='true'] {
     position: absolute;
     width: 100%;
     background: transparent;
@@ -30,7 +30,7 @@
         img {
           max-width: px_to_rem(36);
         }
-        @include mq("lg") {
+        @include mq('lg') {
           display: none;
         }
       }
@@ -38,7 +38,7 @@
       .header-menu {
         @include d_flex($gap: px_to_rem(20));
 
-        @include mq("xl") {
+        @include mq('xl') {
           display: none;
         }
 
@@ -56,7 +56,7 @@
           }
 
           a {
-            @include fs("body-s");
+            @include fs('body-s');
           }
 
           &.menu-item-has-children {
@@ -137,8 +137,8 @@
         @include d_flex();
 
         a {
-          @include fs("body-s");
-          @include btnSizes("small");
+          @include fs('body-s');
+          @include btnSizes('small');
         }
       }
 
@@ -153,10 +153,10 @@
           }
 
           p {
-            @include fs("body-s");
+            @include fs('body-s');
           }
 
-          @include mq("lg") {
+          @include mq('lg') {
             display: none;
           }
         }

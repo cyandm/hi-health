@@ -1,4 +1,4 @@
-@use "../../utils" as *;
+@use '../../utils' as *;
 
 .general-card {
   @include d_flex(column, $a_i: start, $even_column: true);
@@ -21,7 +21,7 @@
         .img-wrapper {
           height: 100%;
           &::after {
-            background-image: url("../img/wave-horizontal.svg");
+            background-image: url('../img/wave-horizontal.svg');
             background-size: contain;
             background-position: -8px; //8px fix left line
             height: 100%;
@@ -30,6 +30,7 @@
           img {
             -o-object-fit: cover;
             object-fit: cover;
+            width: 100%;
           }
         }
         &::after {
@@ -53,10 +54,11 @@
         object-fit: cover;
         -o-object-position: top;
         object-position: top;
+        width: 100%;
       }
 
       @include pseudo(0) {
-        background-image: url("../img/wave.svg");
+        background-image: url('../img/wave.svg');
         height: 100%;
         width: 100%;
         background-repeat: no-repeat;
@@ -82,7 +84,7 @@
 
   &__icon-group {
     @include d_flex($gap: $s_3);
-    @include fs("body-s");
+    @include fs('body-s');
   }
 
   &__icon {
@@ -91,7 +93,7 @@
   }
 
   &__caption {
-    @include fs("body-s");
+    @include fs('body-s');
     color: var(--clr-text-300);
   }
 }

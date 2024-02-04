@@ -6,7 +6,7 @@ $class =
 	$args['class'] : ' ';
 
 $post_id =
-	isset($args['$blog_id']) ?
+	isset($args['blog_id']) ?
 	$args['blog_id'] : get_the_ID();
 
 $post_date = human_time_diff(

@@ -672,7 +672,7 @@ body.cyn-is-rtl {
 
 .header {
   position: relative;
-  z-index: 99;
+  z-index: 26000;
   background: var(--bg_clr, var(--clr-bg-500));
   transition: background 0.3s ease;
 }
@@ -1607,6 +1607,11 @@ body.cyn-is-rtl {
   cursor: pointer;
 }
 
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--clr-primary-500);
+  box-shadow: inset 0 0 20px 20px var(--clr-natural-100);
+}
+
 .lang-switcher {
   position: relative;
   text-transform: capitalize;
@@ -1762,8 +1767,10 @@ body.cyn-is-rtl {
 .mobile-menu__nav .menu li {
   padding-block: 0.75rem;
   margin-block: 0.5rem;
-  border-bottom: 1px solid var(--clr-natural-200);
   color: var(--clr-text-300);
+}
+.mobile-menu__nav .menu li:not(:last-child) {
+  border-bottom: 1px solid var(--clr-natural-200);
 }
 .mobile-menu__nav .menu li.menu-item-has-children {
   position: relative;
@@ -1832,7 +1839,7 @@ body.cyn-is-rtl {
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(50px);
-  z-index: 1000;
+  z-index: 27000;
   padding-block-start: 2rem;
   opacity: 1;
   pointer-events: all;
@@ -1907,8 +1914,7 @@ body.cyn-is-rtl {
 }
 .scroller__inner .mini-logo {
   padding: 8px;
-  -webkit-margin-start: var(--spacing);
-  margin-inline-start: var(--spacing);
+  margin-inline: var(--spacing);
   background-image: url("../img/logo-mini.svg");
   background-size: contain;
   background-repeat: no-repeat;
@@ -2154,6 +2160,7 @@ body.cyn-is-rtl {
   .general-card:not(.no-media) .general-card__image .img-wrapper img {
     -o-object-fit: cover;
     object-fit: cover;
+    width: 100%;
   }
   .general-card:not(.no-media) .general-card__image::after {
     display: none;
@@ -2175,6 +2182,7 @@ body.cyn-is-rtl {
   object-fit: cover;
   -o-object-position: top;
   object-position: top;
+  width: 100%;
 }
 .general-card__image .img-wrapper::after {
   content: "";
@@ -2904,9 +2912,10 @@ body.cyn-is-rtl {
 }
 .front-page-hero__image img {
   position: absolute;
-  inset: 0 50% 0 0;
+  bottom: 0;
   top: unset;
-  transform: translateX(50%);
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 6;
 }
 @media (max-width: 900px) {
@@ -3665,7 +3674,7 @@ body.cyn-is-rtl {
   gap: 1rem;
   grid-template-columns: repeat(var(--col), 1fr);
   position: sticky;
-  top: 1rem;
+  top: 3rem;
 }
 @media screen and (max-width: 992px) {
   .single-service__sidebar > * {
