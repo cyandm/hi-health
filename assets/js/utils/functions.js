@@ -113,21 +113,25 @@ export const showMassage = (status, parentEl, innerText = null) => {
 export const changeButtonStatus = (status, btn) => {
   if (status === 'pending') {
     btn.classList.add('pending');
-    btn.innerText = translateStrings.Btn.pending;
+    //btn.innerText = translateStrings.Btn.pending;
     return;
   }
 
   if (status === 'success') {
     btn.classList.remove('pending');
     btn.classList.add('success');
-    btn.innerText = translateStrings.Btn.success;
+    // btn.innerText = translateStrings.Btn.success;
+    setTimeout(() => {
+      btn.classList.remove('success');
+    }, 1000);
     return;
   }
 
   if (status === 'error') {
     btn.classList.remove('pending');
     btn.classList.add('error');
-    btn.innerText = translateStrings.Btn.error;
+    btn.innerText = 'There was an error sending the message.';
+    //btn.innerText = translateStrings.Btn.error;
     return;
   }
 };

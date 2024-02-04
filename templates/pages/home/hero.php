@@ -32,7 +32,8 @@ $sub_title = get_field('sub_title');
 			</div>
 
 			<div class="front-page-hero__content-search">
-				<?php get_template_part('/templates/components/search-form', null, ['post-type' => 'service', 'search-text' => pll__('service-search')]) ?>
+				<?php get_template_part('/templates/components/search-form', null, ['post-type' => 'service', 'search-text' => pll__('service-search')])
+				?>
 			</div>
 		</div>
 	</div>

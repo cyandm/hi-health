@@ -17,10 +17,10 @@ import { ajaxSearch } from './ajax-search';
 import { SearchPage } from '../pages/search';
 import { story } from './story';
 
-const swup = new Swup({
-  animateHistoryBrowsing: true,
-  cache: false,
-});
+// const swup = new Swup({
+//   animateHistoryBrowsing: true,
+//   cache: false,
+// });
 
 const init = () => {
   showMoreFunc();
@@ -42,9 +42,9 @@ const init = () => {
   SearchPage();
   story();
 
-  console.log(translateStrings);
+  //console.log(translateStrings);
 };
 
 init();
 
-swup.hooks.on('content:replace', init);
+// swup.hooks.on('content:replace', init);

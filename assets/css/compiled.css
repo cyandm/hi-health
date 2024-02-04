@@ -1205,7 +1205,7 @@ body.cyn-is-rtl {
   position: fixed;
   inset: 0;
   max-width: 400px;
-  z-index: 10000;
+  z-index: 100000;
   overflow: scroll;
   height: 100vh;
   background-color: #fff;
@@ -2054,7 +2054,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   border: 2px solid rgba(0, 0, 0, 0);
   border-right-color: var(--clr-accent-700);
   position: relative;
-  animation: l24 1s infinite linear;
+  animation: l24 1s 10 linear;
 }
 .ajax-search__loader::after, .ajax-search__loader::before {
   content: "";
@@ -2140,6 +2140,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 @media (max-width: 803px) {
   .general-card:not(.no-media) {
     flex-direction: row;
+    overflow: hidden;
   }
   .general-card:not(.no-media) .general-card__details .address-con {
     display: none;
@@ -2154,7 +2155,8 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     background-image: url("../img/wave-horizontal.svg");
     background-size: contain;
     background-position: -8px;
-    height: 100%;
+    height: 101%;
+    left: -1px;
     width: auto;
   }
   .general-card:not(.no-media) .general-card__image .img-wrapper img {
@@ -2231,10 +2233,14 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   color: var(--clr-text-300);
 }
 .general-card__caption {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 300;
-  line-height: 160%;
+  line-height: 20px;
   color: var(--clr-text-300);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .post-card-mini {
@@ -2441,6 +2447,9 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   padding: 0.75rem;
   cursor: pointer;
   width: 100%;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: normal;
 }
 .faq__content__question i {
   padding: 0.5rem;
@@ -2460,6 +2469,17 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.5s ease;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 160%;
+}
+.faq__content__answer ul {
+  list-style: initial;
+  padding: 1rem;
+}
+.faq__content__answer ul li {
+  list-style: initial;
+  list-style-position: inside;
 }
 .faq__content__answer div {
   overflow: hidden;
@@ -2769,6 +2789,11 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   width: 100%;
   justify-content: center;
 }
+.contact-us .form-contact .f-contact button.success {
+  pointer-events: none;
+  background-color: var(--clr-success-light);
+  color: var(--clr-natural-100);
+}
 .contact-us .img-contact {
   max-width: 50%;
 }
@@ -2980,7 +3005,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 @media screen and (max-width: 768px) {
   .front-page-hero__content {
-    height: 25%;
+    height: 28%;
     width: 100%;
     bottom: 0;
     top: unset;

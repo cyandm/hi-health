@@ -29,7 +29,7 @@ if (!class_exists('cyn-theme-init')) {
 			$js_path = $this->build ? '/assets/js/dist/scripts.bundle.min.js' : '/assets/js/dist/scripts.bundle.js';
 
 			wp_enqueue_style('cyn-theme', get_stylesheet_directory_uri() . $css_path, [], $this->ver);
-			wp_enqueue_style('cyn-style', get_stylesheet_directory_uri());
+			wp_enqueue_style('cyn-style', get_stylesheet_directory_uri() . '/style.css');
 			wp_dequeue_style('wp-block-library');
 
 			wp_enqueue_script('cyn-theme', get_stylesheet_directory_uri() . $js_path, ['jquery'], $this->ver, true);
@@ -115,7 +115,7 @@ if (!class_exists('cyn-theme-init')) {
 
 		public function cyn_enqueue_head_translate()
 		{
-			//get_template_part('/templates/translate');
+			get_template_part('/templates/translate');
 		}
 	}
 }

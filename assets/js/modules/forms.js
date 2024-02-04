@@ -29,6 +29,7 @@ export const ajaxSendForm = (formEl, action) => (e) => {
         formEl.reset();
         showMassage('success', formEl);
         changeButtonStatus('success', e.submitter);
+        console.log(res);
       },
       error: () => {
         showMassage('error', formEl);

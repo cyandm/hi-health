@@ -24,6 +24,7 @@ export const LikePost = () => {
             _nonce: cyn_head_script.nonce,
             action: 'cyn_like_post',
             ...el.dataset,
+            userId: getUserIp(),
           },
 
           success: ({ isUserLiked, likeCount }) => {

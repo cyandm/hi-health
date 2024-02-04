@@ -7,50 +7,18 @@
   var __propIsEnum = Object.prototype.propertyIsEnumerable;
   var __pow = Math.pow;
   var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-  var __spreadValues = (a2, b2) => {
-    for (var prop in b2 || (b2 = {}))
-      if (__hasOwnProp.call(b2, prop))
-        __defNormalProp(a2, prop, b2[prop]);
+  var __spreadValues = (a, b) => {
+    for (var prop in b || (b = {}))
+      if (__hasOwnProp.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
     if (__getOwnPropSymbols)
-      for (var prop of __getOwnPropSymbols(b2)) {
-        if (__propIsEnum.call(b2, prop))
-          __defNormalProp(a2, prop, b2[prop]);
+      for (var prop of __getOwnPropSymbols(b)) {
+        if (__propIsEnum.call(b, prop))
+          __defNormalProp(a, prop, b[prop]);
       }
-    return a2;
+    return a;
   };
-  var __spreadProps = (a2, b2) => __defProps(a2, __getOwnPropDescs(b2));
-  var __objRest = (source, exclude) => {
-    var target = {};
-    for (var prop in source)
-      if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
-        target[prop] = source[prop];
-    if (source != null && __getOwnPropSymbols)
-      for (var prop of __getOwnPropSymbols(source)) {
-        if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
-          target[prop] = source[prop];
-      }
-    return target;
-  };
-  var __async = (__this, __arguments, generator) => {
-    return new Promise((resolve, reject) => {
-      var fulfilled = (value) => {
-        try {
-          step(generator.next(value));
-        } catch (e) {
-          reject(e);
-        }
-      };
-      var rejected = (value) => {
-        try {
-          step(generator.throw(value));
-        } catch (e) {
-          reject(e);
-        }
-      };
-      var step = (x2) => x2.done ? resolve(x2.value) : Promise.resolve(x2.value).then(fulfilled, rejected);
-      step((generator = generator.apply(__this, __arguments)).next());
-    });
-  };
+  var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 
   // assets/js/utils/custom-events.js
   var cynActivate = new CustomEvent("cynActivate", { bubbles: true });
@@ -98,23 +66,24 @@
       deActivateEl(nodeEl);
     });
   };
+  var getUserIp = () => window.localStorage.getItem("user-ip");
   var setCookie = (cookieName, cookieValue, expireDays) => {
-    const d2 = /* @__PURE__ */ new Date();
-    d2.setTime(d2.getTime() + expireDays * 24 * 60 * 60 * 1e3);
-    let expires = "expires=" + d2.toUTCString();
+    const d = /* @__PURE__ */ new Date();
+    d.setTime(d.getTime() + expireDays * 24 * 60 * 60 * 1e3);
+    let expires = "expires=" + d.toUTCString();
     document.cookie = cookieName + "=" + JSON.stringify(cookieValue) + ";" + expires + ";path=/";
   };
   var getCookie = (cookieName) => {
     let name = cookieName + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(";");
-    for (let i2 = 0; i2 < ca.length; i2++) {
-      let c2 = ca[i2];
-      while (c2.charAt(0) == " ") {
-        c2 = c2.substring(1);
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
       }
-      if (c2.indexOf(name) == 0) {
-        return JSON.parse(c2.substring(name.length, c2.length));
+      if (c.indexOf(name) == 0) {
+        return JSON.parse(c.substring(name.length, c.length));
       }
     }
     return JSON.parse("{}");
@@ -140,19 +109,20 @@
   var changeButtonStatus = (status, btn) => {
     if (status === "pending") {
       btn.classList.add("pending");
-      btn.innerText = translateStrings.Btn.pending;
       return;
     }
     if (status === "success") {
       btn.classList.remove("pending");
       btn.classList.add("success");
-      btn.innerText = translateStrings.Btn.success;
+      setTimeout(() => {
+        btn.classList.remove("success");
+      }, 1e3);
       return;
     }
     if (status === "error") {
       btn.classList.remove("pending");
       btn.classList.add("error");
-      btn.innerText = translateStrings.Btn.error;
+      btn.innerText = "There was an error sending the message.";
       return;
     }
   };
@@ -183,8 +153,8 @@
       }
       clearTimeout(timeOut2);
       timeOut2 = setTimeout(() => {
-        jQuery(($2) => {
-          $2.ajax({
+        jQuery(($) => {
+          $.ajax({
             type: "post",
             url: cyn_head_script.url,
             data: {
@@ -235,8 +205,8 @@
       return;
     loadMoreBTN.addEventListener("click", ({ target: { dataset } }) => {
       startLoading();
-      jQuery(($2) => {
-        $2.ajax({
+      jQuery(($) => {
+        $.ajax({
           type: "get",
           url: cyn_head_script.url,
           data: __spreadValues({
@@ -244,7 +214,7 @@
             _nonce: cyn_head_script.nonce
           }, dataset),
           success: (res) => {
-            $2(".posts-container").append(res.data.html);
+            $(".posts-container").append(res.data.html);
             loadMoreBTN.setAttribute(
               "data-current-page",
               parseInt(dataset.currentPage) + 1
@@ -285,8 +255,8 @@
       "change",
       ({ target: { value: slug, dataset } }) => {
         startLoading();
-        jQuery(($2) => {
-          $2.ajax({
+        jQuery(($) => {
+          $.ajax({
             type: "get",
             url: cyn_head_script.url,
             data: __spreadValues({
@@ -326,8 +296,8 @@
           }
         }) => {
           startLoading();
-          jQuery(($2) => {
-            $2.ajax({
+          jQuery(($) => {
+            $.ajax({
               type: "post",
               url: cyn_head_script.url,
               data: {
@@ -411,8 +381,8 @@
       const formData = new FormData(e.currentTarget, e.submitter);
       formData.append("action", "cyn_add_new_comment");
       formData.append("_nonce", cyn_head_script.nonce);
-      jQuery(($2) => {
-        $2.ajax({
+      jQuery(($) => {
+        $.ajax({
           type: "POST",
           url: cyn_head_script.url,
           cache: false,
@@ -518,14 +488,16 @@
     likePostGroup.forEach((el) => {
       const count = el.querySelector("#count");
       addListener(el, "click", () => {
-        jQuery(($2) => {
-          $2.ajax({
+        jQuery(($) => {
+          $.ajax({
             type: "post",
             url: cyn_head_script.url,
-            data: __spreadValues({
+            data: __spreadProps(__spreadValues({
               _nonce: cyn_head_script.nonce,
               action: "cyn_like_post"
-            }, el.dataset),
+            }, el.dataset), {
+              userId: getUserIp()
+            }),
             success: ({ isUserLiked, likeCount }) => {
               count.innerHTML = likeCount;
               isUserLiked ? activateEl(el) : deActivateEl(el);
@@ -624,8 +596,8 @@
     const formData = new FormData(e.currentTarget, e.submitter);
     formData.append("action", action);
     formData.append("_nonce", cyn_head_script.nonce);
-    jQuery(($2) => {
-      $2.ajax({
+    jQuery(($) => {
+      $.ajax({
         type: "POST",
         url: cyn_head_script.url,
         cache: false,
@@ -636,6 +608,7 @@
           formEl.reset();
           showMassage("success", formEl);
           changeButtonStatus("success", e.submitter);
+          console.log(res);
         },
         error: () => {
           showMassage("error", formEl);
@@ -862,7 +835,7 @@
     if (classes2 === void 0) {
       classes2 = "";
     }
-    return classes2.trim().split(" ").filter((c2) => !!c2.trim());
+    return classes2.trim().split(" ").filter((c) => !!c.trim());
   }
   function deleteProps(obj) {
     const object = obj;
@@ -912,7 +885,7 @@
     if (window2.WebKitCSSMatrix) {
       curTransform = curStyle.transform || curStyle.webkitTransform;
       if (curTransform.split(",").length > 6) {
-        curTransform = curTransform.split(", ").map((a2) => a2.replace(",", ".")).join(", ");
+        curTransform = curTransform.split(", ").map((a) => a.replace(",", ".")).join(", ");
       }
       transformMatrix = new window2.WebKitCSSMatrix(curTransform === "none" ? "" : curTransform);
     } else {
@@ -937,8 +910,8 @@
     }
     return curTransform || 0;
   }
-  function isObject2(o2) {
-    return typeof o2 === "object" && o2 !== null && o2.constructor && Object.prototype.toString.call(o2).slice(8, -1) === "Object";
+  function isObject2(o) {
+    return typeof o === "object" && o !== null && o.constructor && Object.prototype.toString.call(o).slice(8, -1) === "Object";
   }
   function isNode(node) {
     if (typeof window !== "undefined" && typeof window.HTMLElement !== "undefined") {
@@ -949,8 +922,8 @@
   function extend2() {
     const to = Object(arguments.length <= 0 ? void 0 : arguments[0]);
     const noExtend = ["__proto__", "constructor", "prototype"];
-    for (let i2 = 1; i2 < arguments.length; i2 += 1) {
-      const nextSource = i2 < 0 || arguments.length <= i2 ? void 0 : arguments[i2];
+    for (let i = 1; i < arguments.length; i += 1) {
+      const nextSource = i < 0 || arguments.length <= i ? void 0 : arguments[i];
       if (nextSource !== void 0 && nextSource !== null && !isNode(nextSource)) {
         const keysArray = Object.keys(Object(nextSource)).filter((key) => noExtend.indexOf(key) < 0);
         for (let nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex += 1) {
@@ -1082,14 +1055,14 @@
   }
   function elementIndex(el) {
     let child = el;
-    let i2;
+    let i;
     if (child) {
-      i2 = 0;
+      i = 0;
       while ((child = child.previousSibling) !== null) {
         if (child.nodeType === 1)
-          i2 += 1;
+          i += 1;
       }
-      return i2;
+      return i;
     }
     return void 0;
   }
@@ -1319,8 +1292,8 @@
         return;
       if (swiper.params.observeParents) {
         const containerParents = elementParents(swiper.hostEl);
-        for (let i2 = 0; i2 < containerParents.length; i2 += 1) {
-          attach(containerParents[i2]);
+        for (let i = 0; i < containerParents.length; i += 1) {
+          attach(containerParents[i]);
         }
       }
       attach(swiper.hostEl, {
@@ -1555,19 +1528,19 @@
     const shouldResetSlideSize = params.slidesPerView === "auto" && params.breakpoints && Object.keys(params.breakpoints).filter((key) => {
       return typeof params.breakpoints[key].slidesPerView !== "undefined";
     }).length > 0;
-    for (let i2 = 0; i2 < slidesLength; i2 += 1) {
+    for (let i = 0; i < slidesLength; i += 1) {
       slideSize = 0;
       let slide2;
-      if (slides[i2])
-        slide2 = slides[i2];
+      if (slides[i])
+        slide2 = slides[i];
       if (gridEnabled) {
-        swiper.grid.updateSlide(i2, slide2, slides);
+        swiper.grid.updateSlide(i, slide2, slides);
       }
-      if (slides[i2] && elementStyle(slide2, "display") === "none")
+      if (slides[i] && elementStyle(slide2, "display") === "none")
         continue;
       if (params.slidesPerView === "auto") {
         if (shouldResetSlideSize) {
-          slides[i2].style[swiper.getDirectionLabel("width")] = "";
+          slides[i].style[swiper.getDirectionLabel("width")] = "";
         }
         const slideStyles = getComputedStyle(slide2);
         const currentTransform = slide2.style.transform;
@@ -1609,19 +1582,19 @@
         slideSize = (swiperSize - (params.slidesPerView - 1) * spaceBetween) / params.slidesPerView;
         if (params.roundLengths)
           slideSize = Math.floor(slideSize);
-        if (slides[i2]) {
-          slides[i2].style[swiper.getDirectionLabel("width")] = "".concat(slideSize, "px");
+        if (slides[i]) {
+          slides[i].style[swiper.getDirectionLabel("width")] = "".concat(slideSize, "px");
         }
       }
-      if (slides[i2]) {
-        slides[i2].swiperSlideSize = slideSize;
+      if (slides[i]) {
+        slides[i].swiperSlideSize = slideSize;
       }
       slidesSizesGrid.push(slideSize);
       if (params.centeredSlides) {
         slidePosition = slidePosition + slideSize / 2 + prevSlideSize / 2 + spaceBetween;
-        if (prevSlideSize === 0 && i2 !== 0)
+        if (prevSlideSize === 0 && i !== 0)
           slidePosition = slidePosition - swiperSize / 2 - spaceBetween;
-        if (i2 === 0)
+        if (i === 0)
           slidePosition = slidePosition - swiperSize / 2 - spaceBetween;
         if (Math.abs(slidePosition) < 1 / 1e3)
           slidePosition = 0;
@@ -1654,11 +1627,11 @@
     }
     if (!params.centeredSlides) {
       const newSlidesGrid = [];
-      for (let i2 = 0; i2 < snapGrid.length; i2 += 1) {
-        let slidesGridItem = snapGrid[i2];
+      for (let i = 0; i < snapGrid.length; i += 1) {
+        let slidesGridItem = snapGrid[i];
         if (params.roundLengths)
           slidesGridItem = Math.floor(slidesGridItem);
-        if (snapGrid[i2] <= swiper.virtualSize - swiperSize) {
+        if (snapGrid[i] <= swiper.virtualSize - swiperSize) {
           newSlidesGrid.push(slidesGridItem);
         }
       }
@@ -1672,11 +1645,11 @@
       if (params.slidesPerGroup > 1) {
         const groups = Math.ceil((swiper.virtual.slidesBefore + swiper.virtual.slidesAfter) / params.slidesPerGroup);
         const groupSize = size * params.slidesPerGroup;
-        for (let i2 = 0; i2 < groups; i2 += 1) {
+        for (let i = 0; i < groups; i += 1) {
           snapGrid.push(snapGrid[snapGrid.length - 1] + groupSize);
         }
       }
-      for (let i2 = 0; i2 < swiper.virtual.slidesBefore + swiper.virtual.slidesAfter; i2 += 1) {
+      for (let i = 0; i < swiper.virtual.slidesBefore + swiper.virtual.slidesAfter; i += 1) {
         if (params.slidesPerGroup === 1) {
           snapGrid.push(snapGrid[snapGrid.length - 1] + size);
         }
@@ -1741,8 +1714,8 @@
       setCSSProperty(wrapperEl, "--swiper-centered-offset-after", "".concat(swiper.size / 2 - slidesSizesGrid[slidesSizesGrid.length - 1] / 2, "px"));
       const addToSnapGrid = -swiper.snapGrid[0];
       const addToSlidesGrid = -swiper.slidesGrid[0];
-      swiper.snapGrid = swiper.snapGrid.map((v2) => v2 + addToSnapGrid);
-      swiper.slidesGrid = swiper.slidesGrid.map((v2) => v2 + addToSlidesGrid);
+      swiper.snapGrid = swiper.snapGrid.map((v) => v + addToSnapGrid);
+      swiper.slidesGrid = swiper.slidesGrid.map((v) => v + addToSlidesGrid);
     }
     if (slidesLength !== previousSlidesLength) {
       swiper.emit("slidesLengthChange");
@@ -1775,7 +1748,7 @@
     const activeSlides = [];
     const isVirtual = swiper.virtual && swiper.params.virtual.enabled;
     let newHeight = 0;
-    let i2;
+    let i;
     if (typeof speed === "number") {
       swiper.setTransition(speed);
     } else if (speed === true) {
@@ -1793,8 +1766,8 @@
           activeSlides.push(slide2);
         });
       } else {
-        for (i2 = 0; i2 < Math.ceil(swiper.params.slidesPerView); i2 += 1) {
-          const index = swiper.activeIndex + i2;
+        for (i = 0; i < Math.ceil(swiper.params.slidesPerView); i += 1) {
+          const index = swiper.activeIndex + i;
           if (index > swiper.slides.length && !isVirtual)
             break;
           activeSlides.push(getSlideByIndex(index));
@@ -1803,9 +1776,9 @@
     } else {
       activeSlides.push(getSlideByIndex(swiper.activeIndex));
     }
-    for (i2 = 0; i2 < activeSlides.length; i2 += 1) {
-      if (typeof activeSlides[i2] !== "undefined") {
-        const height = activeSlides[i2].offsetHeight;
+    for (i = 0; i < activeSlides.length; i += 1) {
+      if (typeof activeSlides[i] !== "undefined") {
+        const height = activeSlides[i].offsetHeight;
         newHeight = height > newHeight ? height : newHeight;
       }
     }
@@ -1816,8 +1789,8 @@
     const swiper = this;
     const slides = swiper.slides;
     const minusOffset = swiper.isElement ? swiper.isHorizontal() ? swiper.wrapperEl.offsetLeft : swiper.wrapperEl.offsetTop : 0;
-    for (let i2 = 0; i2 < slides.length; i2 += 1) {
-      slides[i2].swiperSlideOffset = (swiper.isHorizontal() ? slides[i2].offsetLeft : slides[i2].offsetTop) - minusOffset - swiper.cssOverflowAdjustment();
+    for (let i = 0; i < slides.length; i += 1) {
+      slides[i].swiperSlideOffset = (swiper.isHorizontal() ? slides[i].offsetLeft : slides[i].offsetTop) - minusOffset - swiper.cssOverflowAdjustment();
     }
   }
   function updateSlidesProgress(translate2) {
@@ -1849,8 +1822,8 @@
     } else if (typeof spaceBetween === "string") {
       spaceBetween = parseFloat(spaceBetween);
     }
-    for (let i2 = 0; i2 < slides.length; i2 += 1) {
-      const slide2 = slides[i2];
+    for (let i = 0; i < slides.length; i += 1) {
+      const slide2 = slides[i];
       let slideOffset = slide2.swiperSlideOffset;
       if (params.cssMode && params.centeredSlides) {
         slideOffset -= slides[0].swiperSlideOffset;
@@ -1858,16 +1831,16 @@
       const slideProgress = (offsetCenter + (params.centeredSlides ? swiper.minTranslate() : 0) - slideOffset) / (slide2.swiperSlideSize + spaceBetween);
       const originalSlideProgress = (offsetCenter - snapGrid[0] + (params.centeredSlides ? swiper.minTranslate() : 0) - slideOffset) / (slide2.swiperSlideSize + spaceBetween);
       const slideBefore = -(offsetCenter - slideOffset);
-      const slideAfter = slideBefore + swiper.slidesSizesGrid[i2];
-      const isFullyVisible = slideBefore >= 0 && slideBefore <= swiper.size - swiper.slidesSizesGrid[i2];
+      const slideAfter = slideBefore + swiper.slidesSizesGrid[i];
+      const isFullyVisible = slideBefore >= 0 && slideBefore <= swiper.size - swiper.slidesSizesGrid[i];
       const isVisible = slideBefore >= 0 && slideBefore < swiper.size - 1 || slideAfter > 1 && slideAfter <= swiper.size || slideBefore <= 0 && slideAfter >= swiper.size;
       if (isVisible) {
         swiper.visibleSlides.push(slide2);
-        swiper.visibleSlidesIndexes.push(i2);
-        slides[i2].classList.add(params.slideVisibleClass);
+        swiper.visibleSlidesIndexes.push(i);
+        slides[i].classList.add(params.slideVisibleClass);
       }
       if (isFullyVisible) {
-        slides[i2].classList.add(params.slideFullyVisibleClass);
+        slides[i].classList.add(params.slideFullyVisibleClass);
       }
       slide2.progress = rtl ? -slideProgress : slideProgress;
       slide2.originalProgress = rtl ? -originalSlideProgress : originalSlideProgress;
@@ -2051,26 +2024,26 @@
       const preloadColumns = [activeColumn - amount];
       preloadColumns.push(...Array.from({
         length: amount
-      }).map((_2, i2) => {
-        return activeColumn + slidesPerView + i2;
+      }).map((_2, i) => {
+        return activeColumn + slidesPerView + i;
       }));
-      swiper.slides.forEach((slideEl, i2) => {
+      swiper.slides.forEach((slideEl, i) => {
         if (preloadColumns.includes(slideEl.column))
-          unlazy(swiper, i2);
+          unlazy(swiper, i);
       });
       return;
     }
     const slideIndexLastInView = activeIndex + slidesPerView - 1;
     if (swiper.params.rewind || swiper.params.loop) {
-      for (let i2 = activeIndex - amount; i2 <= slideIndexLastInView + amount; i2 += 1) {
-        const realIndex = (i2 % len + len) % len;
+      for (let i = activeIndex - amount; i <= slideIndexLastInView + amount; i += 1) {
+        const realIndex = (i % len + len) % len;
         if (realIndex < activeIndex || realIndex > slideIndexLastInView)
           unlazy(swiper, realIndex);
       }
     } else {
-      for (let i2 = Math.max(activeIndex - amount, 0); i2 <= Math.min(slideIndexLastInView + amount, len - 1); i2 += 1) {
-        if (i2 !== activeIndex && (i2 > slideIndexLastInView || i2 < activeIndex)) {
-          unlazy(swiper, i2);
+      for (let i = Math.max(activeIndex - amount, 0); i <= Math.min(slideIndexLastInView + amount, len - 1); i += 1) {
+        if (i !== activeIndex && (i > slideIndexLastInView || i < activeIndex)) {
+          unlazy(swiper, i);
         }
       }
     }
@@ -2082,15 +2055,15 @@
     } = swiper;
     const translate2 = swiper.rtlTranslate ? swiper.translate : -swiper.translate;
     let activeIndex;
-    for (let i2 = 0; i2 < slidesGrid.length; i2 += 1) {
-      if (typeof slidesGrid[i2 + 1] !== "undefined") {
-        if (translate2 >= slidesGrid[i2] && translate2 < slidesGrid[i2 + 1] - (slidesGrid[i2 + 1] - slidesGrid[i2]) / 2) {
-          activeIndex = i2;
-        } else if (translate2 >= slidesGrid[i2] && translate2 < slidesGrid[i2 + 1]) {
-          activeIndex = i2 + 1;
+    for (let i = 0; i < slidesGrid.length; i += 1) {
+      if (typeof slidesGrid[i + 1] !== "undefined") {
+        if (translate2 >= slidesGrid[i] && translate2 < slidesGrid[i + 1] - (slidesGrid[i + 1] - slidesGrid[i]) / 2) {
+          activeIndex = i;
+        } else if (translate2 >= slidesGrid[i] && translate2 < slidesGrid[i + 1]) {
+          activeIndex = i + 1;
         }
-      } else if (translate2 >= slidesGrid[i2]) {
-        activeIndex = i2;
+      } else if (translate2 >= slidesGrid[i]) {
+        activeIndex = i;
       }
     }
     if (params.normalizeSlideIndex) {
@@ -2198,10 +2171,10 @@
     let slideFound = false;
     let slideIndex;
     if (slide2) {
-      for (let i2 = 0; i2 < swiper.slides.length; i2 += 1) {
-        if (swiper.slides[i2] === slide2) {
+      for (let i = 0; i < swiper.slides.length; i += 1) {
+        if (swiper.slides[i] === slide2) {
           slideFound = true;
-          slideIndex = i2;
+          slideIndex = i;
           break;
         }
       }
@@ -2264,29 +2237,29 @@
       wrapperEl,
       progress
     } = swiper;
-    let x2 = 0;
-    let y2 = 0;
+    let x = 0;
+    let y = 0;
     const z = 0;
     if (swiper.isHorizontal()) {
-      x2 = rtl ? -translate2 : translate2;
+      x = rtl ? -translate2 : translate2;
     } else {
-      y2 = translate2;
+      y = translate2;
     }
     if (params.roundLengths) {
-      x2 = Math.floor(x2);
-      y2 = Math.floor(y2);
+      x = Math.floor(x);
+      y = Math.floor(y);
     }
     swiper.previousTranslate = swiper.translate;
-    swiper.translate = swiper.isHorizontal() ? x2 : y2;
+    swiper.translate = swiper.isHorizontal() ? x : y;
     if (params.cssMode) {
-      wrapperEl[swiper.isHorizontal() ? "scrollLeft" : "scrollTop"] = swiper.isHorizontal() ? -x2 : -y2;
+      wrapperEl[swiper.isHorizontal() ? "scrollLeft" : "scrollTop"] = swiper.isHorizontal() ? -x : -y;
     } else if (!params.virtualTranslate) {
       if (swiper.isHorizontal()) {
-        x2 -= swiper.cssOverflowAdjustment();
+        x -= swiper.cssOverflowAdjustment();
       } else {
-        y2 -= swiper.cssOverflowAdjustment();
+        y -= swiper.cssOverflowAdjustment();
       }
-      wrapperEl.style.transform = "translate3d(".concat(x2, "px, ").concat(y2, "px, ").concat(z, "px)");
+      wrapperEl.style.transform = "translate3d(".concat(x, "px, ").concat(y, "px, ").concat(z, "px)");
     }
     let newProgress;
     const translatesDiff = swiper.maxTranslate() - swiper.minTranslate();
@@ -2521,18 +2494,18 @@
       snapIndex = snapGrid.length - 1;
     const translate2 = -snapGrid[snapIndex];
     if (params.normalizeSlideIndex) {
-      for (let i2 = 0; i2 < slidesGrid.length; i2 += 1) {
+      for (let i = 0; i < slidesGrid.length; i += 1) {
         const normalizedTranslate = -Math.floor(translate2 * 100);
-        const normalizedGrid = Math.floor(slidesGrid[i2] * 100);
-        const normalizedGridNext = Math.floor(slidesGrid[i2 + 1] * 100);
-        if (typeof slidesGrid[i2 + 1] !== "undefined") {
+        const normalizedGrid = Math.floor(slidesGrid[i] * 100);
+        const normalizedGridNext = Math.floor(slidesGrid[i + 1] * 100);
+        if (typeof slidesGrid[i + 1] !== "undefined") {
           if (normalizedTranslate >= normalizedGrid && normalizedTranslate < normalizedGridNext - (normalizedGridNext - normalizedGrid) / 2) {
-            slideIndex = i2;
+            slideIndex = i;
           } else if (normalizedTranslate >= normalizedGrid && normalizedTranslate < normalizedGridNext) {
-            slideIndex = i2 + 1;
+            slideIndex = i + 1;
           }
         } else if (normalizedTranslate >= normalizedGrid) {
-          slideIndex = i2;
+          slideIndex = i;
         }
       }
     }
@@ -2919,7 +2892,7 @@
     const shouldFillGroup = swiper.slides.length % slidesPerGroup !== 0;
     const shouldFillGrid = gridEnabled && swiper.slides.length % params.grid.rows !== 0;
     const addBlankSlides = (amountOfSlides) => {
-      for (let i2 = 0; i2 < amountOfSlides; i2 += 1) {
+      for (let i = 0; i < amountOfSlides; i += 1) {
         const slideEl = swiper.isElement ? createElement("swiper-slide", [params.slideBlankClass]) : createElement("div", [params.slideClass, params.slideBlankClass]);
         swiper.slidesEl.append(slideEl);
       }
@@ -3032,13 +3005,13 @@
     const activeColIndexWithShift = activeColIndex + (centeredSlides && typeof setTranslate2 === "undefined" ? -slidesPerView / 2 + 0.5 : 0);
     if (activeColIndexWithShift < loopedSlides) {
       slidesPrepended = Math.max(loopedSlides - activeColIndexWithShift, slidesPerGroup);
-      for (let i2 = 0; i2 < loopedSlides - activeColIndexWithShift; i2 += 1) {
-        const index = i2 - Math.floor(i2 / cols) * cols;
+      for (let i = 0; i < loopedSlides - activeColIndexWithShift; i += 1) {
+        const index = i - Math.floor(i / cols) * cols;
         if (gridEnabled) {
           const colIndexToPrepend = cols - index - 1;
-          for (let i3 = slides.length - 1; i3 >= 0; i3 -= 1) {
-            if (slides[i3].column === colIndexToPrepend)
-              prependSlidesIndexes.push(i3);
+          for (let i2 = slides.length - 1; i2 >= 0; i2 -= 1) {
+            if (slides[i2].column === colIndexToPrepend)
+              prependSlidesIndexes.push(i2);
           }
         } else {
           prependSlidesIndexes.push(cols - index - 1);
@@ -3046,8 +3019,8 @@
       }
     } else if (activeColIndexWithShift + slidesPerView > cols - loopedSlides) {
       slidesAppended = Math.max(activeColIndexWithShift - (cols - loopedSlides * 2), slidesPerGroup);
-      for (let i2 = 0; i2 < slidesAppended; i2 += 1) {
-        const index = i2 - Math.floor(i2 / cols) * cols;
+      for (let i = 0; i < slidesAppended; i += 1) {
+        const index = i - Math.floor(i / cols) * cols;
         if (gridEnabled) {
           slides.forEach((slide2, slideIndex) => {
             if (slide2.column === index)
@@ -3140,10 +3113,10 @@
         byController: true
       };
       if (Array.isArray(swiper.controller.control)) {
-        swiper.controller.control.forEach((c2) => {
-          if (!c2.destroyed && c2.params.loop)
-            c2.loopFix(__spreadProps(__spreadValues({}, loopParams), {
-              slideTo: c2.params.slidesPerView === params.slidesPerView ? slideTo2 : false
+        swiper.controller.control.forEach((c) => {
+          if (!c.destroyed && c.params.loop)
+            c.loopFix(__spreadProps(__spreadValues({}, loopParams), {
+              slideTo: c.params.slidesPerView === params.slidesPerView ? slideTo2 : false
             }));
         });
       } else if (swiper.controller.control instanceof swiper.constructor && swiper.controller.control.params.loop) {
@@ -3696,15 +3669,15 @@
     const swipeToLast = currentPos >= -swiper.maxTranslate() && !swiper.params.loop;
     let stopIndex = 0;
     let groupSize = swiper.slidesSizesGrid[0];
-    for (let i2 = 0; i2 < slidesGrid.length; i2 += i2 < params.slidesPerGroupSkip ? 1 : params.slidesPerGroup) {
-      const increment2 = i2 < params.slidesPerGroupSkip - 1 ? 1 : params.slidesPerGroup;
-      if (typeof slidesGrid[i2 + increment2] !== "undefined") {
-        if (swipeToLast || currentPos >= slidesGrid[i2] && currentPos < slidesGrid[i2 + increment2]) {
-          stopIndex = i2;
-          groupSize = slidesGrid[i2 + increment2] - slidesGrid[i2];
+    for (let i = 0; i < slidesGrid.length; i += i < params.slidesPerGroupSkip ? 1 : params.slidesPerGroup) {
+      const increment2 = i < params.slidesPerGroupSkip - 1 ? 1 : params.slidesPerGroup;
+      if (typeof slidesGrid[i + increment2] !== "undefined") {
+        if (swipeToLast || currentPos >= slidesGrid[i] && currentPos < slidesGrid[i + increment2]) {
+          stopIndex = i;
+          groupSize = slidesGrid[i + increment2] - slidesGrid[i];
         }
-      } else if (swipeToLast || currentPos >= slidesGrid[i2]) {
-        stopIndex = i2;
+      } else if (swipeToLast || currentPos >= slidesGrid[i]) {
+        stopIndex = i;
         groupSize = slidesGrid[slidesGrid.length - 1] - slidesGrid[slidesGrid.length - 2];
       }
     }
@@ -4057,12 +4030,12 @@
         point
       };
     });
-    points.sort((a2, b2) => parseInt(a2.value, 10) - parseInt(b2.value, 10));
-    for (let i2 = 0; i2 < points.length; i2 += 1) {
+    points.sort((a, b) => parseInt(a.value, 10) - parseInt(b.value, 10));
+    for (let i = 0; i < points.length; i += 1) {
       const {
         point,
         value
-      } = points[i2];
+      } = points[i];
       if (base === "window") {
         if (window2.matchMedia("(min-width: ".concat(value, "px)")).matches) {
           breakpoint = point;
@@ -4603,17 +4576,17 @@
       if (params.centeredSlides) {
         let slideSize = slides[activeIndex] ? slides[activeIndex].swiperSlideSize : 0;
         let breakLoop;
-        for (let i2 = activeIndex + 1; i2 < slides.length; i2 += 1) {
-          if (slides[i2] && !breakLoop) {
-            slideSize += slides[i2].swiperSlideSize;
+        for (let i = activeIndex + 1; i < slides.length; i += 1) {
+          if (slides[i] && !breakLoop) {
+            slideSize += slides[i].swiperSlideSize;
             spv += 1;
             if (slideSize > swiperSize)
               breakLoop = true;
           }
         }
-        for (let i2 = activeIndex - 1; i2 >= 0; i2 -= 1) {
-          if (slides[i2] && !breakLoop) {
-            slideSize += slides[i2].swiperSlideSize;
+        for (let i = activeIndex - 1; i >= 0; i -= 1) {
+          if (slides[i] && !breakLoop) {
+            slideSize += slides[i].swiperSlideSize;
             spv += 1;
             if (slideSize > swiperSize)
               breakLoop = true;
@@ -4621,15 +4594,15 @@
         }
       } else {
         if (view === "current") {
-          for (let i2 = activeIndex + 1; i2 < slides.length; i2 += 1) {
-            const slideInView = exact ? slidesGrid[i2] + slidesSizesGrid[i2] - slidesGrid[activeIndex] < swiperSize : slidesGrid[i2] - slidesGrid[activeIndex] < swiperSize;
+          for (let i = activeIndex + 1; i < slides.length; i += 1) {
+            const slideInView = exact ? slidesGrid[i] + slidesSizesGrid[i] - slidesGrid[activeIndex] < swiperSize : slidesGrid[i] - slidesGrid[activeIndex] < swiperSize;
             if (slideInView) {
               spv += 1;
             }
           }
         } else {
-          for (let i2 = activeIndex - 1; i2 >= 0; i2 -= 1) {
-            const slideInView = slidesGrid[activeIndex] - slidesGrid[i2] < swiperSize;
+          for (let i = activeIndex - 1; i >= 0; i -= 1) {
+            const slideInView = slidesGrid[activeIndex] - slidesGrid[i] < swiperSize;
             if (slideInView) {
               spv += 1;
             }
@@ -4890,7 +4863,7 @@
     }
     static use(module) {
       if (Array.isArray(module)) {
-        module.forEach((m2) => _Swiper.installModule(m2));
+        module.forEach((m) => _Swiper.installModule(m));
         return _Swiper;
       }
       _Swiper.installModule(module);
@@ -5056,7 +5029,7 @@
           midIndex = (lastIndex + firstIndex) / 2;
         }
         bullets.forEach((bulletEl) => {
-          const classesToRemove = [...["", "-next", "-next-next", "-prev", "-prev-prev", "-main"].map((suffix) => "".concat(params.bulletActiveClass).concat(suffix))].map((s2) => typeof s2 === "string" && s2.includes(" ") ? s2.split(" ") : s2).flat();
+          const classesToRemove = [...["", "-next", "-next-next", "-prev", "-prev-prev", "-main"].map((suffix) => "".concat(params.bulletActiveClass).concat(suffix))].map((s) => typeof s === "string" && s.includes(" ") ? s.split(" ") : s).flat();
           bulletEl.classList.remove(...classesToRemove);
         });
         if (el.length > 1) {
@@ -5092,9 +5065,9 @@
           if (params.dynamicBullets) {
             const firstDisplayedBullet = bullets[firstIndex];
             const lastDisplayedBullet = bullets[lastIndex];
-            for (let i2 = firstIndex; i2 <= lastIndex; i2 += 1) {
-              if (bullets[i2]) {
-                bullets[i2].classList.add(..."".concat(params.bulletActiveClass, "-main").split(" "));
+            for (let i = firstIndex; i <= lastIndex; i += 1) {
+              if (bullets[i]) {
+                bullets[i].classList.add(..."".concat(params.bulletActiveClass, "-main").split(" "));
               }
             }
             setSideBullets(firstDisplayedBullet, "prev");
@@ -5166,9 +5139,9 @@
         if (swiper.params.freeMode && swiper.params.freeMode.enabled && numberOfBullets > slidesLength) {
           numberOfBullets = slidesLength;
         }
-        for (let i2 = 0; i2 < numberOfBullets; i2 += 1) {
+        for (let i = 0; i < numberOfBullets; i += 1) {
           if (params.renderBullet) {
-            paginationHTML += params.renderBullet.call(swiper, i2, params.bulletClass);
+            paginationHTML += params.renderBullet.call(swiper, i, params.bulletClass);
           } else {
             paginationHTML += "<".concat(params.bulletElement, " ").concat(swiper.isElement ? 'part="bullet"' : "", ' class="').concat(params.bulletClass, '"></').concat(params.bulletElement, ">");
           }
@@ -5436,7 +5409,6 @@
     const homePageTestimonials = new Swiper("#homePageTestimonials", {
       slidesPerView: "auto",
       //max-width in html 650px on swiper-slide
-      centeredSlides: true,
       spaceBetween: 12,
       loop: true,
       width: window.innerWidth,
@@ -5446,629 +5418,10 @@
     });
   };
 
-  // node_modules/delegate-it/delegate.js
-  var ledger = /* @__PURE__ */ new WeakMap();
-  function editLedger(wanted, baseElement, callback, setup) {
-    var _a, _b;
-    if (!wanted && !ledger.has(baseElement)) {
-      return false;
-    }
-    const elementMap = (_a = ledger.get(baseElement)) != null ? _a : /* @__PURE__ */ new WeakMap();
-    ledger.set(baseElement, elementMap);
-    const setups = (_b = elementMap.get(callback)) != null ? _b : /* @__PURE__ */ new Set();
-    elementMap.set(callback, setups);
-    const existed = setups.has(setup);
-    if (wanted) {
-      setups.add(setup);
-    } else {
-      setups.delete(setup);
-    }
-    return existed && wanted;
-  }
-  function safeClosest(event2, selector) {
-    let target = event2.target;
-    if (target instanceof Text) {
-      target = target.parentElement;
-    }
-    if (target instanceof Element && event2.currentTarget instanceof Element) {
-      const closest = target.closest(selector);
-      if (closest && event2.currentTarget.contains(closest)) {
-        return closest;
-      }
-    }
-  }
-  function delegate(selector, type, callback, options = {}) {
-    const { signal, base = document } = options;
-    if (signal == null ? void 0 : signal.aborted) {
-      return;
-    }
-    const _a = options, { once } = _a, nativeListenerOptions = __objRest(_a, ["once"]);
-    const baseElement = base instanceof Document ? base.documentElement : base;
-    const capture = Boolean(typeof options === "object" ? options.capture : options);
-    const listenerFn = (event2) => {
-      const delegateTarget = safeClosest(event2, selector);
-      if (delegateTarget) {
-        const delegateEvent = Object.assign(event2, { delegateTarget });
-        callback.call(baseElement, delegateEvent);
-        if (once) {
-          baseElement.removeEventListener(type, listenerFn, nativeListenerOptions);
-          editLedger(false, baseElement, callback, setup);
-        }
-      }
-    };
-    const setup = JSON.stringify({ selector, type, capture });
-    const isAlreadyListening = editLedger(true, baseElement, callback, setup);
-    if (!isAlreadyListening) {
-      baseElement.addEventListener(type, listenerFn, nativeListenerOptions);
-    }
-    signal == null ? void 0 : signal.addEventListener("abort", () => {
-      editLedger(false, baseElement, callback, setup);
-    });
-  }
-  var delegate_default = delegate;
-
-  // node_modules/swup/dist/Swup.modern.js
-  function i() {
-    return i = Object.assign ? Object.assign.bind() : function(t) {
-      for (var e = 1; e < arguments.length; e++) {
-        var i2 = arguments[e];
-        for (var s2 in i2)
-          Object.prototype.hasOwnProperty.call(i2, s2) && (t[s2] = i2[s2]);
-      }
-      return t;
-    }, i.apply(this, arguments);
-  }
-  var s = (t, e) => String(t).toLowerCase().replace(/[\s/_.]+/g, "-").replace(/[^\w-]+/g, "").replace(/--+/g, "-").replace(/^-+|-+$/g, "") || e || "";
-  var n = ({ hash: t } = {}) => location.pathname + location.search + (t ? location.hash : "");
-  var o = (t, e = {}) => {
-    const s2 = i({ url: t = t || n({ hash: true }), random: Math.random(), source: "swup" }, e);
-    history.pushState(s2, "", t);
-  };
-  var r = (t = null, e = {}) => {
-    t = t || n({ hash: true });
-    const s2 = i({}, history.state || {}, { url: t, random: Math.random(), source: "swup" }, e);
-    history.replaceState(s2, "", t);
-  };
-  var a = (e, s2, n2, o2) => {
-    const r2 = new AbortController();
-    return o2 = i({}, o2, { signal: r2.signal }), delegate_default(e, s2, n2, o2), { destroy: () => r2.abort() };
-  };
-  var l = class _l extends URL {
-    constructor(t, e = document.baseURI) {
-      super(t.toString(), e), Object.setPrototypeOf(this, _l.prototype);
-    }
-    get url() {
-      return this.pathname + this.search;
-    }
-    static fromElement(t) {
-      const e = t.getAttribute("href") || t.getAttribute("xlink:href") || "";
-      return new _l(e);
-    }
-    static fromUrl(t) {
-      return new _l(t);
-    }
-  };
-  var c = class extends Error {
-    constructor(t, e) {
-      super(t), this.url = void 0, this.status = void 0, this.aborted = void 0, this.timedOut = void 0, this.name = "FetchError", this.url = e.url, this.status = e.status, this.aborted = e.aborted || false, this.timedOut = e.timedOut || false;
-    }
-  };
-  function u(_0) {
-    return __async(this, arguments, function* (t, e = {}) {
-      var s2;
-      t = l.fromUrl(t).url;
-      const { visit: n2 = this.visit } = e, o2 = i({}, this.options.requestHeaders, e.headers), r2 = null != (s2 = e.timeout) ? s2 : this.options.timeout, a2 = new AbortController(), { signal: h } = a2;
-      e = i({}, e, { headers: o2, signal: h });
-      let u2, d2 = false, p2 = null;
-      r2 && r2 > 0 && (p2 = setTimeout(() => {
-        d2 = true, a2.abort("timeout");
-      }, r2));
-      try {
-        u2 = yield this.hooks.call("fetch:request", n2, { url: t, options: e }, (t2, { url: e2, options: i2 }) => fetch(e2, i2)), p2 && clearTimeout(p2);
-      } catch (e2) {
-        if (d2)
-          throw this.hooks.call("fetch:timeout", n2, { url: t }), new c("Request timed out: ".concat(t), { url: t, timedOut: d2 });
-        if ("AbortError" === (null == e2 ? void 0 : e2.name) || h.aborted)
-          throw new c("Request aborted: ".concat(t), { url: t, aborted: true });
-        throw e2;
-      }
-      const { status: m2, url: g2 } = u2, f2 = yield u2.text();
-      if (500 === m2)
-        throw this.hooks.call("fetch:error", n2, { status: m2, response: u2, url: g2 }), new c("Server error: ".concat(g2), { status: m2, url: g2 });
-      if (!f2)
-        throw new c("Empty response: ".concat(g2), { status: m2, url: g2 });
-      const { url: v2 } = l.fromUrl(g2), w = { url: v2, html: f2 };
-      return !n2.cache.write || e.method && "GET" !== e.method || t !== v2 || this.cache.set(w.url, w), w;
-    });
-  }
-  var d = class {
-    constructor(t) {
-      this.swup = void 0, this.pages = /* @__PURE__ */ new Map(), this.swup = t;
-    }
-    get size() {
-      return this.pages.size;
-    }
-    get all() {
-      const t = /* @__PURE__ */ new Map();
-      return this.pages.forEach((e, s2) => {
-        t.set(s2, i({}, e));
-      }), t;
-    }
-    has(t) {
-      return this.pages.has(this.resolve(t));
-    }
-    get(t) {
-      const e = this.pages.get(this.resolve(t));
-      return e ? i({}, e) : e;
-    }
-    set(t, e) {
-      e = i({}, e, { url: t = this.resolve(t) }), this.pages.set(t, e), this.swup.hooks.callSync("cache:set", void 0, { page: e });
-    }
-    update(t, e) {
-      t = this.resolve(t);
-      const s2 = i({}, this.get(t), e, { url: t });
-      this.pages.set(t, s2);
-    }
-    delete(t) {
-      this.pages.delete(this.resolve(t));
-    }
-    clear() {
-      this.pages.clear(), this.swup.hooks.callSync("cache:clear", void 0, void 0);
-    }
-    prune(t) {
-      this.pages.forEach((e, i2) => {
-        t(i2, e) && this.delete(i2);
-      });
-    }
-    resolve(t) {
-      const { url: e } = l.fromUrl(t);
-      return this.swup.resolveUrl(e);
-    }
-  };
-  var p = (t, e = document) => e.querySelector(t);
-  var m = (t, e = document) => Array.from(e.querySelectorAll(t));
-  var g = () => new Promise((t) => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        t();
-      });
-    });
-  });
-  function f(t) {
-    return !!t && ("object" == typeof t || "function" == typeof t) && "function" == typeof t.then;
-  }
-  function v(t, e = []) {
-    return new Promise((i2, s2) => {
-      const n2 = t(...e);
-      f(n2) ? n2.then(i2, s2) : i2(n2);
-    });
-  }
-  var y = (t) => window.CSS && window.CSS.escape ? CSS.escape(t) : t;
-  var k = (t) => 1e3 * Number(t.slice(0, -1).replace(",", "."));
-  var b = class {
-    constructor(t) {
-      this.swup = void 0, this.swupClasses = ["to-", "is-changing", "is-rendering", "is-popstate", "is-animating", "is-leaving"], this.swup = t;
-    }
-    get selectors() {
-      const { scope: t } = this.swup.visit.animation;
-      return "containers" === t ? this.swup.visit.containers : "html" === t ? ["html"] : Array.isArray(t) ? t : [];
-    }
-    get selector() {
-      return this.selectors.join(",");
-    }
-    get targets() {
-      return this.selector.trim() ? m(this.selector) : [];
-    }
-    add(...t) {
-      this.targets.forEach((e) => e.classList.add(...t));
-    }
-    remove(...t) {
-      this.targets.forEach((e) => e.classList.remove(...t));
-    }
-    clear() {
-      this.targets.forEach((t) => {
-        const e = t.className.split(" ").filter((t2) => this.isSwupClass(t2));
-        t.classList.remove(...e);
-      });
-    }
-    isSwupClass(t) {
-      return this.swupClasses.some((e) => t.startsWith(e));
-    }
-  };
-  var S = class {
-    constructor(t, e) {
-      this.id = void 0, this.state = void 0, this.from = void 0, this.to = void 0, this.containers = void 0, this.animation = void 0, this.trigger = void 0, this.cache = void 0, this.history = void 0, this.scroll = void 0;
-      const { to: i2, from: s2 = t.currentPageUrl, hash: n2, el: o2, event: r2 } = e;
-      this.id = Math.random(), this.state = 1, this.from = { url: s2 }, this.to = { url: i2, hash: n2 }, this.containers = t.options.containers, this.animation = { animate: true, wait: false, name: void 0, native: t.options.native, scope: t.options.animationScope, selector: t.options.animationSelector }, this.trigger = { el: o2, event: r2 }, this.cache = { read: t.options.cache, write: t.options.cache }, this.history = { action: "push", popstate: false, direction: void 0 }, this.scroll = { reset: true, target: void 0 };
-    }
-    advance(t) {
-      this.state < t && (this.state = t);
-    }
-    abort() {
-      this.state = 8;
-    }
-    get done() {
-      return this.state >= 7;
-    }
-  };
-  function E(t) {
-    return new S(this, t);
-  }
-  var P = class {
-    constructor(t) {
-      this.swup = void 0, this.registry = /* @__PURE__ */ new Map(), this.hooks = ["animation:out:start", "animation:out:await", "animation:out:end", "animation:in:start", "animation:in:await", "animation:in:end", "animation:skip", "cache:clear", "cache:set", "content:replace", "content:scroll", "enable", "disable", "fetch:request", "fetch:error", "fetch:timeout", "history:popstate", "link:click", "link:self", "link:anchor", "link:newtab", "page:load", "page:view", "scroll:top", "scroll:anchor", "visit:start", "visit:transition", "visit:abort", "visit:end"], this.swup = t, this.init();
-    }
-    init() {
-      this.hooks.forEach((t) => this.create(t));
-    }
-    create(t) {
-      this.registry.has(t) || this.registry.set(t, /* @__PURE__ */ new Map());
-    }
-    exists(t) {
-      return this.registry.has(t);
-    }
-    get(t) {
-      const e = this.registry.get(t);
-      if (e)
-        return e;
-      console.error("Unknown hook '".concat(t, "'"));
-    }
-    clear() {
-      this.registry.forEach((t) => t.clear());
-    }
-    on(t, e, s2 = {}) {
-      const n2 = this.get(t);
-      if (!n2)
-        return console.warn("Hook '".concat(t, "' not found.")), () => {
-        };
-      const o2 = i({}, s2, { id: n2.size + 1, hook: t, handler: e });
-      return n2.set(e, o2), () => this.off(t, e);
-    }
-    before(t, e, s2 = {}) {
-      return this.on(t, e, i({}, s2, { before: true }));
-    }
-    replace(t, e, s2 = {}) {
-      return this.on(t, e, i({}, s2, { replace: true }));
-    }
-    once(t, e, s2 = {}) {
-      return this.on(t, e, i({}, s2, { once: true }));
-    }
-    off(t, e) {
-      const i2 = this.get(t);
-      i2 && e ? i2.delete(e) || console.warn("Handler for hook '".concat(t, "' not found.")) : i2 && i2.clear();
-    }
-    call(t, e, i2, s2) {
-      return __async(this, null, function* () {
-        const [n2, o2, r2] = this.parseCallArgs(t, e, i2, s2), { before: a2, handler: l2, after: h } = this.getHandlers(t, r2);
-        yield this.run(a2, n2, o2);
-        const [c2] = yield this.run(l2, n2, o2);
-        return yield this.run(h, n2, o2), this.dispatchDomEvent(t, n2, o2), c2;
-      });
-    }
-    callSync(t, e, i2, s2) {
-      const [n2, o2, r2] = this.parseCallArgs(t, e, i2, s2), { before: a2, handler: l2, after: h } = this.getHandlers(t, r2);
-      this.runSync(a2, n2, o2);
-      const [c2] = this.runSync(l2, n2, o2);
-      return this.runSync(h, n2, o2), this.dispatchDomEvent(t, n2, o2), c2;
-    }
-    parseCallArgs(t, e, i2, s2) {
-      return e instanceof S || "object" != typeof e && "function" != typeof i2 ? [e, i2, s2] : [void 0, e, i2];
-    }
-    run(t, e, i2) {
-      return __async(this, null, function* () {
-        const s2 = [];
-        for (const { hook: n2, handler: o2, defaultHandler: r2, once: a2 } of t) {
-          if (null != e && e.done)
-            continue;
-          a2 && this.off(n2, o2);
-          const t2 = yield v(o2, [e || this.swup.visit, i2, r2]);
-          s2.push(t2);
-        }
-        return s2;
-      });
-    }
-    runSync(t, e, i2) {
-      const s2 = [];
-      for (const { hook: n2, handler: o2, defaultHandler: r2, once: a2 } of t) {
-        if (null != e && e.done)
-          continue;
-        a2 && this.off(n2, o2);
-        const t2 = o2(e || this.swup.visit, i2, r2);
-        s2.push(t2), f(t2) && console.warn("Promise returned from handler for synchronous hook '".concat(n2, "'.Swup will not wait for it to resolve."));
-      }
-      return s2;
-    }
-    getHandlers(t, e) {
-      const i2 = this.get(t);
-      if (!i2)
-        return { found: false, before: [], handler: [], after: [], replaced: false };
-      const s2 = Array.from(i2.values()), n2 = this.sortRegistrations, o2 = s2.filter(({ before: t2, replace: e2 }) => t2 && !e2).sort(n2), r2 = s2.filter(({ replace: t2 }) => t2).filter((t2) => true).sort(n2), a2 = s2.filter(({ before: t2, replace: e2 }) => !t2 && !e2).sort(n2), l2 = r2.length > 0;
-      let h = [];
-      if (e && (h = [{ id: 0, hook: t, handler: e }], l2)) {
-        const i3 = r2.length - 1, s3 = (t2) => {
-          const i4 = r2[t2 - 1];
-          return i4 ? (e2, n3) => i4.handler(e2, n3, s3(t2 - 1)) : e;
-        };
-        h = [{ id: 0, hook: t, handler: r2[i3].handler, defaultHandler: s3(i3) }];
-      }
-      return { found: true, before: o2, handler: h, after: a2, replaced: l2 };
-    }
-    sortRegistrations(t, e) {
-      var i2, s2;
-      return (null != (i2 = t.priority) ? i2 : 0) - (null != (s2 = e.priority) ? s2 : 0) || t.id - e.id || 0;
-    }
-    dispatchDomEvent(t, e, i2) {
-      if (null != e && e.done)
-        return;
-      const s2 = { hook: t, args: i2, visit: e || this.swup.visit };
-      document.dispatchEvent(new CustomEvent("swup:any", { detail: s2, bubbles: true })), document.dispatchEvent(new CustomEvent("swup:".concat(t), { detail: s2, bubbles: true }));
-    }
-  };
-  var U = (t) => {
-    if (t && "#" === t.charAt(0) && (t = t.substring(1)), !t)
-      return null;
-    const e = decodeURIComponent(t);
-    let i2 = document.getElementById(t) || document.getElementById(e) || p("a[name='".concat(y(t), "']")) || p("a[name='".concat(y(e), "']"));
-    return i2 || "top" !== t || (i2 = document.body), i2;
-  };
-  var C = "transition";
-  var $ = "animation";
-  function x(_0) {
-    return __async(this, arguments, function* ({ elements: t, selector: e }) {
-      if (false === e && !t)
-        return;
-      let i2 = [];
-      if (t)
-        i2 = Array.from(t);
-      else if (e && (i2 = m(e, document.body), !i2.length))
-        return void console.warn("[swup] No elements found matching animationSelector `".concat(e, "`"));
-      const s2 = i2.map((t2) => function(t3) {
-        const { type: e2, timeout: i3, propCount: s3 } = function(t4, e3) {
-          const i4 = window.getComputedStyle(t4), s4 = A(i4, "".concat(C, "Delay")), n2 = A(i4, "".concat(C, "Duration")), o2 = H(s4, n2), r2 = A(i4, "".concat($, "Delay")), a2 = A(i4, "".concat($, "Duration")), l2 = H(r2, a2);
-          let h = null, c2 = 0, u2 = 0;
-          return c2 = Math.max(o2, l2), h = c2 > 0 ? o2 > l2 ? C : $ : null, u2 = h ? h === C ? n2.length : a2.length : 0, { type: h, timeout: c2, propCount: u2 };
-        }(t3);
-        return !(!e2 || !i3) && new Promise((n2) => {
-          const o2 = "".concat(e2, "end"), r2 = performance.now();
-          let a2 = 0;
-          const l2 = () => {
-            t3.removeEventListener(o2, h), n2();
-          }, h = (e3) => {
-            if (e3.target === t3) {
-              if (!function(t4) {
-                return ["".concat(C, "end"), "".concat($, "end")].includes(t4.type);
-              }(e3))
-                throw new Error("Not a transition or animation event.");
-              (performance.now() - r2) / 1e3 < e3.elapsedTime || ++a2 >= s3 && l2();
-            }
-          };
-          setTimeout(() => {
-            a2 < s3 && l2();
-          }, i3 + 1), t3.addEventListener(o2, h);
-        });
-      }(t2));
-      s2.filter(Boolean).length > 0 ? yield Promise.all(s2) : e && console.warn("[swup] No CSS animation duration defined on elements matching `".concat(e, "`"));
-    });
-  }
-  function A(t, e) {
-    return (t[e] || "").split(", ");
-  }
-  function H(t, e) {
-    for (; t.length < e.length; )
-      t = t.concat(t);
-    return Math.max(...e.map((e2, i2) => k(e2) + k(t[i2])));
-  }
-  function q(t, e = {}, s2 = {}) {
-    if ("string" != typeof t)
-      throw new Error("swup.navigate() requires a URL parameter");
-    if (this.shouldIgnoreVisit(t, { el: s2.el, event: s2.event }))
-      return void (window.location.href = t);
-    const { url: n2, hash: o2 } = l.fromUrl(t), r2 = this.createVisit(i({}, s2, { to: n2, hash: o2 }));
-    this.performNavigation(r2, e);
-  }
-  function V(_0) {
-    return __async(this, arguments, function* (t, e = {}) {
-      if (this.navigating) {
-        if (this.visit.state >= 6)
-          return t.state = 2, void (this.onVisitEnd = () => this.performNavigation(t, e));
-        yield this.hooks.call("visit:abort", this.visit, void 0), this.visit.state = 8;
-      }
-      this.navigating = true, this.visit = t;
-      const { el: i2 } = t.trigger;
-      e.referrer = e.referrer || this.currentPageUrl, false === e.animate && (t.animation.animate = false), t.animation.animate || this.classes.clear();
-      const a2 = e.history || (null == i2 ? void 0 : i2.getAttribute("data-swup-history")) || void 0;
-      a2 && ["push", "replace"].includes(a2) && (t.history.action = a2);
-      const l2 = e.animation || (null == i2 ? void 0 : i2.getAttribute("data-swup-animation")) || void 0;
-      var h, c2;
-      l2 && (t.animation.name = l2), "object" == typeof e.cache ? (t.cache.read = null != (h = e.cache.read) ? h : t.cache.read, t.cache.write = null != (c2 = e.cache.write) ? c2 : t.cache.write) : void 0 !== e.cache && (t.cache = { read: !!e.cache, write: !!e.cache }), delete e.cache;
-      try {
-        yield this.hooks.call("visit:start", t, void 0), t.state = 3;
-        const i3 = this.hooks.call("page:load", t, { options: e }, (t2, e2) => __async(this, null, function* () {
-          let i4;
-          return t2.cache.read && (i4 = this.cache.get(t2.to.url)), e2.page = i4 || (yield this.fetchPage(t2.to.url, e2.options)), e2.cache = !!i4, e2.page;
-        }));
-        if (i3.then(({ html: e2 }) => {
-          t.advance(5), t.to.html = e2;
-        }), !t.history.popstate) {
-          const e2 = t.to.url + t.to.hash;
-          "replace" === t.history.action || t.to.url === this.currentPageUrl ? r(e2) : (this.currentHistoryIndex++, o(e2, { index: this.currentHistoryIndex }));
-        }
-        if (this.currentPageUrl = n(), t.history.popstate && this.classes.add("is-popstate"), t.animation.name && this.classes.add("to-".concat(s(t.animation.name))), t.animation.wait && (yield i3), t.done)
-          return;
-        if (yield this.hooks.call("visit:transition", t, void 0, () => __async(this, null, function* () {
-          if (!t.animation.animate)
-            return yield this.hooks.call("animation:skip", void 0), void (yield this.renderPage(t, yield i3));
-          t.advance(4), yield this.animatePageOut(t), t.animation.native && document.startViewTransition ? yield document.startViewTransition(() => __async(this, null, function* () {
-            return yield this.renderPage(t, yield i3);
-          })).finished : yield this.renderPage(t, yield i3), yield this.animatePageIn(t);
-        })), t.done)
-          return;
-        yield this.hooks.call("visit:end", t, void 0, () => this.classes.clear()), t.state = 7, this.navigating = false, this.onVisitEnd && (this.onVisitEnd(), this.onVisitEnd = void 0);
-      } catch (e2) {
-        if (!e2 || null != e2 && e2.aborted)
-          return void (t.state = 8);
-        t.state = 9, console.error(e2), this.options.skipPopStateHandling = () => (window.location.href = t.to.url + t.to.hash, true), window.history.go(-1);
-      }
-    });
-  }
-  var I = function(t) {
-    return __async(this, null, function* () {
-      yield this.hooks.call("animation:out:start", t, void 0, () => {
-        this.classes.add("is-changing", "is-animating", "is-leaving");
-      }), yield this.hooks.call("animation:out:await", t, { skip: false }, (t2, { skip: e }) => {
-        if (!e)
-          return this.awaitAnimations({ selector: t2.animation.selector });
-      }), yield this.hooks.call("animation:out:end", t, void 0);
-    });
-  };
-  var L = function({ html: t }, { containers: e } = this.options) {
-    var i2;
-    const s2 = new DOMParser().parseFromString(t, "text/html"), n2 = (null == (i2 = s2.querySelector("title")) ? void 0 : i2.innerText) || "";
-    document.title = n2;
-    const o2 = m('[data-swup-persist]:not([data-swup-persist=""])'), r2 = e.map((t2) => {
-      const e2 = document.querySelector(t2), i3 = s2.querySelector(t2);
-      return e2 && i3 ? (e2.replaceWith(i3), true) : (e2 || console.warn("[swup] Container missing in current document: ".concat(t2)), i3 || console.warn("[swup] Container missing in incoming document: ".concat(t2)), false);
-    }).filter(Boolean);
-    return o2.forEach((t2) => {
-      const e2 = t2.getAttribute("data-swup-persist"), i3 = p('[data-swup-persist="'.concat(e2, '"]'));
-      i3 && i3 !== t2 && i3.replaceWith(t2);
-    }), r2.length === e.length;
-  };
-  var R = function(t) {
-    const e = { behavior: "auto" }, { target: s2, reset: n2 } = t.scroll, o2 = null != s2 ? s2 : t.to.hash;
-    let r2 = false;
-    return o2 && (r2 = this.hooks.callSync("scroll:anchor", t, { hash: o2, options: e }, (t2, { hash: e2, options: i2 }) => {
-      const s3 = this.getAnchorElement(e2);
-      return s3 && s3.scrollIntoView(i2), !!s3;
-    })), n2 && !r2 && (r2 = this.hooks.callSync("scroll:top", t, { options: e }, (t2, { options: e2 }) => (window.scrollTo(i({ top: 0, left: 0 }, e2)), true))), r2;
-  };
-  var T = function(t) {
-    return __async(this, null, function* () {
-      if (t.done)
-        return;
-      const e = this.hooks.call("animation:in:await", t, { skip: false }, (t2, { skip: e2 }) => {
-        if (!e2)
-          return this.awaitAnimations({ selector: t2.animation.selector });
-      });
-      yield g(), yield this.hooks.call("animation:in:start", t, void 0, () => {
-        this.classes.remove("is-animating");
-      }), yield e, yield this.hooks.call("animation:in:end", t, void 0);
-    });
-  };
-  var N = function(t, e) {
-    return __async(this, null, function* () {
-      if (t.done)
-        return;
-      t.advance(6);
-      const { url: i2 } = e;
-      this.classes.remove("is-leaving"), this.isSameResolvedUrl(n(), i2) || (r(i2), this.currentPageUrl = n(), t.to.url = this.currentPageUrl), t.animation.animate && this.classes.add("is-rendering"), yield this.hooks.call("content:replace", t, { page: e }, (t2, { page: e2 }) => {
-        if (!this.replaceContent(e2, { containers: t2.containers }))
-          throw new Error("[swup] Container mismatch, aborting");
-        t2.animation.animate && (this.classes.add("is-changing", "is-animating", "is-rendering"), t2.animation.name && this.classes.add("to-".concat(s(t2.animation.name))));
-      }), yield this.hooks.call("content:scroll", t, void 0, () => this.scrollToContent(t)), yield this.hooks.call("page:view", t, { url: this.currentPageUrl, title: document.title });
-    });
-  };
-  var O = function(t) {
-    var e;
-    if (e = t, Boolean(null == e ? void 0 : e.isSwupPlugin)) {
-      if (t.swup = this, !t._checkRequirements || t._checkRequirements())
-        return t._beforeMount && t._beforeMount(), t.mount(), this.plugins.push(t), this.plugins;
-    } else
-      console.error("Not a swup plugin instance", t);
-  };
-  function D(t) {
-    const e = this.findPlugin(t);
-    if (e)
-      return e.unmount(), e._afterUnmount && e._afterUnmount(), this.plugins = this.plugins.filter((t2) => t2 !== e), this.plugins;
-    console.error("No such plugin", e);
-  }
-  function M(t) {
-    return this.plugins.find((e) => e === t || e.name === t || e.name === "Swup".concat(String(t)));
-  }
-  function W(t) {
-    if ("function" != typeof this.options.resolveUrl)
-      return console.warn("[swup] options.resolveUrl expects a callback function."), t;
-    const e = this.options.resolveUrl(t);
-    return e && "string" == typeof e ? e.startsWith("//") || e.startsWith("http") ? (console.warn("[swup] options.resolveUrl needs to return a relative url"), t) : e : (console.warn("[swup] options.resolveUrl needs to return a url"), t);
-  }
-  function j(t, e) {
-    return this.resolveUrl(t) === this.resolveUrl(e);
-  }
-  var B = { animateHistoryBrowsing: false, animationSelector: '[class*="transition-"]', animationScope: "html", cache: true, containers: ["#swup"], ignoreVisit: (t, { el: e } = {}) => !(null == e || !e.closest("[data-no-swup]")), linkSelector: "a[href]", linkToSelf: "scroll", native: false, plugins: [], resolveUrl: (t) => t, requestHeaders: { "X-Requested-With": "swup", Accept: "text/html, application/xhtml+xml" }, skipPopStateHandling: (t) => {
-    var e;
-    return "swup" !== (null == (e = t.state) ? void 0 : e.source);
-  }, timeout: 0 };
-  var _ = class {
-    constructor(t = {}) {
-      var e, s2;
-      this.version = "4.5.0", this.options = void 0, this.defaults = B, this.plugins = [], this.visit = void 0, this.cache = void 0, this.hooks = void 0, this.classes = void 0, this.currentPageUrl = n(), this.currentHistoryIndex = void 0, this.clickDelegate = void 0, this.navigating = false, this.onVisitEnd = void 0, this.use = O, this.unuse = D, this.findPlugin = M, this.log = () => {
-      }, this.navigate = q, this.performNavigation = V, this.createVisit = E, this.delegateEvent = a, this.fetchPage = u, this.awaitAnimations = x, this.renderPage = N, this.replaceContent = L, this.animatePageIn = T, this.animatePageOut = I, this.scrollToContent = R, this.getAnchorElement = U, this.getCurrentUrl = n, this.resolveUrl = W, this.isSameResolvedUrl = j, this.options = i({}, this.defaults, t), this.handleLinkClick = this.handleLinkClick.bind(this), this.handlePopState = this.handlePopState.bind(this), this.cache = new d(this), this.classes = new b(this), this.hooks = new P(this), this.visit = this.createVisit({ to: "" }), this.currentHistoryIndex = null != (e = null == (s2 = history.state) ? void 0 : s2.index) ? e : 1, this.checkRequirements() && this.enable();
-    }
-    checkRequirements() {
-      return "undefined" != typeof Promise || (console.warn("Promise is not supported"), false);
-    }
-    enable() {
-      return __async(this, null, function* () {
-        var t;
-        const { linkSelector: e } = this.options;
-        this.clickDelegate = this.delegateEvent(e, "click", this.handleLinkClick), window.addEventListener("popstate", this.handlePopState), this.options.animateHistoryBrowsing && (window.history.scrollRestoration = "manual"), this.options.native = this.options.native && !!document.startViewTransition, this.options.plugins.forEach((t2) => this.use(t2)), "swup" !== (null == (t = history.state) ? void 0 : t.source) && r(null, { index: this.currentHistoryIndex }), yield g(), yield this.hooks.call("enable", void 0, void 0, () => {
-          const t2 = document.documentElement;
-          t2.classList.add("swup-enabled"), t2.classList.toggle("swup-native", this.options.native);
-        });
-      });
-    }
-    destroy() {
-      return __async(this, null, function* () {
-        this.clickDelegate.destroy(), window.removeEventListener("popstate", this.handlePopState), this.cache.clear(), this.options.plugins.forEach((t) => this.unuse(t)), yield this.hooks.call("disable", void 0, void 0, () => {
-          const t = document.documentElement;
-          t.classList.remove("swup-enabled"), t.classList.remove("swup-native");
-        }), this.hooks.clear();
-      });
-    }
-    shouldIgnoreVisit(t, { el: e, event: i2 } = {}) {
-      const { origin: s2, url: n2, hash: o2 } = l.fromUrl(t);
-      return s2 !== window.location.origin || !(!e || !this.triggerWillOpenNewWindow(e)) || !!this.options.ignoreVisit(n2 + o2, { el: e, event: i2 });
-    }
-    handleLinkClick(t) {
-      const e = t.delegateTarget, { href: i2, url: s2, hash: n2 } = l.fromElement(e);
-      if (this.shouldIgnoreVisit(i2, { el: e, event: t }))
-        return;
-      if (this.navigating && s2 === this.visit.to.url)
-        return void t.preventDefault();
-      const o2 = this.createVisit({ to: s2, hash: n2, el: e, event: t });
-      t.metaKey || t.ctrlKey || t.shiftKey || t.altKey ? this.hooks.callSync("link:newtab", o2, { href: i2 }) : 0 === t.button && this.hooks.callSync("link:click", o2, { el: e, event: t }, () => {
-        var e2;
-        const i3 = null != (e2 = o2.from.url) ? e2 : "";
-        t.preventDefault(), s2 && s2 !== i3 ? this.isSameResolvedUrl(s2, i3) || this.performNavigation(o2) : n2 ? this.hooks.callSync("link:anchor", o2, { hash: n2 }, () => {
-          r(s2 + n2), this.scrollToContent(o2);
-        }) : this.hooks.callSync("link:self", o2, void 0, () => {
-          "navigate" === this.options.linkToSelf ? this.performNavigation(o2) : (r(s2), this.scrollToContent(o2));
-        });
-      });
-    }
-    handlePopState(t) {
-      var e, i2, s2, o2;
-      const r2 = null != (e = null == (i2 = t.state) ? void 0 : i2.url) ? e : location.href;
-      if (this.options.skipPopStateHandling(t))
-        return;
-      if (this.isSameResolvedUrl(n(), this.currentPageUrl))
-        return;
-      const { url: a2, hash: h } = l.fromUrl(r2), c2 = this.createVisit({ to: a2, hash: h, event: t });
-      c2.history.popstate = true;
-      const u2 = null != (s2 = null == (o2 = t.state) ? void 0 : o2.index) ? s2 : 0;
-      u2 && u2 !== this.currentHistoryIndex && (c2.history.direction = u2 - this.currentHistoryIndex > 0 ? "forwards" : "backwards", this.currentHistoryIndex = u2), c2.animation.animate = false, c2.scroll.reset = false, c2.scroll.target = false, this.options.animateHistoryBrowsing && (c2.animation.animate = true, c2.scroll.reset = true), this.hooks.callSync("history:popstate", c2, { event: t }, () => {
-        this.performNavigation(c2);
-      });
-    }
-    triggerWillOpenNewWindow(t) {
-      return !!t.matches('[download], [target="_blank"]');
-    }
-  };
-
   // assets/js/modules/language-switcher.js
   var languageSwitcher = () => {
-    jQuery(($2) => {
-      $2.ajax({
+    jQuery(($) => {
+      $.ajax({
         type: "POST",
         url: cyn_head_script.url,
         data: {
@@ -6133,8 +5486,8 @@
     formData.append("action", "cyn_ajax_search_page");
     formData.append("_nonce", cyn_head_script.nonce);
     timeOut = setTimeout(() => {
-      jQuery(($2) => {
-        $2.ajax({
+      jQuery(($) => {
+        $.ajax({
           type: "POST",
           url: cyn_head_script.url,
           cache: false,
@@ -6152,10 +5505,6 @@
   };
 
   // assets/js/modules/swup.js
-  var swup = new _({
-    animateHistoryBrowsing: true,
-    cache: false
-  });
   var init = () => {
     showMoreFunc();
     loadMore();
@@ -6175,10 +5524,8 @@
     ajaxSearch();
     SearchPage();
     story();
-    console.log(translateStrings);
   };
   init();
-  swup.hooks.on("content:replace", init);
 
   // assets/js/modules/accordion.js
   var faqHandlers = document.querySelectorAll(".faq__content__items");

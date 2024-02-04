@@ -1,4 +1,4 @@
-@use "../../utils" as *;
+@use '../../utils' as *;
 
 .faq__content {
   &__items {
@@ -29,7 +29,7 @@
     padding: $s_3;
     cursor: pointer;
     width: 100%;
-
+    @include fs('h3');
     i {
       padding: $s_2;
       background: var(--clr-bg-500);
@@ -52,7 +52,15 @@
     display: grid;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.5s ease;
-
+    @include fs('body-s');
+    ul {
+      list-style: initial;
+      padding: $s_4;
+      li {
+        list-style: initial;
+        list-style-position: inside;
+      }
+    }
     div {
       overflow: hidden;
       p {

@@ -1,10 +1,9 @@
-<?php /* Template Name: Contact us */?>
+<?php /* Template Name: Contact us */ ?>
 
 <?php get_header() ?>
 
 
-<main class="container"
-	  id="contactUsPage">
+<main class="container" id="contactUsPage">
 
 	<section class="contact-us">
 
@@ -12,42 +11,25 @@
 
 			<p><?php the_title() ?></p>
 
-			<form method="post"
-				  action=""
-				  id="contactForm"
-				  class="f-contact">
+			<form method="post" action="" id="contactForm" class="f-contact">
 
 				<div class="contact-name">
 					<i class="icon-user"></i>
-					<input type="name"
-						   id="name"
-						   name="name"
-						   placeholder="<?php pll_e( 'form-name' ) ?>">
+					<input type="name" id="name" name="name" placeholder="<?php pll_e('form-name') ?>" required>
 				</div>
 
 				<div class="contact-email">
 					<i class="icon-email"></i>
-					<input type="text"
-						   id="email"
-						   name="email"
-						   placeholder="<?php pll_e( 'form-email' ) ?>">
+					<input type="email" id="email" name="email" placeholder="<?php pll_e('form-email') ?>" required>
 				</div>
 
 				<div class="contact-textarea">
 					<i class="icon-comment"></i>
-					<textarea type="textarea"
-							  id="textarea"
-							  name="message"
-							  placeholder="<?php pll_e( 'form-message' ) ?>"></textarea>
+					<textarea type="textarea" id="textarea" name="description" placeholder="<?php pll_e('form-message') ?>" required></textarea>
 				</div>
 
-				<button class="btn"
-						variant='primary'
-						size='big'
-						type="submit"
-						id="submit_form"
-						name="send">
-					<?php pll_e( 'btn-send' ) ?>
+				<button class="btn" variant='primary' size='big' type="submit" id="submit_form" name="send">
+					<?php pll_e('btn-send') ?>
 				</button>
 
 			</form>
@@ -57,8 +39,7 @@
 		</div>
 
 		<div class="img-contact">
-			<img src="<?= get_stylesheet_directory_uri() . '/assets/img/contact-us.webp' ?>"
-				 alt="contact-us">
+			<img src="<?= get_stylesheet_directory_uri() . '/assets/img/contact-us.webp' ?>" alt="contact-us">
 		</div>
 
 	</section>
