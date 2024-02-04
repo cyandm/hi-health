@@ -1,46 +1,46 @@
 @use '../../utils/' as *;
 
 .testimonial-card {
-	@include d_flex(row, center, center, nowrap, true);
-	height: 100%;
-	background-color: var(--clr-bg-500);
+  @include d_flex(row, center, center, nowrap, true);
+  height: 100%;
+  background-color: var(--clr-bg-500);
 
-	&__details {
-		display: grid;
-		gap: $s_3;
-	}
+  &__details {
+    display: grid;
+    gap: $s_3;
+  }
 
-	&__image {
-		.img-wrapper {
-			height: 300px;
+  &__image {
+    .img-wrapper {
+      height: 300px;
 
-			@include pseudo(0) {
-				background-image: url('../img/wave-horizontal.svg');
-				background-size: contain;
-				background-repeat: no-repeat;
-				height: 100%;
-				width: auto;
-				translate: -1px;
-			}
-		}
-	}
+      @include pseudo(0) {
+        background-image: url('../img/wave-horizontal.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 100%;
+        width: auto;
+        translate: -1px;
+      }
+    }
+  }
 
-	&__icon-group {
-		display: grid;
-		align-content: center;
-		gap: $s_1;
+  &__icon-group {
+    display: grid;
+    align-content: center;
+    gap: $s_1;
 
-		i {
-			color: var(--clr-accent-700);
-			font-size: 1.25rem;
-		}
-	}
+    i {
+      color: var(--clr-accent-700);
+      font-size: 1.25rem;
+    }
+  }
 
-	&__icon {
-		@include d_flex($gap: $s_1);
-	}
+  &__icon {
+    @include d_flex(row, flex-start, flex-start, nowrap, $gap: $s_1);
+  }
 
-	&__name {
-		color: var(--clr-natural-400);
-	}
+  &__name {
+    color: var(--clr-natural-400);
+  }
 }

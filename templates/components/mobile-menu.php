@@ -10,7 +10,7 @@
 	<header class="mobile-menu__header">
 		<i class="icon-close btn icon" id="menuCloser"></i>
 
-		<a class="btn" variant="primary" size="medium">
+		<a class="btn popUpOpener" variant="primary" size="medium">
 			<i class="icon-form"></i>
 			<?php pll_e('btn-send') ?>
 		</a>

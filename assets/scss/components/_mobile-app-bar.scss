@@ -1,4 +1,4 @@
-@use "../utils" as *;
+@use '../utils' as *;
 
 .mobile-app-bar {
   display: none;
@@ -12,7 +12,7 @@
   padding: $s_3 $s_5;
   justify-content: space-between;
 
-  @include mq("lg") {
+  @include mq('lg') {
     display: flex;
   }
 
@@ -22,8 +22,7 @@
   }
 
   .lang-switcher__list {
-    transform: translatey(-6.5rem);
-    right: 2%;
+    transform: translateY(-6.5rem);
     left: unset;
   }
 }

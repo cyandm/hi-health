@@ -117,3 +117,18 @@ button {
   border: none;
   background: none;
 }
+
+html[lang='en-US'] #menuOpener {
+  transform: scaleX(-1);
+}
+
+html[lang='en-US'] {
+  .middle-section__inner-content {
+    &::after {
+      font-family: 'Peyda';
+    }
+  }
+}
+
+html[lang='en-US'] {
+}

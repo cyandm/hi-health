@@ -13,7 +13,6 @@ $last_blogs = new WP_Query([
 
 
 ?>
-
 <section class="blogs-section container">
 
     <div class="blogs-section__head">

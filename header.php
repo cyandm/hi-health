@@ -60,7 +60,7 @@ $btn_req = get_field('text_btn_req', $front_page_id);
 
 
 					<div class="header-button">
-						<a href="#" class="btn" variant='primary' size='big' id="reservePopUpOpener">
+						<a class="btn" variant='primary' size='big' id="reservePopUpOpener">
 							<i class="icon-form"></i>
 							<?= $btn_req ?>
 						</a>

@@ -10,7 +10,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing);
-
+  li {
+    display: flex;
+    align-items: center;
+    min-width: max-content;
+  }
   .mini-logo {
     padding: 8px;
     margin-inline: var(--spacing);

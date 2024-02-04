@@ -633,6 +633,9 @@
     const reservePopUpForm = document.getElementById("reservePopUpForm");
     const reservePopUpOpener = document.getElementById("reservePopUpOpener");
     const reservePopUpCloser = document.getElementById("reservePopUpCloser");
+    const reservePopUpOpenerActiveMenu = document.querySelector(
+      ".mobile-menu__header .popUpOpener"
+    );
     if (!reservePopUp)
       return;
     if (!reservePopUpForm)
@@ -643,6 +646,11 @@
       return;
     definePopUp(reservePopUp);
     addListener(reservePopUpOpener, "click", () => activateEl(reservePopUp));
+    addListener(
+      reservePopUpOpenerActiveMenu,
+      "click",
+      () => activateEl(reservePopUp)
+    );
     addListener(reservePopUpCloser, "click", () => deActivateEl(reservePopUp));
     addListener(
       reservePopUpForm,

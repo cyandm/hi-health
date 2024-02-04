@@ -100,3 +100,12 @@
     @include max_line(1);
   }
 }
+
+@media (max-width: 803px) {
+  html[lang='en-US']
+    .general-card:not(.no-media)
+    .general-card__image
+    .img-wrapper::after {
+    transform: scale(-1);
+  }
+}
