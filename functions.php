@@ -20,7 +20,7 @@ require_once(__DIR__ . '/inc/classes/cyn-ajax-general.php');
 
 
 /***************************** Instance Classes */
-$cyn_theme_init = new cyn_theme_init(false, '1.0.0');
+$cyn_theme_init = new cyn_theme_init(false, '1.1.0');
 $cyn_acf = new cyn_acf();
 $cyn_customize = new cyn_customize();
 $cyn_general = new cyn_general();
